@@ -68,6 +68,8 @@ public class ControlLogInPadrino extends HttpServlet {
                  if (apadrinadosPareja!=null && !apadrinadosPareja.isEmpty()){
                      apadrinados.add(apadrinadosPareja.get(0));
                  }
+                 
+                 session.setAttribute("idPareja", idPareja);
             }
             
             if ( apadrinados !=null && !apadrinados.isEmpty()){

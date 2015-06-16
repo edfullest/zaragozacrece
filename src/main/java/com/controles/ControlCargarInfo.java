@@ -45,16 +45,40 @@ public class ControlCargarInfo extends HttpServlet {
                 Apadrinados apadrinado  = new Apadrinados (conn);
                 
                 int idApadrinado = Integer.parseInt(request.getParameter("idApadrinado"));
-                ArrayList<Entrada> entradas = entrada.obtenerEntradas(idApadrinado);
-                ArrayList<String> datos = apadrinado.obtenerDatosApadrinado(idApadrinado);
-                System.out.println(datos.get(0));
-                System.out.println(datos.get(1));
-                request.setAttribute("entradas",entradas);
-                request.setAttribute("nombreApadrinado",datos.get(0));
-                request.setAttribute("comunidad",datos.get(1));
-                request.setAttribute("idApadrinado", idApadrinado);
+                int idPadrino = (Integer)session.getAttribute("idPadrino");
+                boolean padrinoCorrecto = false;
+                boolean parejaCorrecta = false;
                 
-                request.getRequestDispatcher("miApadrinado").forward(request, response);
+                ArrayList<Apadrinados> apadrinadosDeLaCuenta = (ArrayList<Apadrinados>)session.getAttribute("apadrinados");
+                int i=0;
+                do{
+                    
+                    Apadrinados unapadrinado =apadrinadosDeLaCuenta.get(i);
+                    if(unapadrinado.getIdApadrinado()==idApadrinado){
+                        padrinoCorrecto = true;
+                    }
+                    i++;
+                    
+                }while(!padrinoCorrecto && i<apadrinadosDeLaCuenta.size());
+             
+                
+                if(padrinoCorrecto){
+                    ArrayList<Entrada> entradas = entrada.obtenerEntradas(idApadrinado);
+                    ArrayList<String> datos = apadrinado.obtenerDatosApadrinado(idApadrinado);
+                    System.out.println(datos.get(0));
+                    System.out.println(datos.get(1));
+                    request.setAttribute("entradas",entradas);
+                    request.setAttribute("nombreApadrinado",datos.get(0));
+                    request.setAttribute("comunidad",datos.get(1));
+                    request.setAttribute("idApadrinado", idApadrinado);
+                
+                    request.getRequestDispatcher("miApadrinado").forward(request, response);
+                    
+                }
+                else{
+                    request.getRequestDispatcher("CuentaPadrino").forward(request, response);
+                }
+                
             }
         }
         

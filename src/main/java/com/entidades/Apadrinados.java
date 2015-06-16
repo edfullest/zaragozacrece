@@ -260,22 +260,23 @@ public class Apadrinados {
     
        //Se obtienen numero de notas
     public int obtenerIdPareja(int idApadrinado){
-   
+        
+        int idPareja = -100;
         
         try{
             pStmt = conn.prepareStatement(
                 "SELECT idPareja FROM apadrinados WHERE idApadrinado = ?");
             pStmt.setInt(1,idApadrinado);
             ResultSet rs = pStmt.executeQuery();
-            while(rs.next()){
-                int idPareja = rs.getInt("idPareja");
-                return idPareja;
+            if(rs.next()){
+                idPareja = rs.getInt("idPareja");
+                
             }
         
-            return -1;
+            return idPareja;
         }
         catch(SQLException e){
-            return -1;
+            return -1000;
         }
 
     }
