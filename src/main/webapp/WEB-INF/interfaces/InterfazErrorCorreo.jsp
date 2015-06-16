@@ -148,7 +148,7 @@
                                 <a href="#"><i class="fa fa-group"></i>Apadrinados<i class="fa fa-indicator fa-chevron-down"></i></a>
                                 <div class="grid-container3">
                                     <ul>
-                                        <li><a href="cargarInfo?idApadrinado=${apadrinado.idApadrinado}"><i class="fa fa-male"></i>${apadrinado.nombreCompleto}</a></li>
+                                        <li><a href="cargarInfo?idApadrinado=${apadrinado.idApadrinado}"><i class="fa fa-child"></i>${apadrinado.nombreCompleto}</a></li>
                                     </ul>
                                 </div>
                             </li>             

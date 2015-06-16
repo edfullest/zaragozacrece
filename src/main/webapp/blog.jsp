@@ -150,7 +150,7 @@
                                             <c:forEach items="${apadrinados}" var="apadrinado">
                                             
                                             
-                                                <li><a href="cargarInfo?idApadrinado=${apadrinado.idApadrinado}"><i class="fa fa-male"></i>${apadrinado.nombreCompleto}</a></li>
+                                                <li><a href="cargarInfo?idApadrinado=${apadrinado.idApadrinado}"><i class="fa fa-child"></i>${apadrinado.nombreCompleto}</a></li>
                                                             
                                             </c:forEach>
                                         </ul>

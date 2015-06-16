@@ -159,7 +159,7 @@
                                                         <li><a href="cargarInfo?idApadrinado=${apadrinado.idApadrinado}"><i class="fa fa-angle-right"></i><b>${apadrinado.nombreCompleto}</b></a></li>
                                                     </c:when>
                                                     <c:otherwise>
-                                                           <li><a href="cargarInfo?idApadrinado=${apadrinado.idApadrinado}"><i class="fa fa-male"></i>${apadrinado.nombreCompleto}</a></li>    
+                                                           <li><a href="cargarInfo?idApadrinado=${apadrinado.idApadrinado}"><i class="fa fa-child"></i>${apadrinado.nombreCompleto}</a></li>    
                                                     </c:otherwise>
                                                          
                                                             
