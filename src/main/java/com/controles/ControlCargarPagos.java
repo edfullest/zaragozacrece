@@ -73,7 +73,7 @@ public class ControlCargarPagos extends HttpServlet {
                     
                     ArrayList<String> nombreColumnas = new ArrayList<String>();
                     nombreColumnas.add("idPago");
-                    nombreColumnas.add("Nombre");
+                    nombreColumnas.add("Correo");
                     
                     nombreColumnas.add("Fecha de Pago");
                     

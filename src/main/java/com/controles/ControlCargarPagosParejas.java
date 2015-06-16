@@ -64,8 +64,8 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     
                     ArrayList<String> nombreColumnas = new ArrayList<String>();
                     nombreColumnas.add("idPago");
-                    nombreColumnas.add("Padrino 1");
-                    nombreColumnas.add("Padrino 2");
+                    nombreColumnas.add("Correo 1");
+                    nombreColumnas.add("Correo 2");
                     nombreColumnas.add("Fecha de Pago 1");
                     nombreColumnas.add("Fecha de Pago 2");
                     nombreColumnas.add("");
@@ -77,7 +77,7 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     request.setAttribute("nombreColumnas", nombreColumnas);
                     request.setAttribute("numPaginas", numPaginas);
                     request.setAttribute("paginaActual", paginaActual);
-                    request.getRequestDispatcher("cargarPagosdeParejas").forward(request, response);
+                    request.getRequestDispatcher("pagosDeParejas").forward(request, response);
                     
                 }
                 
@@ -117,7 +117,7 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     request.setAttribute("idPagoPareja", idPagoPareja);
                     request.setAttribute("fechaPago1", fechaPago1);
                     request.setAttribute("fechaPago2", fechaPago2);
-                    request.setAttribute("idPadrino", idPareja);
+                    request.setAttribute("idPareja", idPareja);
                     request.getRequestDispatcher("asignarApadrinadoPareja").forward(request, response);
                     
                     
@@ -135,7 +135,7 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     try{
                         DateFormat formatter ;
                         
-                        formatter = new SimpleDateFormat("YYYY-MM-DD");
+                        formatter = new SimpleDateFormat("yyyy-MM-dd");
                         fechaPagoUno = formatter.parse(fechaPago1);
                         fechaPagoDos = formatter.parse(fechaPago2);
                         
@@ -161,7 +161,7 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     
                     request.setAttribute("exito", true);
                     
-                    request.getRequestDispatcher("ControlCargarPagos?tipo=cargarPagos").forward(request, response);
+                    request.getRequestDispatcher("pagosDeParejas?tipo=cargarPagos").forward(request, response);
                     
                     
                 }

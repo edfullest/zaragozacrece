@@ -135,7 +135,7 @@ public class Pago {
         String nombreCompleto;
         
         try{
-            stmt.executeQuery("SELECT idPago,pago.idPadrino,idApadrinado,fechaPago,acreditado,nombreCompleto "
+            stmt.executeQuery("SELECT idPago,pago.idPadrino,idApadrinado,fechaPago,acreditado,correo "
                     + "FROM pago,padrinos WHERE pago.idPadrino=padrinos.idPadrino AND pago.acreditado=0 ORDER BY idPago desc LIMIT "+offset+","+num);
             ResultSet rs = stmt.getResultSet();
             
@@ -146,7 +146,7 @@ public class Pago {
                 idApadrinado = rs.getInt("idApadrinado");
                 fechaPago = rs.getDate("fechaPago");
                 acreditado = (rs.getInt("acreditado")!=0);
-                nombreCompleto = rs.getString("nombreCompleto");
+                nombreCompleto = rs.getString("correo");
                 
                 
                 Pago pago = new Pago(idPago,idPadrino,nombreCompleto,idApadrinado,fechaPago,acreditado);

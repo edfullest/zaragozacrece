@@ -26,6 +26,9 @@ public class Pago_pareja {
     private Date fechaPago1;
     private Date fechaPago2;
     private boolean acreditado;
+    private String correo1;
+    private String correo2;
+    
     
     
     // Metodo constructor con conexion
@@ -45,6 +48,23 @@ public class Pago_pareja {
             this.fechaPago1=fechaPago1;
             this.fechaPago2=fechaPago2;
             this.acreditado=acreditado;
+        
+    }
+    
+         // Metodo constructor de la clase
+    public Pago_pareja(int idPagoPareja, int idPareja, int idApadrinado,
+            Date fechaPago1, Date fechaPago2, boolean acreditado,
+            String correo1,String correo2){
+            this.idPagoPareja = idPagoPareja;
+            this.idPareja = idPareja;
+            this.idApadrinado=idApadrinado;
+            this.pago1=pago1;
+            this.pago2=pago2;
+            this.fechaPago1=fechaPago1;
+            this.fechaPago2=fechaPago2;
+            this.acreditado=acreditado;
+            this.correo1=correo1;
+            this.correo2 = correo2;
         
     }
     
@@ -207,29 +227,34 @@ public class Pago_pareja {
         
         
         
-        int idPago;
-        int idPadrino;
+        int idPagoPareja;
+        int idPareja;
         int idApadrinado;
-        Date fechaPago;
+        Date fechaPago1;
+        Date fechaPago2;
         boolean acreditado;
-        String nombreCompleto;
+        String correo1;
+        String correo2;
         
         try{
-            stmt.executeQuery("SELECT idPagoPareja,pago_pareja.idPareja,idApadrinado,fechaPago1,fechaPago2,acreditado,nombreCompleto "
-                    + "FROM pago,padrinos WHERE pago.idPadrino=padrinos.idPadrino AND pago.acreditado=0 ORDER BY idPago desc LIMIT "+offset+","+num);
+            stmt.executeQuery("SELECT idPagoPareja,pago_pareja.idPareja,idApadrinado,fechaPago1,fechaPago2,acreditado,correo1,correo2 "
+                    + "FROM pago_pareja,pareja WHERE pago_pareja.idPareja=pareja.idPareja AND pago_pareja.acreditado=0 ORDER BY idPagoPareja desc LIMIT "+offset+","+num);
             ResultSet rs = stmt.getResultSet();
             
             while(rs.next()){
                
-                idPago = rs.getInt("idPago");
-                idPadrino = rs.getInt("idPadrino");
+                idPagoPareja = rs.getInt("idPagoPareja");
+                idPareja = rs.getInt("idPareja");
                 idApadrinado = rs.getInt("idApadrinado");
-                fechaPago = rs.getDate("fechaPago");
+                fechaPago1 = rs.getDate("fechaPago1");
+                fechaPago2 = rs.getDate("fechaPago2");
                 acreditado = (rs.getInt("acreditado")!=0);
-                nombreCompleto = rs.getString("nombreCompleto");
+                correo1 = rs.getString("correo1");
+                correo2 = rs.getString("correo2");
                 
                 
-                Pago pago = new Pago(idPago,idPadrino,nombreCompleto,idApadrinado,fechaPago,acreditado);
+                Pago_pareja unpago = new Pago_pareja(idPagoPareja,idPareja,idApadrinado
+                        ,fechaPago1,fechaPago2,acreditado,correo1,correo2);
               
                 
             }
@@ -403,6 +428,34 @@ public class Pago_pareja {
      */
     public void setAcreditado(boolean acreditado) {
         this.acreditado = acreditado;
+    }
+
+    /**
+     * @return the correo1
+     */
+    public String getCorreo1() {
+        return correo1;
+    }
+
+    /**
+     * @param correo1 the correo1 to set
+     */
+    public void setCorreo1(String correo1) {
+        this.correo1 = correo1;
+    }
+
+    /**
+     * @return the correo2
+     */
+    public String getCorreo2() {
+        return correo2;
+    }
+
+    /**
+     * @param correo2 the correo2 to set
+     */
+    public void setCorreo2(String correo2) {
+        this.correo2 = correo2;
     }
 
 

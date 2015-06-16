@@ -5,9 +5,11 @@
 */
 package com.controles;
 
+import com.clases.Carta;
 import com.conexion.Conexion;
 import com.entidades.Apadrinados;
 import com.entidades.Entrada;
+import com.entidades.Notas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -60,18 +62,39 @@ public class ControlCargarInfo extends HttpServlet {
                     i++;
                     
                 }while(!padrinoCorrecto && i<apadrinadosDeLaCuenta.size());
-             
+                
                 
                 if(padrinoCorrecto){
                     ArrayList<Entrada> entradas = entrada.obtenerEntradas(idApadrinado);
                     ArrayList<String> datos = apadrinado.obtenerDatosApadrinado(idApadrinado);
-                    System.out.println(datos.get(0));
-                    System.out.println(datos.get(1));
+                    
+                    //Sistema de paginado
+                    int paginaActual = 1;
+                    int cartasPorPagina = 5;
+                    if(request.getParameter("paginaActual") != null)
+                        paginaActual = Integer.parseInt(request.getParameter("paginaActual"));
+                    
+                    
+                    
+                  
+                    //Se obtienen todas las cartas
+                    ArrayList<Carta> cartas = entrada.obtenerCartas((paginaActual-1)*cartasPorPagina,cartasPorPagina,idApadrinado);
+                    int numCartas = entrada.getNumCartas(idApadrinado);
+                    
+                    int numPaginas = (int)Math.ceil(numCartas*1.0/cartasPorPagina);
+                    
+                    request.setAttribute("cartas", cartas);
+                    request.setAttribute("numPaginas", numPaginas);
+                    request.setAttribute("paginaActual", paginaActual);
+                    
+   
+                    
+                    
                     request.setAttribute("entradas",entradas);
                     request.setAttribute("nombreApadrinado",datos.get(0));
                     request.setAttribute("comunidad",datos.get(1));
                     request.setAttribute("idApadrinado", idApadrinado);
-                
+                    
                     request.getRequestDispatcher("miApadrinado").forward(request, response);
                     
                 }

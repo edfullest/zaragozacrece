@@ -9,6 +9,7 @@
 <!DOCTYPE html>
     <html>
     
+      
     
     <head>
             
@@ -34,21 +35,24 @@
         <link rel="stylesheet" type="text/css" href="css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="css/demo.css" />
         <link rel="stylesheet" type="text/css" href="css/component.css" />
+        <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+	
         <!--[if lt IE 9]>
                 <link rel="stylesheet" href="css/sky-forms-ie8.css">
         <![endif]-->
-                    
+        
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.form.min.js"></script>
         <script src="js/jquery.validate.min.js"></script>	
         <script src="js/jquery-ui.min.js"></script>
+        <script src="js/modernizr.js"></script>
                     
         <!--[if lt IE 9]>
                 <link rel="stylesheet" href="css/sky-tabs-ie8.css">
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
                 <script src="js/sky-tabs-ie8.js"></script>
         <![endif]-->
-                    
                     
                     
     </head>
@@ -111,8 +115,7 @@
                                         <a href="apadrinados?tipo=${"editarApadrinado"}"><i class="fa fa-gears"></i>Editar apadrinado</a>
                                     </li>
                                     <li>
-                                        
-                                        <a href="apadrinados?tipo=${"apadrinadosRegistrados"}"><i class="fa fa-table"></i>Apadrinados registrados</a>
+                                        <a href="#"><i class="fa fa-table"></i>Apadrinados registrados</a>
                                     </li>
                                 </ul>
                             </div>
@@ -128,14 +131,16 @@
                             <div class="grid-container3">
                                 <ul>
                                     <li>
-                                        <a href="ControlCargarPagos?tipo=cargarPagos"><i class="fa fa-user"></i>Asignar apadrinados a padrinos</a>
+                                        <a href="#"><i class="fa fa-lightbulb-o"></i>Asignar apadrinados a padrinos</a>
                                     </li>
                                                                                     
                                     <li>
-                                        <a href="cargarPagosParejas?tipo=cargarPagos"><i class="fa fa-users"></i>Asignar apadrinados a parejas</a>
+                                        <a href="#"><i class="fa fa-money"></i>Asignar pagos</a>
                                     </li>
                                                                                     
-                                   
+                                    <li>
+                                        <a href="#"><i class="fa fa-table"></i>Padrinos registrados</a>
+                                    </li>
                                                                                     
                                 </ul>
                             </div>
@@ -152,7 +157,12 @@
                         
                         <!--/ Apartado para apadrinar un niño  -->
                         
-                       
+                        <!-- Mi cuenta,esto es si existe sesion -->
+                        
+                        
+                        
+                        
+                        <!-- Mi cuenta,esto es si existe sesion -->
                         
                         <!-- Apartado para cerrar sesión -->
                         <li>
@@ -167,17 +177,106 @@
                     </ul>
                     <!--/ Termina el menú -->
                     
+                    <br>
+                    <br>
                     
-                </div>
-                    
+                
+                    <div class="sky-tabs sky-tabs-pos-top-center sky-tabs-anim-flip sky-tabs-response-to-icons">
+				<input type="radio" name="sky-tabs" id="sky-tab1" class="sky-tab-content-1">
+				<label class="disabled"><span><span><i class="fa fa-home"></i>Paso 1: Escoger Pago</span></span></label>
+				
+				<input type="radio" name="sky-tabs" checked id="sky-tab2" class="sky-tab-content-2">
+				<label class="disabled"><span><span><i class="fa fa-bolt"></i>Paso 2: Escoger Apadrinado</span></span></label>
+				
+			
+				
+			</div>
+                            
+                    <div class="body"> 
+                                
+                        <div class="component">
+                            <table>
+                                <tr>
+                                    <c:forEach items="${nombreColumnas}" var="columnas" >
+                                        <th><c:out value="${columnas}"/></th>
+                                        </c:forEach>
+                                </tr>
+                                <!-- column data -->
+                                <c:forEach items="${apadrinados}" var="item" >
+                                    <tr>
+                                        <td><c:out value="${item.idApadrinado}"/>
+                                            <input type="hidden" name="idApadrinado" value="${item.idApadrinado}">
+                                        </td>
+                                        <td><c:out value="${item.nombreCompleto}"/>
+                                            <input type="hidden" name="nombreCompleto" value="${item.nombreCompleto}">
+                                        </td>
+                                        <td><c:out value="${item.comunidad}"/>
+                                            <input type="hidden" name="comunidad" value="${item.comunidad}">
+                                        </td>
+           
+  
+                                   <td><a href="cargarPagosParejas?tipo=asignar&idApadrinado=${item.idApadrinado}&idPagoPareja=${param.idPagoPareja}&fechaPago1=${param.fechaPago1}&idPareja=${param.idPareja}&fechaPago2=${param.fechaPago2}">
+                                                        <button type="button" class="button-table"><i class="fa fa-plus-circle"></i> Asignar</button></a></td>
+   
+                                                    
+                                                    
+                                    </tr>
+                                        
+                                </c:forEach>
+                            </table>
+                        </div>
+                            
+                        <input type="hidden" name="tipo" value="redirigirVerMas">
+                            
+                            
+                        <div class="sky-tabs sky-tabs-pos-top-left sky-tabs-response-to-icons">
+                            
+                            <section>
+                                
+                                <nav role="navigation"> 
+                                    <ul class="cd-pagination">
+                                        
+                                        <%--For displaying Previous link except for the 1st page --%>
+                                        <c:if test="${paginaActual != 1}">
+                                            <li><a href="cargarPagosParejas?tipo=redirigirAsignar&paginaActual=${paginaActual - 1}">Anterior</a></li>
+                                            </c:if>
+                                                
+                                        <c:forEach begin="1" end="${numPaginas}" var="i">
+                                            <c:choose>
+                                                <c:when test="${paginaActual eq i}">
+                                                    <li><a class="current">${i}</a></li>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                    <li><a href="cargarPagosParejas?tipo=redirigirAsignar&paginaActual=${i}">${i}</a></li>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                                
+                                        <c:if test="${paginaActual != numPaginas}">
+                                            <li><a href="cargarPagosParejas?tipo=redirigirAsignar&paginaActual=${paginaActual + 1}">Siguiente</a></li>
+                                            </c:if>
+                                                
+                                    </ul>
+                                </nav> 
+                                    
+                                    
+                            </section>
+                                
+                            <!--/ tabs -->
+                                
+                                
+                        </div>
+                    </div>
+                        
+                   </div>     
                     
             </body>
             
             
         </c:when>
-        <c:otherwise>
+        <c:when test="${sessionScope.goodlogin==false}">
             <jsp:forward page = "admin" />
-        </c:otherwise>
+        </c:when>
     </c:choose>  
     
     

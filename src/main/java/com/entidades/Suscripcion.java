@@ -18,6 +18,7 @@ public class Suscripcion {
     
     //Atributos de la clase
     
+    private int idSuscripcion;
     private int idPadrino;
     private int idPago;
     private int idApadrinado;
@@ -30,11 +31,11 @@ public class Suscripcion {
     }
     
         // Metodo constructor de la clase
-    public Suscripcion(int idPadrino,int idPago, int idApadrinado,
-            Date fechaUltimoPago){
+    public Suscripcion(int idSuscripcion, int idPadrino, int idPago, int idApadrinado, Date fechaUltimoPago){
         
-            this.idPago = idPago;
+            this.idSuscripcion = idSuscripcion;
             this.idPadrino = idPadrino;
+            this.idPago = idPago;
             this.idApadrinado=idApadrinado;
             this.fechaUltimoPago=fechaUltimoPago;
             
@@ -65,113 +66,58 @@ public class Suscripcion {
     }
     
     
+    //Se obtienen las suscripciones con el ID del padrino
+    public ArrayList<Suscripcion> obtenerSuscripciones(int id){
         
-    public ArrayList<Pago> obtenerPagos(int id){
+        ArrayList<Suscripcion> suscripciones = new ArrayList<Suscripcion>();
         
-        ArrayList<Pago> pagos = new ArrayList<Pago>();
-        
-        int idPago;
+        int idSuscripcion;
         int idPadrino;
+        int idPago;
         int idApadrinado;
-        Date fechaPago;
-        boolean acreditado;
+        Date fechaUltimoPago;
         
         try{
             pStmt = conn.prepareStatement(
-                "SELECT * FROM pago WHERE idPadrino = ? ORDER BY idPago desc");
+                "SELECT * FROM suscripcion WHERE idPadrino = ?");
             pStmt.setInt(1,id);
             ResultSet rs = pStmt.executeQuery();
             while(rs.next()){
                 
-                idPago = rs.getInt("idPago");
+                idSuscripcion = rs.getInt("idSuscripcion");
                 idPadrino = rs.getInt("idPadrino");
+                idPago = rs.getInt("idPago");
                 idApadrinado = rs.getInt("idApadrinado");
-                fechaPago = rs.getDate("fechaPago");
-                acreditado = (rs.getInt("acreditado")!=0);
+                fechaUltimoPago = rs.getDate("fechaUltimoPago");
                 
-                Pago pago = new Pago(idPago,idPadrino,idApadrinado,fechaPago,acreditado);
                 
-                pagos.add(pago);
+                Suscripcion suscripcion = new Suscripcion(idSuscripcion,idPadrino,idPago,idApadrinado,fechaUltimoPago);
+                
+                suscripciones.add(suscripcion);
 
             }
         
-            return pagos;
+            return suscripciones;
         }
         catch(SQLException e){
-            return pagos;
+            return suscripciones;
         }
-        
 
-        
     }
     
-     public ArrayList<Pago> mostrarPagos(int offset,int num){
-        
-         ArrayList<Pago> pagos = new ArrayList<Pago>();
-        
-        
-        
-        int idPago;
-        int idPadrino;
-        int idApadrinado;
-        Date fechaPago;
-        boolean acreditado;
-        String nombreCompleto;
-        
-        try{
-            stmt.executeQuery("SELECT idPago,pago.idPadrino,idApadrinado,fechaPago,acreditado,nombreCompleto "
-                    + "FROM pago,padrinos WHERE pago.idPadrino=padrinos.idPadrino AND pago.idApadrinado=-1 ORDER BY idPago desc LIMIT "+offset+","+num);
-            ResultSet rs = stmt.getResultSet();
-            
-            while(rs.next()){
-               
-                idPago = rs.getInt("idPago");
-                idPadrino = rs.getInt("idPadrino");
-                idApadrinado = rs.getInt("idApadrinado");
-                fechaPago = rs.getDate("fechaPago");
-                acreditado = (rs.getInt("acreditado")!=0);
-                nombreCompleto = rs.getString("nombreCompleto");
-                
-                
-                Pago pago = new Pago(idPago,idPadrino,nombreCompleto,idApadrinado,fechaPago,acreditado);
-                pagos.add(pago);
-                
-            }
-        
-            return pagos;
-        }
-        catch(SQLException e){
-            System.out.println(e);
-            return null;
-        }
-        
-        
-        
+
+    /**
+     * @return the idSuscripcion
+     */
+    public int getIdSuscripcion() {
+        return idSuscripcion;
     }
-    
-      
-   //Se obtienen numero de notas
-    public int getNumeroPagos(){
-       
-        int numPagos;
-   
-        
-        try{
-            stmt.executeQuery("SELECT COUNT(*) FROM pago;");
-            ResultSet rs = stmt.getResultSet();
-            while(rs.next()){
-                numPagos = rs.getInt(1);
-                return numPagos;
-            }
-        
-            return -1;
-        }
-        catch(SQLException e){
-            return -1;
-        }
-        
-        
-        
+
+    /**
+     * @param idSuscripcion the idSuscripcion to set
+     */
+    public void setIdSuscripcion(int idSuscripcion) {
+        this.idSuscripcion = idSuscripcion;
     }
 
     /**
@@ -229,6 +175,7 @@ public class Suscripcion {
     public void setFechaUltimoPago(Date fechaUltimoPago) {
         this.fechaUltimoPago = fechaUltimoPago;
     }
+
     
   
   }

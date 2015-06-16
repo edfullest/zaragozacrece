@@ -120,6 +120,26 @@
         <servlet-name>InterfazAdmin</servlet-name>
         <url-pattern>/InterfazAdmin</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>InterfazPagosParejas</servlet-name>
+        <jsp-file>/WEB-INF/interfacesAdmin/InterfazPagosParejas.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InterfazPagosParejas</servlet-name>
+        <url-pattern>/pagosDeParejas</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>InterfazAsignarPareja</servlet-name>
+        <jsp-file>/WEB-INF/interfacesAdmin/InterfazAsignarPareja.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InterfazAsignarPareja</servlet-name>
+        <url-pattern>/asignarApadrinadoPareja</url-pattern>
+    </servlet-mapping>
+    
+    
     <servlet>
         <servlet-name>CargarPagos</servlet-name>
         <jsp-file>/WEB-INF/interfacesAdmin/InterfazCargarPagos.jsp</jsp-file>

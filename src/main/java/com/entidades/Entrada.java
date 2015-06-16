@@ -1,5 +1,6 @@
 package com.entidades;
 
+import com.clases.Carta;
 import com.conexion.Conexion;
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public class Entrada {
         this.conn = connect.conn;
         this.stmt = connect.stmt;
     }
+    
+   
     
     public Entrada (int idApadrinado,String nivelEscolar,float peso,
         float IMC, float estatura, Date fechaEntrada, String carta){
@@ -107,6 +110,65 @@ public class Entrada {
         }
         
       
+        
+    }
+    
+    public ArrayList<Carta> obtenerCartas(int offset,int num,int idApadrinado){
+        
+        ArrayList<Carta> cartas = new ArrayList<Carta>();
+        
+        try{
+             pStmt = conn.prepareStatement(
+                "SELECT fechaEntrada,carta FROM entrada WHERE idApadrinado = ? ORDER BY fechaEntrada desc LIMIT ?,?");
+            pStmt.setInt(1,idApadrinado);
+            pStmt.setInt(2, offset);
+            pStmt.setInt(3, num);
+            ResultSet rs = pStmt.executeQuery();
+            
+            while(rs.next()){
+	           
+	            Date fechaEntrada = rs.getDate("fechaEntrada");
+	            String carta = rs.getString("carta");
+	            Carta unacarta = new Carta(fechaEntrada,carta);
+	            cartas.add(unacarta);
+
+            }
+            return cartas;
+            
+            
+         
+
+        }
+        catch(SQLException e){
+            return null;
+        
+        }
+        
+    }
+    
+    //Se obtienen numero de notas
+    public int getNumCartas(int idApadrinado){
+       
+        int numCartas;
+        
+        
+        try{
+             pStmt = conn.prepareStatement(
+                "SELECT COUNT(*) FROM entrada WHERE idApadrinado = ?");
+            pStmt.setInt(1,idApadrinado);
+            ResultSet rs = pStmt.executeQuery();
+            if(rs.next()){
+                numCartas = rs.getInt(1);
+                return numCartas;
+            }
+        
+            return -1;
+        }
+        catch(SQLException e){
+            return -1;
+        }
+        
+        
         
     }
 

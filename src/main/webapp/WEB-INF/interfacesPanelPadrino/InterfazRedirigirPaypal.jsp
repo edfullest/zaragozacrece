@@ -104,14 +104,14 @@
                                                 <button type="button" class="return-button">Regresar</button></a>
                                                     
                                             <a href="${redirectURL}">
-                                                <button type="button" class="button">Pagar con PayPal</button></a>   
+                                                <button type="button" class="button"><i class="fa fa-paypal"></i> Pagar con PayPal</button></a>   
                                             </c:when>
                                             <c:when test="${param.tipo.equals('apadrinapareja')}" >
                                             <a href="ControlPanelPadrino?send=${"regresar"}">
                                                 <button type="button" class="return-button">Regresar</button></a>
                                                     
                                             <a href="${redirectURL}">
-                                                <button type="button" class="button">Pagar con PayPal</button></a>   
+                                                <button type="button" class="button"><i class="fa fa-paypal"></i> Pagar con PayPal</button></a>   
                                                     
                                                     
                                         </c:when>
@@ -178,14 +178,14 @@
                                                 <button type="button" class="return-button">Regresar</button></a>
                                                     
                                             <a href="${redirectURL}">
-                                                <button type="button" class="button">Pagar con PayPal</button></a>   
+                                                <button type="button" class="button"><i class="fa fa-paypal"></i> Pagar con PayPal</button></a>   
                                             </c:when>
                                             <c:when test="${param.tipo.equals('apadrinapareja')}" >
                                             <a href="ControlPanelPadrino?send=${"regresar"}">
                                                 <button type="button" class="return-button">Regresar</button></a>
                                                     
                                             <a href="${redirectURL}">
-                                                <button type="button" class="button">Pagar con PayPal</button></a>   
+                                                <button type="button" class="button"><i class="fa fa-paypal"></i> Pagar con PayPal</button></a>   
                                                     
                                                     
                                         </c:when>
