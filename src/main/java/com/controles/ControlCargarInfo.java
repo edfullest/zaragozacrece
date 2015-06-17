@@ -71,9 +71,14 @@ public class ControlCargarInfo extends HttpServlet {
                     //Sistema de paginado
                     int paginaActual = 1;
                     int cartasPorPagina = 5;
-                    if(request.getParameter("paginaActual") != null)
+                    boolean cambio = false;
+                    if(request.getParameter("paginaActual") != null){
                         paginaActual = Integer.parseInt(request.getParameter("paginaActual"));
-                    
+                        cambio = true;
+                        
+                    }
+                        
+          
                     
                     
                   
@@ -86,10 +91,7 @@ public class ControlCargarInfo extends HttpServlet {
                     request.setAttribute("cartas", cartas);
                     request.setAttribute("numPaginas", numPaginas);
                     request.setAttribute("paginaActual", paginaActual);
-                    
-   
-                    
-                    
+                    request.setAttribute("cambio",cambio);
                     request.setAttribute("entradas",entradas);
                     request.setAttribute("nombreApadrinado",datos.get(0));
                     request.setAttribute("comunidad",datos.get(1));
