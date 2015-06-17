@@ -13,10 +13,10 @@ import java.util.Date;
  */
 public class Carta {
     
-    private Date fechaEntrada;
+    private String fechaEntrada;
     private String carta;
     
-    public Carta(Date fechaEntrada,String carta){
+    public Carta(String fechaEntrada,String carta){
         this.fechaEntrada = fechaEntrada; //
         this.carta = carta;
     }
@@ -24,14 +24,14 @@ public class Carta {
     /**
      * @return the fechaEntrada
      */
-    public Date getFechaEntrada() {
+    public String getFechaEntrada() {
         return fechaEntrada;
     }
 
     /**
      * @param fechaEntrada the fechaEntrada to set
      */
-    public void setFechaEntrada(Date fechaEntrada) {
+    public void setFechaEntrada(String fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
 

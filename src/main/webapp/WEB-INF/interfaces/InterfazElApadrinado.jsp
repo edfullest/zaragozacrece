@@ -36,12 +36,13 @@
         <link rel="stylesheet" type="text/css" href="css/component.css" />
         <link rel="stylesheet" href="graficas/samples/style.css" type="text/css">
         <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+        <link rel="stylesheet" href="css/reset.css"> <!-- Resource style -->
             
         <!--[if lt IE 9]>
                 <link rel="stylesheet" href="css/sky-forms-ie8.css">
         <![endif]-->
-        
-        
+            
+            
             
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.form.min.js"></script>
@@ -203,46 +204,46 @@
                         
                         <c:choose>
                             <c:when test="${cambio}">
-                                 <input type="radio" name="sky-tabs"  id="sky-tab1" class="sky-tab-content-1">
-                        <label for="sky-tab1"><span><span><i class="fa fa-eye"></i>Datos de padrino(s)</span></span></label>
-                            
-                        <input type="radio" name="sky-tabs" id="sky-tab2" class="sky-tab-content-2">
-                        <label for="sky-tab2"><span><span><i class="fa fa-line-chart"></i>Estadísticas de Peso</span></span></label>
-                            
-                        <input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">
-                        <label for="sky-tab3"><span><span><i class="fa fa-bar-chart-o"></i>Estadísticas de IMC</span></span></label>
-                            
-                        <input type="radio" name="sky-tabs" id="sky-tab4" class="sky-tab-content-4">
-                        <label for="sky-tab4"><span><span><i class="fa fa-university"></i>Estadísticas de Nivel Escolar </span></span></label>
-                            
-                        <input type="radio" name="sky-tabs" id="sky-tab5" class="sky-tab-content-5">
-                        <label for="sky-tab5"><span><span><i class="fa fa-area-chart"></i>Estadísticas de estatura </span></span></label>    
-                            
-                        <input type="radio" name="sky-tabs" checked id="sky-tab6" class="sky-tab-content-6">
-                        <label for="sky-tab6"><span><span><i class="fa fa-leanpub"></i>Cartas </span></span></label> 
-                            </c:when>
-                            <c:otherwise>
-                                 <input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
-                        <label for="sky-tab1"><span><span><i class="fa fa-eye"></i>Datos de padrino(s)</span></span></label>
-                            
-                        <input type="radio" name="sky-tabs" id="sky-tab2" class="sky-tab-content-2">
-                        <label for="sky-tab2"><span><span><i class="fa fa-line-chart"></i>Estadísticas de Peso</span></span></label>
-                            
-                        <input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">
-                        <label for="sky-tab3"><span><span><i class="fa fa-bar-chart-o"></i>Estadísticas de IMC</span></span></label>
-                            
-                        <input type="radio" name="sky-tabs" id="sky-tab4" class="sky-tab-content-4">
-                        <label for="sky-tab4"><span><span><i class="fa fa-university"></i>Estadísticas de Nivel Escolar </span></span></label>
-                            
-                        <input type="radio" name="sky-tabs" id="sky-tab5" class="sky-tab-content-5">
-                        <label for="sky-tab5"><span><span><i class="fa fa-area-chart"></i>Estadísticas de estatura </span></span></label>    
-                            
-                        <input type="radio" name="sky-tabs" id="sky-tab6" class="sky-tab-content-6">
-                        <label for="sky-tab6"><span><span><i class="fa fa-leanpub"></i>Cartas </span></span></label> 
-                            </c:otherwise>
-                                
+                                <input type="radio" name="sky-tabs"  id="sky-tab1" class="sky-tab-content-1">
+                                <label for="sky-tab1"><span><span><i class="fa fa-eye"></i>Datos de padrino(s)</span></span></label>
+                                    
+                                <input type="radio" name="sky-tabs" id="sky-tab2" class="sky-tab-content-2">
+                                <label for="sky-tab2"><span><span><i class="fa fa-line-chart"></i>Estadísticas de Peso</span></span></label>
+                                    
+                                <input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">
+                                <label for="sky-tab3"><span><span><i class="fa fa-bar-chart-o"></i>Estadísticas de IMC</span></span></label>
+                                    
+                                <input type="radio" name="sky-tabs" id="sky-tab4" class="sky-tab-content-4">
+                                <label for="sky-tab4"><span><span><i class="fa fa-university"></i>Estadísticas de Nivel Escolar </span></span></label>
+                                    
+                                <input type="radio" name="sky-tabs" id="sky-tab5" class="sky-tab-content-5">
+                                <label for="sky-tab5"><span><span><i class="fa fa-area-chart"></i>Estadísticas de estatura </span></span></label>    
+                                    
+                                <input type="radio" name="sky-tabs" checked id="sky-tab6" class="sky-tab-content-6">
+                                <label for="sky-tab6"><span><span><i class="fa fa-leanpub"></i>Cartas </span></span></label> 
+                                        </c:when>
+                                        <c:otherwise>
+                                <input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
+                                <label for="sky-tab1"><span><span><i class="fa fa-eye"></i>Datos de padrino(s)</span></span></label>
+                                    
+                                <input type="radio" name="sky-tabs" id="sky-tab2" class="sky-tab-content-2">
+                                <label for="sky-tab2"><span><span><i class="fa fa-line-chart"></i>Estadísticas de Peso</span></span></label>
+                                    
+                                <input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">
+                                <label for="sky-tab3"><span><span><i class="fa fa-bar-chart-o"></i>Estadísticas de IMC</span></span></label>
+                                    
+                                <input type="radio" name="sky-tabs" id="sky-tab4" class="sky-tab-content-4">
+                                <label for="sky-tab4"><span><span><i class="fa fa-university"></i>Estadísticas de Nivel Escolar </span></span></label>
+                                    
+                                <input type="radio" name="sky-tabs" id="sky-tab5" class="sky-tab-content-5">
+                                <label for="sky-tab5"><span><span><i class="fa fa-area-chart"></i>Estadísticas de estatura </span></span></label>    
+                                    
+                                <input type="radio" name="sky-tabs" id="sky-tab6" class="sky-tab-content-6">
+                                <label for="sky-tab6"><span><span><i class="fa fa-leanpub"></i>Cartas </span></span></label> 
+                                        </c:otherwise>
+                                            
                         </c:choose>
-                          
+                            
                             
                         <ul>
                             <li class="sky-tab-content-1">					
@@ -609,17 +610,18 @@
                                     <div id="chartdiv4" style="width:100%; height:400px;"></div>
                                         
                                 </div>
-                                    
+                            </li>
+                                
                             <li class="sky-tab-content-6">
                                 <div class="typography">
                                     
                                     <div class="body"> 
                                         
-
+                                        
                                         <c:forEach items="${cartas}" var="carta">
                                             <br>
                                             <div class="sky-tabs sky-tabs-pos-top-left sky-tabs-response-to-icons">
-                                                <div class="textbox">					
+                                                <div class="textbox-2">					
                                                     <div class="typography">
                                                         <br>
                                                         <b>Fecha: </b><c:out value="${carta.fechaEntrada}"/>
@@ -631,42 +633,49 @@
                                             </div>
                                         </c:forEach>
                                             
-                                        <div class="sky-tabs sky-tabs-pos-top-left sky-tabs-response-to-icons">
-                                            <div class="textbox">					
-                                                <section>
-                                                    
-                                                    <nav role="navigation"> 
-                                                        <ul class="cd-pagination">
-                                                            <c:forEach begin="1" end="${numPaginas}" var="i">
-                                                                <c:choose>
-                                                                    <c:when test="${paginaActual eq i}">
-                                                                        <li><a class="current">${i}</a></li>
-                                                                        </c:when>
-                                                                        <c:otherwise>
-                                                                        <li><a href="cargarInfo?idApadrinado=${param.idApadrinado}&paginaActual=${i}">${i}</a></li>
-                                                                        </c:otherwise>
-                                                                    </c:choose>
-                                                                </c:forEach>
-                                                                    
-                                                        </ul>
-                                                    </nav> 
-                                                        
-                                                        
-                                                </section>
-                                                    
-                                                <!--/ tabs -->
-                                                    
-                                            </div>
-                                        </div>
                                     </div>
+                                </div>
+                                <br>
+                                <div class="sky-tabs sky-tabs-pos-top-left sky-tabs-response-to-icons">
+                                    
+                                    <section>
+                                        
+                                        <nav role="navigation"> 
+                                            <ul class="cd-pagination">
+                                                <c:forEach begin="1" end="${numPaginas}" var="i">
+                                                    <c:choose>
+                                                        <c:when test="${paginaActual eq i}">
+                                                            <li><a class="current">${i}</a></li>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                            <li><a href="cargarInfo?idApadrinado=${param.idApadrinado}&paginaActual=${i}">${i}</a></li>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:forEach>
+                                                        
+                                            </ul>
+                                        </nav> 
+                                            
+                                            
+                                    </section>
+                                        
+                                    <!--/ tabs -->
+                                        
                                         
                                 </div>
                                     
+                                <!--/ tabs -->
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
                             </li>	
                         </ul>
+                            
                     </div>
-                </div>
-                    
+                        
             </body>
                 
                 

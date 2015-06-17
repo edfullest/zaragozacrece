@@ -164,6 +164,13 @@
 	
 }
 
+.sky-tabs .textbox-2 {
+	padding: 20px 25px 25px;
+	background: rgba(255,255,255,0.3);
+	font-size: 13px;
+	
+}
+
 
 /**/
 /* positions */
@@ -769,4 +776,6 @@
 	.sky-tabs-response-to-switcher.sky-tabs-anim-flip > ul > li {
 		-webkit-transform: rotateX(-90deg);
 	}
+        
 }
+

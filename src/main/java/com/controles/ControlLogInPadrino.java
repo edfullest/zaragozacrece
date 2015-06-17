@@ -146,8 +146,10 @@ public class ControlLogInPadrino extends HttpServlet {
             
             if(idPareja!=-1){
                 apadrinadosPareja = apadrinado.obtenerApadrinadoIdPareja(idPareja);
+                System.out.println("Size"+ apadrinadosPareja.size());
                 if (apadrinadosPareja!=null && !apadrinadosPareja.isEmpty()){
                     apadrinados.add(apadrinadosPareja.get(0));
+                    
                 }
                 
                 unasuscripcionpareja = suscripcionpareja.obtenerSuscripciones(idPareja);

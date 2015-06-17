@@ -255,7 +255,8 @@ public class Pago_pareja {
                 
                 Pago_pareja unpago = new Pago_pareja(idPagoPareja,idPareja,idApadrinado
                         ,fechaPago1,fechaPago2,acreditado,correo1,correo2);
-              
+                
+                pagos.add(unpago);
                 
             }
         

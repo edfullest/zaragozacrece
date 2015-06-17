@@ -161,7 +161,7 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     
                     request.setAttribute("exito", true);
                     
-                    request.getRequestDispatcher("pagosDeParejas?tipo=cargarPagos").forward(request, response);
+                    request.getRequestDispatcher("cargarPagosParejas?tipo=cargarPagos").forward(request, response);
                     
                     
                 }

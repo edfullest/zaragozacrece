@@ -368,7 +368,8 @@ public class Apadrinados {
         int idAdmin;
         
         try{
-            pStmt.executeQuery("SELECT * FROM apadrinados WHERE idPareja = ? ORDER BY nombreCompleto asc");
+           
+            pStmt = conn.prepareStatement("SELECT * FROM apadrinados WHERE idPareja = ? ORDER BY nombreCompleto asc");
             pStmt.setInt(1, idPareja);
             ResultSet rs = pStmt.executeQuery();
             while(rs.next()){
@@ -378,7 +379,7 @@ public class Apadrinados {
                 idPadrino = rs.getInt("idPadrino");
                 idPareja1 = rs.getInt("idPareja");
                 idAdmin = rs.getInt("idAdmin");
-                
+              
                 Apadrinados apadrinado = new Apadrinados(idApadrinado,nombreCompleto,comunidad,idPadrino,idPareja1,idAdmin);
                 apadrinados.add(apadrinado);
             }

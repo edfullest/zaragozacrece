@@ -79,8 +79,8 @@
                    </table>
        </div>
     --%>
-         
-         
+   <body class="bg-cyan">      
+   <div class="body">      
     <!-- mega menu -->
     <ul class="sky-mega-menu sky-mega-menu-anim-flip sky-mega-menu-response-to-icons">
         <!-- home -->
@@ -189,14 +189,12 @@
         </li>
         <!--/ Apartado para contactar -->
     </ul>
-</body>
 </div>
-</body>
 <!--/ Termina el menú -->
-<div class="body">
+
     
     <div class="typography">  
-        <body class="bg-blue">
+     
             <div class="body">
                 <form action="ControlNuevoPadrino" method="get" id="sky-form" class="sky-form" >
                     <header><i class ="fa fa-check"></i> Excelente! Ahora solo falta la confirmacion de <b>${correo2}</b> </header>
@@ -219,10 +217,11 @@
             
                                                   
                                                   
-        </body>
+     
         
         <p></p>
     </div>
                                           
-                                          
+  </body>
+                                        
 </html>

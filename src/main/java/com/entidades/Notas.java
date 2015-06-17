@@ -96,7 +96,7 @@ public class Notas {
                 Locale fechaLocal = new Locale.Builder().setLanguage("es").setRegion("MX").build();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",fechaLocal);
                 Date d = fechaPublicacion;
-                sdf.applyPattern("EEEE d MMMM yyyy");
+                sdf.applyPattern("EEE d 'de' MMMM 'de' yyyy");
                 String sFechaPublicacion = sdf.format(d);
                 
                 Notas note = new Notas(sFechaPublicacion,titulo,nombre,nota);
