@@ -134,7 +134,7 @@
                         <%--Si existe, entonces cargo lo que se tenga que cargar--%>
                         <% } else {%>
                         <li>
-                            <a href="ControlCargarApadrinados"><i class="fa fa-dashboard"></i><b>Mi cuenta</b></a>
+                            <a href="CuentaPadrino"><i class="fa fa-dashboard"></i><b>Mi cuenta</b></a>
                             
                         </li>
                         
@@ -207,7 +207,7 @@
                                     
                                     <!-- blog -->
                                     <li>
-                                        <a href="ControlPanelPadrino?opcion=4&hayApadrinados=${hayApadrinados}"><i class="fa fa-cogs"></i>Configuración de cuenta</a>
+                                        <a href="ControlPanelPadrino?opcion=4&hayApadrinados=${hayApadrinados}"><i class="fa fa-connectdevelop"></i>Ver mis suscripciones</a>
                                     </li>
                                     <!--/ blog -->
                                     

@@ -104,6 +104,16 @@
         <servlet-name>apadrinaSolo</servlet-name>
         <url-pattern>/apadrinaSolo</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>misSuscripciones</servlet-name>
+        <jsp-file>/WEB-INF/interfacesPanelPadrino/InterfazVerMisSuscripciones.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>misSuscripciones</servlet-name>
+        <url-pattern>/misSuscripciones</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>ErrorCompra</servlet-name>
         <jsp-file>/WEB-INF/interfacesPanelPadrino/InterfazErrorCompra.jsp</jsp-file>

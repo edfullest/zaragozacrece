@@ -73,6 +73,7 @@ public class Periodo {
             ResultSet rs = pStmt.executeQuery();
             
             while(rs.next()){
+                System.out.println("si");
                 int idPeriodo = rs.getInt("idPeriodo");
                 Date fechaInicio = rs.getDate("fechaInicio");
                 Date fechaFinal = rs.getDate("fechaFinal");

@@ -15,6 +15,7 @@ import com.entidades.Suscripcion_pareja;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -69,48 +70,67 @@ public class ControlLogInPadrino extends HttpServlet {
             int idPareja = pareja.obtenerIdPareja(idPadrino);
             ArrayList<Apadrinados> apadrinados = apadrinado.obtenerApadrinadoIdPadrino(idPadrino);
             ArrayList<Apadrinados> apadrinadosPareja = new ArrayList<Apadrinados>();
-            ArrayList<Periodo> periodos = new ArrayList<Periodo>();
+            ArrayList<Periodo> periodos = periodo.obtenerUltimosDosPeriodos();
             ArrayList<Suscripcion> suscripciones = new ArrayList<Suscripcion>();
+            
             Suscripcion_pareja unasuscripcionpareja;
             
+            Calendar calFechaInicialPasada = Calendar.getInstance();
             Calendar calFechaFinalAnterior = Calendar.getInstance();
             Calendar calFechaFinalActual = Calendar.getInstance();
             Calendar calFechaInicialActual = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            
+            System.out.println("Periodos"+periodos.size());
             
             //Nada mas hay un periodo
             if(periodos.size()==1){
                 calFechaFinalAnterior.setTime(periodos.get(0).getFechaFinal());
                 calFechaFinalAnterior.add(Calendar.MONTH, 3);
+                calFechaInicialPasada.setTime(periodos.get(0).getFechaInicio());
                 
                 calFechaInicialActual.setTime(periodos.get(0).getFechaInicio());
                 calFechaFinalActual.setTime(periodos.get(0).getFechaFinal());
             }
             else if(periodos.size()==2){
-                calFechaFinalAnterior.setTime(periodos.get(0).getFechaFinal());
+                calFechaFinalAnterior.setTime(periodos.get(1).getFechaFinal());
                 calFechaFinalAnterior.add(Calendar.MONTH, 3);
+                calFechaInicialPasada.setTime(periodos.get(1).getFechaInicio());
                 
-                calFechaInicialActual.setTime(periodos.get(1).getFechaInicio());
-                calFechaFinalActual.setTime(periodos.get(1).getFechaFinal());
+                calFechaInicialActual.setTime(periodos.get(0).getFechaInicio());
+                calFechaFinalActual.setTime(periodos.get(0).getFechaFinal());
             }
             
-            suscripciones = suscripcion.obtenerSuscripciones(idPadrino);
+            System.out.println("fecha Inicial Pasada "+sdf.format(calFechaInicialPasada.getTime()));
+            System.out.println("fecha Final Pasada "+sdf.format(calFechaFinalAnterior.getTime()));
+            System.out.println("fecha Inicial Actual "+sdf.format(calFechaInicialActual.getTime()));
+            System.out.println("fecha Final Actual "+sdf.format(calFechaFinalActual.getTime()));
             
+            suscripciones = suscripcion.obtenerSuscripciones(idPadrino);
+            ArrayList<String> mensajes = new ArrayList<String>();
             if(suscripciones!=null && suscripciones.size()!=0){
                 int iNoProblem = 0;
                 int iRenovar = 0;
                 int iQuitar = 0;
                 
-                
+                System.out.println("Size "+suscripciones.size());
                 for (int i=0;i<suscripciones.size();i++){
                     Suscripcion unasuscripcion = suscripciones.get(i);
                     Calendar calFechaUltimoPago = Calendar.getInstance();
                     calFechaUltimoPago.setTime(unasuscripcion.getFechaUltimoPago());
+                    System.out.println();
+                    
+                    
+                    System.out.println(sdf.format(calFechaUltimoPago.getTime()));
                     
                     if(calFechaUltimoPago.after(calFechaInicialActual) && calFechaUltimoPago.before(calFechaFinalActual)){
+                        
+                        mensajes.add("noProblem");
                         iNoProblem++;
                     }
-                    else if(calFechaUltimoPago.before(calFechaFinalAnterior)){
+                    else if(calFechaUltimoPago.after(calFechaInicialPasada)&& calFechaUltimoPago.before(calFechaFinalAnterior)){
                         iRenovar++;
+                        mensajes.add("renovar");
                     }
                     else{
                         
@@ -122,6 +142,8 @@ public class ControlLogInPadrino extends HttpServlet {
                             Apadrinados unapadrinado = apadrinados.get(j);
                             
                             if(unapadrinado.getIdApadrinado()==unasuscripcion.getIdApadrinado()){
+                                System.out.println("quitar");
+                                mensajes.add("quitar");
                                 encontro=true;
                                 apadrinados.remove(j);
                             }
@@ -134,10 +156,13 @@ public class ControlLogInPadrino extends HttpServlet {
                     }
                     
                 }
-                
+                System.out.println(iNoProblem);
+                System.out.println(iRenovar);
+                System.out.println(iQuitar);
                 session.setAttribute("iNoProblem", iNoProblem);
                 session.setAttribute("iRenovar", iRenovar);
                 session.setAttribute("iQuitar", iQuitar);
+                session.setAttribute("mensajes", mensajes);
                 session.setAttribute("suscripciones", suscripciones);
                 
             }
@@ -163,7 +188,7 @@ public class ControlLogInPadrino extends HttpServlet {
                     if(calFechaUltimoPago.after(calFechaInicialActual) && calFechaUltimoPago.before(calFechaFinalActual)){
                         advertenciaPareja = "todoBien";
                     }
-                    else if(calFechaUltimoPago.before(calFechaFinalAnterior)){
+                    else if(calFechaUltimoPago.after(calFechaInicialPasada)&&calFechaUltimoPago.before(calFechaFinalAnterior)){
                         advertenciaPareja = "renovar";
                     }
                     else{

@@ -136,7 +136,7 @@
                         <%--Si existe, entonces cargo lo que se tenga que cargar--%>
                         <% } else {%>
                         <li>
-                            <a href="ControlCargarApadrinados"><i class="fa fa-dashboard"></i><b>Mi cuenta</b></a>
+                            <a href="CuentaPadrino"><i class="fa fa-dashboard"></i><b>Mi cuenta</b></a>
                                 
                         </li>
                             
@@ -149,7 +149,7 @@
                                     <a href="#"><i class="fa fa-group"></i>Apadrinados<i class="fa fa-indicator fa-chevron-down"></i></a>
                                     <div class="grid-container3">
                                         <ul>
-                                            <c:forEach items="${apadrinados}" var="apadrinado">
+                                            <c:forEach items="${sessionScope.apadrinados}" var="apadrinado">
                                             
                                             
                                                 <li><a href="cargarInfo?idApadrinado=${apadrinado.idApadrinado}"><i class="fa fa-child"></i>${apadrinado.nombreCompleto}</a></li>

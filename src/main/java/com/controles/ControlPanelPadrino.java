@@ -41,23 +41,8 @@ public class ControlPanelPadrino extends HttpServlet {
             //Si existe la sesion, y es un buen login, entonces se pueden acceder a los atributos del request
             else if((Boolean)session.getAttribute("goodlogin") == true){
                 
-                boolean hayApadrinados = (Boolean)(session.getAttribute("hayApadrinados"));
                 int idPadrino = (Integer)session.getAttribute("idPadrino");
-                if(hayApadrinados){
-                    System.out.println("ja");
-                    ControlCargarApadrinados cargaApadrinados = new ControlCargarApadrinados();
-                    ArrayList<Apadrinados> apadrinados = cargaApadrinados.obtenerApadrinados(idPadrino);
-                    request.setAttribute("apadrinados",apadrinados);
-                }
-                
-                
 
-                
-                
-                request.setAttribute("hayApadrinados", hayApadrinados);
-                
-                
-                
                 int opcion;
                 //Aqui cambia conforme el contexto, si viene de un control, es getAttribute
                 //Si viene d eun jsp, es getParameter
@@ -399,6 +384,16 @@ public class ControlPanelPadrino extends HttpServlet {
                     
                     
                     
+                }
+                
+                else if(opcion==4){
+                    ArrayList<String> nombreColumnas = new ArrayList<String>();
+                    nombreColumnas.add("Estado de la suscripción");
+                    nombreColumnas.add("Apadrinado");
+                    nombreColumnas.add("Última Fecha de Pago");
+                    nombreColumnas.add("");
+                    request.setAttribute("nombreColumnas", nombreColumnas);
+                    request.getRequestDispatcher("misSuscripciones").forward(request, response);
                 }
                 
                 

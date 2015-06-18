@@ -178,8 +178,8 @@ aside.right {
 .left {
     float:left;
     position: relative;
-    width:100px;
-    max-width:100px;
+    width:10%;
+    max-width:10%;
 }
 
 .center {
@@ -190,6 +190,29 @@ aside.right {
     width:55%;
     max-width: 55%;
     overflow:auto;
+}
+
+.tablewrapper {
+    display: inline-block;
+    
+    position: relative;
+    margin-left: 10%;
+    width:80%;
+    max-width: 80%;
+    
+    
+}
+
+.center2 {
+    display: inline-block;
+    
+    position: relative;
+    margin-right: 100px;
+    width:100%;
+    max-width: 100%;
+   
+        
+  
 }
 
 a {

@@ -130,7 +130,7 @@
                 <%--Si existe, entonces cargo lo que se tenga que cargar--%>
                 <% } else {%>
                 <li>
-                    <a href="ControlCargarApadrinados"><i class="fa fa-dashboard"></i>Mi cuenta</a>
+                    <a href="CuentaPadrino"><i class="fa fa-dashboard"></i>Mi cuenta</a>
                     
                 </li>
                 
