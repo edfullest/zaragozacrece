@@ -32,6 +32,7 @@ public class Suscripcion_pareja {
     private int idPagoPareja;
     private int idApadrinado;
     private Date fechaUltimoPago;
+    private String nombreCompleto;
     
     // Metodo constructor con conexion
     public Suscripcion_pareja(Conexion connect){
@@ -39,14 +40,15 @@ public class Suscripcion_pareja {
         this.stmt = connect.stmt;
     }
     
-    public Suscripcion_pareja(int idSuscripcion, int idPareja,int idPagoPareja, int idApadrinado, Date fechaUltimoPago){
+    public Suscripcion_pareja(int idSuscripcion, int idPareja,int idPagoPareja, int idApadrinado, Date fechaUltimoPago
+                               ,String nombreCompleto){
         
         this.idSuscripcion = idSuscripcion;
         this.idPareja = idPareja;
         this.idPagoPareja = idPagoPareja;
         this.idApadrinado = idApadrinado;
         this.fechaUltimoPago = fechaUltimoPago;
-        
+        this.nombreCompleto = nombreCompleto;
     }
     
   
@@ -84,10 +86,13 @@ public class Suscripcion_pareja {
         int idPagoPareja;
         int idApadrinado;
         Date fechaUltimoPago;
+        String nombreCompleto;
         
         try{
             pStmt = conn.prepareStatement(
-                "SELECT * FROM suscripcion_pareja WHERE idPareja = ?");
+                "SELECT idSuscripcion,suscripcion_pareja.idPareja,idPagoPareja,suscripcion_pareja.idApadrinado,"
+                        + "fechaUltimoPago,nombreCompleto FROM suscripcion_pareja,apadrinados WHERE suscripcion_pareja.idPareja = ? AND "
+                        + "suscripcion_pareja.idApadrinado = apadrinados.idApadrinado");
             pStmt.setInt(1,id);
             ResultSet rs = pStmt.executeQuery();
             if(rs.next()){
@@ -97,9 +102,8 @@ public class Suscripcion_pareja {
                 idPagoPareja = rs.getInt("idPagoPareja");
                 idApadrinado = rs.getInt("idApadrinado");
                 fechaUltimoPago = rs.getDate("fechaUltimoPago");
-                
-                
-                Suscripcion_pareja suscripcion = new Suscripcion_pareja(idSuscripcion,idPareja,idPagoPareja,idApadrinado,fechaUltimoPago);
+                nombreCompleto = rs.getString("nombreCompleto");
+                Suscripcion_pareja suscripcion = new Suscripcion_pareja(idSuscripcion,idPareja,idPagoPareja,idApadrinado,fechaUltimoPago,nombreCompleto);
                 
                 return suscripcion;
 
@@ -182,6 +186,20 @@ public class Suscripcion_pareja {
      */
     public void setFechaUltimoPago(Date fechaUltimoPago) {
         this.fechaUltimoPago = fechaUltimoPago;
+    }
+
+    /**
+     * @return the nombreCompleto
+     */
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    /**
+     * @param nombreCompleto the nombreCompleto to set
+     */
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
     
     

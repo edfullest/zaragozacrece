@@ -78,8 +78,20 @@ public class PaymentWithPayPalServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         createPayment(req, resp);
-        req.setAttribute("tipoPago","paypal");
-        req.getRequestDispatcher("pagar").forward(req, resp);
+        HttpSession session = req.getSession();
+        String tipo = (String)session.getAttribute("tipo");
+        
+        if(tipo!= null && (tipo.equals("renovar") || tipo.equals("activar"))){
+            req.getRequestDispatcher("suscripciones").forward(req, resp);
+            
+        }
+        
+        else{
+            req.setAttribute("tipoPago","paypal");
+            req.getRequestDispatcher("pagar").forward(req, resp);
+        }
+        
+        
         
     }
     
@@ -159,6 +171,11 @@ public class PaymentWithPayPalServlet extends HttpServlet {
             HttpSession session = req.getSession();
             String tipo = req.getParameter("tipo");
             
+            if(tipo==null){
+                tipo = (String)session.getAttribute("tipo");
+            }
+            
+            boolean suscripcionPareja = (Boolean)session.getAttribute("suscripcionPareja");
             
             
             // ###Amount
@@ -173,10 +190,29 @@ public class PaymentWithPayPalServlet extends HttpServlet {
                 session.setAttribute("tipoApadrinamiento", "apadrinasolo");
             }
             
-            else {
+            else if(tipo!=null && tipo.equals("apadrinapareja")) {
                 amount.setTotal("375");
                 req.setAttribute("tipo", "apadrinapareja");
                 session.setAttribute("tipoApadrinamiento", "apadrinapareja");
+                
+            }
+            
+            else if (tipo!=null && tipo.equals("renovar")){
+                if(suscripcionPareja){
+                    amount.setTotal("375");
+                }
+                else{
+                    amount.setTotal("750");
+                }
+            }
+            
+            else if (tipo!=null && tipo.equals("activar")){
+                if(suscripcionPareja){
+                    amount.setTotal("375");
+                }
+                else{
+                    amount.setTotal("750");
+                }
                 
             }
             
@@ -193,18 +229,38 @@ public class PaymentWithPayPalServlet extends HttpServlet {
             
          
             String correo = (String)session.getAttribute("correo");
+            String thiscorreo = (String)session.getAttribute("thiscorreo");
             // ### Items
             Item item = new Item();
             
                        
             if(tipo!=null && tipo.equals("apadrinasolo")){
-                String thiscorreo = (String)session.getAttribute("thiscorreo");
+                
                 item.setName("Apadrinamiento solo "+thiscorreo).setQuantity("1").setCurrency("MXN").setPrice("750");
                 
             }
             
-            else {
+            else if(tipo!=null && tipo.equals("apadrinapareja")) {
                 item.setName("Apadrinamiento en Pareja con "+correo).setQuantity("1").setCurrency("MXN").setPrice("375");
+                
+            }
+            
+            else if (tipo!=null && tipo.equals("renovar")){
+                if(suscripcionPareja){
+                    item.setName("Renovar suscripción en Pareja con "+correo).setQuantity("1").setCurrency("MXN").setPrice("375");
+                }
+                else{
+                    item.setName("Renovar suscripción de"+thiscorreo).setQuantity("1").setCurrency("MXN").setPrice("750");
+                }
+            }
+            
+            else if (tipo!=null && tipo.equals("activar")){
+                if(suscripcionPareja){
+                    item.setName("Activar suscripcion en Pareja con "+correo).setQuantity("1").setCurrency("MXN").setPrice("375");
+                }
+                else{
+                    item.setName("Activar suscripción de"+thiscorreo).setQuantity("1").setCurrency("MXN").setPrice("750");
+                }
                 
             }
             
@@ -257,7 +313,7 @@ public class PaymentWithPayPalServlet extends HttpServlet {
                 
             }
             
-            else {
+            else if (tipo!=null && tipo.equals("apadrinapareja"))  {
                       redirectUrls.setCancelUrl(req.getScheme() + "://"
                     + req.getServerName() + ":" + req.getServerPort()
                     + req.getContextPath() + "/pagarPaypal?tipo=apadrinapareja&guid=" + guid);
@@ -268,6 +324,21 @@ public class PaymentWithPayPalServlet extends HttpServlet {
             redirectUrls.setReturnUrl(req.getScheme() + "://"
                     + req.getServerName() + ":" + req.getServerPort()
                     + req.getContextPath() + "/pagarPaypal?tipo=apadrinapareja&guid=" + guid);
+                
+            }
+            
+            else{
+                
+                redirectUrls.setCancelUrl(req.getScheme() + "://"
+                    + req.getServerName() + ":" + req.getServerPort()
+                    + req.getContextPath() + "/pagarPaypal?&guid=" + guid);
+            
+            
+            
+            
+            redirectUrls.setReturnUrl(req.getScheme() + "://"
+                    + req.getServerName() + ":" + req.getServerPort()
+                    + req.getContextPath() + "/pagarPaypal?&guid=" + guid);
                 
             }
            
@@ -309,6 +380,7 @@ public class PaymentWithPayPalServlet extends HttpServlet {
             bandera=false;
         }
         else{
+            
             req.setAttribute("pago","nuevo");
             
             

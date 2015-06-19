@@ -56,6 +56,10 @@
         <servlet-name>ControlCargarPagosParejas</servlet-name>
         <servlet-class>com.controles.ControlCargarPagosParejas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlSuscripciones</servlet-name>
+        <servlet-class>com.controles.ControlSuscripciones</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>test</servlet-name>
         <url-pattern>/conocenos</url-pattern>
@@ -104,7 +108,6 @@
         <servlet-name>apadrinaSolo</servlet-name>
         <url-pattern>/apadrinaSolo</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>misSuscripciones</servlet-name>
         <jsp-file>/WEB-INF/interfacesPanelPadrino/InterfazVerMisSuscripciones.jsp</jsp-file>
@@ -113,7 +116,6 @@
         <servlet-name>misSuscripciones</servlet-name>
         <url-pattern>/misSuscripciones</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>ErrorCompra</servlet-name>
         <jsp-file>/WEB-INF/interfacesPanelPadrino/InterfazErrorCompra.jsp</jsp-file>
@@ -130,7 +132,6 @@
         <servlet-name>InterfazAdmin</servlet-name>
         <url-pattern>/InterfazAdmin</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>InterfazPagosParejas</servlet-name>
         <jsp-file>/WEB-INF/interfacesAdmin/InterfazPagosParejas.jsp</jsp-file>
@@ -139,7 +140,6 @@
         <servlet-name>InterfazPagosParejas</servlet-name>
         <url-pattern>/pagosDeParejas</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>InterfazAsignarPareja</servlet-name>
         <jsp-file>/WEB-INF/interfacesAdmin/InterfazAsignarPareja.jsp</jsp-file>
@@ -148,8 +148,6 @@
         <servlet-name>InterfazAsignarPareja</servlet-name>
         <url-pattern>/asignarApadrinadoPareja</url-pattern>
     </servlet-mapping>
-    
-    
     <servlet>
         <servlet-name>CargarPagos</servlet-name>
         <jsp-file>/WEB-INF/interfacesAdmin/InterfazCargarPagos.jsp</jsp-file>
@@ -421,6 +419,10 @@
     <servlet-mapping>
         <servlet-name>ControlCargarPagosParejas</servlet-name>
         <url-pattern>/cargarPagosParejas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlSuscripciones</servlet-name>
+        <url-pattern>/suscripciones</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

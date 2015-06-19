@@ -184,9 +184,10 @@ public class ControlLogInPadrino extends HttpServlet {
                     String advertenciaPareja="";
                     Calendar calFechaUltimoPago = Calendar.getInstance();
                     calFechaUltimoPago.setTime(unasuscripcionpareja.getFechaUltimoPago());
+                    System.out.println("Fecha pago pareja "+sdf.format(calFechaUltimoPago.getTime()));
                     
                     if(calFechaUltimoPago.after(calFechaInicialActual) && calFechaUltimoPago.before(calFechaFinalActual)){
-                        advertenciaPareja = "todoBien";
+                        advertenciaPareja = "noProblem";
                     }
                     else if(calFechaUltimoPago.after(calFechaInicialPasada)&&calFechaUltimoPago.before(calFechaFinalAnterior)){
                         advertenciaPareja = "renovar";

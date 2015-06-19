@@ -232,12 +232,13 @@
                                         <c:set var="i" value="${0}" />
                                         <c:set var="mensajes" value="${mensajes}" />
                                         <c:forEach items="${suscripciones}" var="cell" >
-                                                
+                                            <tr>
                                                 <c:choose>
                                                     <c:when test="${mensajes.get(i).equals('noProblem')}">
                                                         <td><i class="fa fa-thumbs-up fa-2x"></i></td>
                                                     </c:when>
                                                     <c:when test="${mensajes.get(i).equals('renovar')}">
+                                                    
                                                           <td><i class="fa fa-flag fa-2x"></i></td> 
                                                     </c:when>
                                                     <c:when test="${mensajes.get(i).equals('quitar')}">
@@ -254,11 +255,11 @@
                                                 
                                                 <c:choose>
                                                     <c:when test="${mensajes.get(i).equals('noProblem')}">
-                                                        
+                                                        <td> </td>
                                                     </c:when>
                                                     <c:when test="${mensajes.get(i).equals('renovar')}">
                                                         
-                                                          <td><i class="fa fa-flag"></i> <a href=""><button type="button" class="button-table"><i class="fa fa-repeat"></i> Renovar</button></a></td> 
+                                                          <td><a href=""><button type="button" class="button-table"><i class="fa fa-repeat"></i> Renovar</button></a></td> 
                                                     </c:when>
                                                     <c:when test="${mensajes.get(i).equals('quitar')}">
                                                             
@@ -266,14 +267,52 @@
                                                     </c:when>
                                                 </c:choose>
                                     
-                                    <c:set var="i" value="${i + 1}" />
+                                            <c:set var="i" value="${i + 1}" />
                                                
                                                                           
                                             </tr>
                                                 
                                           
-                                                                                 
+                                                                             
                                         </c:forEach>
+                                            
+                                            <c:choose>
+                                                <c:when test="${suscripcionPareja!=null}">
+                                                    
+                                                  <c:choose>
+                                                    <c:when test="${advertenciaPareja.equals('noProblem')}">
+                                                        <td><i class="fa fa-thumbs-up fa-2x"></i></td>
+                                                    </c:when>
+                                                    <c:when test="${advertenciaPareja.equals('renovar')}">
+                                                    
+                                                          <td><i class="fa fa-flag fa-2x"></i></td> 
+                                                    </c:when>
+                                                    <c:when test="${advertenciaPareja.equals('quitar')}">
+                                                            
+                                                        <td><i class="fa fa-warning fa-2x"></i></td> 
+                                                    </c:when>
+                                                </c:choose>
+                                                       <td><c:out value="${suscripcionPareja.nombreCompleto}"/></td>
+                                                       <td><c:out value="${suscripcionPareja.fechaUltimoPago}"/></td>
+                                                       
+                                                <c:choose>
+                                                    <c:when test="${advertenciaPareja.equals('noProblem')}">
+                                                        <td> </td>
+                                                    </c:when>
+                                                    <c:when test="${advertenciaPareja.equals('renovar')}">
+                                                        
+                                                          <td><a href=""><button type="button" class="button-table"><i class="fa fa-repeat"></i> Renovar</button></a></td> 
+                                                    </c:when>
+                                                    <c:when test="${advertenciaPareja.equals('quitar')}">
+                                                            
+                                                            <td> <a href=""><button type="button" class="button-table"><i class="fa fa-repeat"></i> Activar</button></a></td> 
+                                                    </c:when>
+                                                </c:choose>
+                                                    
+                                                </c:when>
+                                                       
+                                            </c:choose>
+                                            
                                     </table>     
                                 </div>
                             </div>
