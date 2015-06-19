@@ -170,6 +170,8 @@ public class ControlLogInPadrino extends HttpServlet {
             
             
             if(idPareja!=-1){
+                String correo2 = pareja.getCorreo2(correo);
+                session.setAttribute("correo", correo2);
                 apadrinadosPareja = apadrinado.obtenerApadrinadoIdPareja(idPareja);
                 System.out.println("Size"+ apadrinadosPareja.size());
                 if (apadrinadosPareja!=null && !apadrinadosPareja.isEmpty()){

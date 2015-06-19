@@ -92,48 +92,22 @@
                             <form action="" method="post" id="sky-form" class="sky-form" target="_top" >
                                 
                                 
-                                
                                 <header><i class="fa fa-exclamation"></i> Hubo un error con el pago</header>
                                 <fieldset>      
                                     <p>Esto se debe a que el banco rechazó su método de pago, si quiere intentar con otro,
                                         haga click en "Pagar con PayPal"</p>
                                 </fieldset>
                                 <footer>
-                                    <c:choose>
-                                        <c:choose>
-                                            <c:when test="${sessionScope.suscripcionPareja}">
-                                                
-                                            </c:when>
-                                            <c:otherwise>
-                                                
-                                                
-                                                
-                                                
-                                            </c:otherwise>
-                                            
-                                        </c:choose>
-                                        <c:when test="${sessionScope.tipo.equals('renovar')}" >
-                                            <a href="ControlPanelPadrino?send=${"regresarSolo"}">
-                                                <button type="button" class="return-button">Regresar</button></a>
+                                    <a href="ControlPanelPadrino?send=${"regresarSolo"}">
+                                    <button type="button" class="return-button">Regresar</button></a>
                                                     
-                                            <a href="${redirectURL}">
-                                                <button type="button" class="button"><i class="fa fa-paypal"></i> Pagar con PayPal</button></a>   
-                                            </c:when>
-                                            <c:when test="${param.tipo.equals('apadrinapareja')}" >
-                                            <a href="ControlPanelPadrino?send=${"regresar"}">
-                                                <button type="button" class="return-button">Regresar</button></a>
-                                                    
-                                            <a href="${redirectURL}">
-                                                <button type="button" class="button"><i class="fa fa-paypal"></i> Pagar con PayPal</button></a>   
+                                    <a href="${redirectURL}">
+                                    <button type="button" class="button"><i class="fa fa-paypal"></i> Pagar con PayPal</button></a> 
                                                     
                                                     
-                                        </c:when>
-                                    </c:choose>
-                                        
-                                        
-                                        
-                                        
-                                        
+                                                    
+                                                    
+                                                    
                                 </footer>
                                     
                                     
@@ -146,30 +120,97 @@
                                 
                                 
                                 <header><i class="fa fa-check"></i>Pago Exitoso!</header>
-                                <fieldset> 
-                                    <p>Su pago se realizó exitosamente!</p>
-                                        
-                                </fieldset>
-                                <footer>
-                                    <c:choose>
-                                        <c:when test="${param.tipo.equals('apadrinasolo')}" >
-                                            <a href="ControlPanelPadrino?send=${"regresarSolo"}">
-                                                <button type="button" class="return-button">Regresar</button></a>
-                                           
+                                
+                                
+                                <c:choose>
+                                    <c:when test="${sessionScope.esSuscripcionPareja && sessionScope.tipo.equals('renovar')}" >
+                                        <c:choose>
+                                            <c:when test="${!param.otroPago}">
+                                                <fieldset> 
+                                                    <p>Su pago se realizó exitosamente! Recuerda que aún falta que ${correo} pague para poder renovar su suscripción</p>
+                                                        
+                                                </fieldset>
                                             </c:when>
-                                            <c:when test="${param.tipo.equals('apadrinapareja')}" >
+                                            <c:otherwise>
+                                                <fieldset> 
+                                                    <p>Su pago se realizó exitosamente! Tú y ${correo} ya pagaron, así que ya renovaron su suscripción</p>
+                                                        
+                                                </fieldset>
+                                            </c:otherwise>
+                                                
+                                        </c:choose>
+                                            
+                                            
+                                            
+                                        <footer>
+                                            <a href="ControlPanelPadrino?send=return">
+                                                <button type="button" class="return-button">Regresar</button></a>
+                                        </footer>           
+                                    </c:when>
+                                    <c:when test="${sessionScope.esSuscripcionPareja && sessionScope.tipo.equals('quitar')}" >
+                                        
+                                        <c:choose>
+                                            <c:when test="${!param.otroPago}">
+                                                <fieldset> 
+                                                    <p>Su pago se realizó exitosamente! Recuerda que aún falta que ${correo} pague para poder reactivar su suscripción</p>
+                                                        
+                                                </fieldset>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <fieldset> 
+                                                    <p>Su pago se realizó exitosamente! Tú y ${correo} ya pagaron, así que ya reactivaron su suscripción </p>
+                                                        
+                                                </fieldset>
+                                            </c:otherwise>
+                                                
+                                        </c:choose>
+                                        
+                                        
+                                        <footer>    
                                             <a href="ControlPanelPadrino?send=${"regresar"}">
                                                 <button type="button" class="return-button">Regresar</button></a>
-                             
-                                        </c:when>
-                                    </c:choose>
-                                        
-                                        
-                                        
-                                </footer>
-                                    
-                                    
-                                    
+                                        </footer>        
+                                    </c:when>
+                                                
+                                    <c:when test="${!sessionScope.esSuscripcionPareja && sessionScope.tipo.equals('renovar')}" >
+                                        <fieldset> 
+                                            <p>Su pago se realizó exitosamente! Ha renovado su suscripción exitosamente</p>
+                                                        
+                                        </fieldset>
+                                                 
+                                                 
+                                        <footer>    
+                                            <a href="ControlPanelPadrino?send=${"regresar"}">
+                                                <button type="button" class="return-button">Regresar</button></a>
+                                        </footer>        
+                                    </c:when>
+                                                
+                                    <c:when test="${!sessionScope.esSuscripcionPareja && sessionScope.tipo.equals('quitar')}" >
+                                        <fieldset> 
+                                            <p>Su pago se realizó exitosamente! Ha reactivado su suscripción exitosamente</p>
+                                                        
+                                        </fieldset>
+                                                 
+                                                 
+                                        <footer>    
+                                            <a href="ControlPanelPadrino?send=${"regresar"}">
+                                                <button type="button" class="return-button">Regresar</button></a>
+                                        </footer>        
+                                    </c:when>
+                                                
+                                                
+                                                
+                                </c:choose>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
                             </form>
                                 
                                 
@@ -182,28 +223,14 @@
                                 <fieldset>      
                                     
                                 </fieldset>
-                                <footer>
-                                    <% System.out.println(request.getParameter("tipo")); %>
-                                    <c:choose>
-                                        <c:when test="${param.tipo.equals('apadrinasolo')}" >
-                                            <% System.out.println("entra"); %>
-                                            <a href="ControlPanelPadrino?send=${"regresarSolo"}">
-                                                <button type="button" class="return-button">Regresar</button></a>
+                                    <footer>
+                                    
+                                    <a href="ControlPanelPadrino?send=${"regresarSolo"}">
+                                    <button type="button" class="return-button">Regresar</button></a>
                                                     
-                                            <a href="${redirectURL}">
-                                                <button type="button" class="button"><i class="fa fa-paypal"></i> Pagar con PayPal</button></a>   
-                                            </c:when>
-                                            <c:when test="${param.tipo.equals('apadrinapareja')}" >
-                                            <a href="ControlPanelPadrino?send=${"regresar"}">
-                                                <button type="button" class="return-button">Regresar</button></a>
+                                    <a href="${redirectURL}">
+                                    <button type="button" class="button"><i class="fa fa-paypal"></i> Pagar con PayPal</button></a> 
                                                     
-                                            <a href="${redirectURL}">
-                                                <button type="button" class="button"><i class="fa fa-paypal"></i> Pagar con PayPal</button></a>   
-                                                    
-                                                    
-                                        </c:when>
-                                    </c:choose>
-                                            
                                 </footer>
                                     
                                     

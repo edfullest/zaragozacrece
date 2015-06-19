@@ -250,7 +250,8 @@ public class ControlPagar extends HttpServlet {
                 }
                 
                 
-                
+               session.removeAttribute("exitoso");
+               
             }
             
             

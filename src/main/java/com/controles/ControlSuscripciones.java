@@ -13,6 +13,7 @@ import com.entidades.Suscripcion_pareja;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -54,31 +55,50 @@ public class ControlSuscripciones extends HttpServlet {
                 Conexion conn = new Conexion();
                 
                 String pago = (String)request.getAttribute("pago");
-                //Si viene de apadrinar en parejas..
-                if( pago!=null && pago.equals("nuevo")){
-                    request.getRequestDispatcher("redirigirPaypal").forward(request, response);
+                System.out.println("pago "+ pago);
+                System.out.println("exitoso"+(Boolean)session.getAttribute("exitoso"));
+                boolean exitoso=false;
+                if(session.getAttribute("exitoso")!=null){
+                    exitoso=(Boolean)session.getAttribute("exitoso");
                 }
                 
+                String error = (String)request.getAttribute("error");
+                //Si viene de apadrinar en parejas..
+                if( pago!=null && pago.equals("nuevo")){
+                    request.getRequestDispatcher("renovar").forward(request, response);
+                }
+                
+                
                 //Se hace la renovacion de la suscripcion
-                else if (pago!=null && pago.equals("viejo")){
+                else if (pago!=null && pago.equals("viejo") &&  exitoso && error==null ){
+                    System.out.println("YASSS");
+                    boolean suscripcionPareja = (Boolean)session.getAttribute("esSuscripcionPareja");
+                    
+                    if(suscripcionPareja){
+                        System.out.println("si es pareja ylv");
+                    }
+                    else{
+                        System.out.println("no es pareja ylv");
+                    }
+                    
                     
                 }
                 
                 else if(pago==null){
                     
-                    String lugar = request.getParameter("lugar");
-                    String tipo = request.getParameter("tipo");
+             
+                    String tipo = request.getParameter("tipoSuscripcion");
                     String accion = request.getParameter("accion");
                     String idSuscripcion = request.getParameter("idSuscripcion");
-                    String correo = request.getParameter("correo");
-                    
-                    if(lugar!=null && lugar.equals("misSuscripciones")){
+           
+                  
                         session.setAttribute("idSuscripcion",idSuscripcion);
-                        session.setAttribute("correo", correo);
+                        
                         
                         if(tipo!=null && tipo.equals("pareja")){
                             
-                            session.setAttribute("suscripcionPareja", true);
+                            session.setAttribute("esSuscripcionPareja", true);
+                            
                             if(accion!=null && accion.equals("renovar")){
                                 session.setAttribute("tipo", "renovar");
                             }
@@ -90,8 +110,8 @@ public class ControlSuscripciones extends HttpServlet {
                         }
                         
                         else if(tipo!=null && tipo.equals("unico")){
-                            
-                            session.setAttribute("suscripcionPareja", false);
+                            System.out.println("hola");
+                            session.setAttribute("esSuscripcionPareja", false);
                             if(accion!=null && accion.equals("renovar")){
                                 
                                 session.setAttribute("tipo", "renovar");
@@ -102,15 +122,8 @@ public class ControlSuscripciones extends HttpServlet {
                         }
                         request.getRequestDispatcher("pagarPaypal").forward(request, response);
                         
-                    }
                     
                     
-                    else if(lugar!=null && lugar.equals("paypal")){
-                        
-                        
-                        
-                        
-                    }
                     
                     
                 }//Termina pago==null
