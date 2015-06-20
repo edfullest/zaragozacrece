@@ -259,11 +259,11 @@
                                                     </c:when>
                                                     <c:when test="${mensajes.get(i).equals('renovar')}">
                                                         
-                                                          <td><a href="suscripciones?tipoSuscripcion=unico&accion=renovar&idSuscripcion=${suscripcionPareja.idSuscripcion}"><button type="button" class="button-table"><i class="fa fa-repeat"></i> Renovar</button></a></td> 
+                                                          <td><a href="suscripciones?tipoSuscripcion=unico&accion=renovar&idSuscripcion=${cell.idSuscripcion}"><button type="button" class="button-table"><i class="fa fa-repeat"></i> Renovar</button></a></td> 
                                                     </c:when>
                                                     <c:when test="${mensajes.get(i).equals('quitar')}">
                                                             
-                                                            <td> <a href="suscripciones?tipoSuscripcion=unico&accion=activar&idSuscripcion=${suscripcionPareja.idSuscripcion}"><button type="button" class="button-table"><i class="fa fa-repeat"></i> Activar</button></a></td> 
+                                                            <td> <a href="suscripciones?tipoSuscripcion=unico&accion=activar&idSuscripcion=${cell.idSuscripcion}"><button type="button" class="button-table"><i class="fa fa-repeat"></i> Activar</button></a></td> 
                                                     </c:when>
                                                 </c:choose>
                                     

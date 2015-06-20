@@ -9,6 +9,7 @@ import com.clases.Carta;
 import com.conexion.Conexion;
 import com.entidades.Apadrinados;
 import com.entidades.Entrada;
+import com.entidades.Suscripcion;
 import com.entidades.Suscripcion_pareja;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -86,42 +87,79 @@ public class ControlSuscripciones extends HttpServlet {
                 
                 else if(pago==null){
                     
-             
+                    
                     String tipo = request.getParameter("tipoSuscripcion");
                     String accion = request.getParameter("accion");
                     String idSuscripcion = request.getParameter("idSuscripcion");
-           
-                  
-                        session.setAttribute("idSuscripcion",idSuscripcion);
+                    Suscripcion suscripcion = new Suscripcion(conn);
+                    ArrayList<Suscripcion> suscripciones = (ArrayList<Suscripcion>)session.getAttribute("suscripciones");
+                    
+          
+                    
+                    if(tipo!=null && tipo.equals("pareja")){
+                        
+                        session.setAttribute("esSuscripcionPareja", true);
+                        Suscripcion_pareja unasuscripcionpareja = (Suscripcion_pareja)session.getAttribute("suscripcionPareja");
+                        if(Integer.parseInt(idSuscripcion)!=unasuscripcionpareja.getIdSuscripcion()){
+                            
+                            request.getRequestDispatcher("ControlPanelPadrino?opcion=4").forward(request, response);
+                        }
                         
                         
-                        if(tipo!=null && tipo.equals("pareja")){
-                            
-                            session.setAttribute("esSuscripcionPareja", true);
-                            
-                            if(accion!=null && accion.equals("renovar")){
-                                session.setAttribute("tipo", "renovar");
+                        else if(accion!=null && accion.equals("renovar")){
+                            session.setAttribute("tipo", "renovar");
+                            session.setAttribute("idSuscripcion", idSuscripcion);
+                            request.getRequestDispatcher("pagarPaypal").forward(request, response);
+                        }
+                        else if(accion!=null && accion.equals("activar")){
+                            session.setAttribute("idSuscripcion", idSuscripcion);
+                            session.setAttribute("tipo", "activar");
+                            request.getRequestDispatcher("pagarPaypal").forward(request, response);
+                        }
+                        
+                        
+                    }
+                    
+                    else if(tipo!=null && tipo.equals("unico")){
+                        
+                        session.setAttribute("esSuscripcionPareja", false);
+                        System.out.println(idSuscripcion);
+                        boolean encontro=false;
+                        int i=0;
+                        //Si el id que puso no esta...
+                        System.out.println("Size de suscripciones "+suscripciones.size());
+                        do{
+                            Suscripcion unasuscripcion = suscripciones.get(i);
+                            System.out.println("yadda");
+                             System.out.println("id de la suscripcion "+unasuscripcion.getIdSuscripcion());
+                            if(unasuscripcion.getIdSuscripcion()==Integer.parseInt(idSuscripcion)){
+                               
+                                encontro = true;
+                                session.setAttribute("idSuscripcion",idSuscripcion);
                             }
-                            else if(accion!=null && accion.equals("activar")){
-                                session.setAttribute("tipo", "activar");
-                            }
+                            i++;
                             
+                        }while(!encontro && i<suscripciones.size());
+                        
+                        if(!encontro){
+                            
+                            request.getRequestDispatcher("ControlPanelPadrino?opcion=4").forward(request, response);
                             
                         }
                         
-                        else if(tipo!=null && tipo.equals("unico")){
-                            System.out.println("hola");
-                            session.setAttribute("esSuscripcionPareja", false);
-                            if(accion!=null && accion.equals("renovar")){
-                                
-                                session.setAttribute("tipo", "renovar");
-                            }
-                            else if(accion!=null && accion.equals("activar")){
-                                session.setAttribute("tipo", "activar");
-                            }
+                        else if(accion!=null && accion.equals("renovar")){
+                            session.setAttribute("idSuscripcion", idSuscripcion);
+                            session.setAttribute("tipo", "renovar");
+                            request.getRequestDispatcher("pagarPaypal").forward(request, response);
                         }
-                        request.getRequestDispatcher("pagarPaypal").forward(request, response);
-                        
+                        else if(accion!=null && accion.equals("activar")){
+                            session.setAttribute("idSuscripcion", idSuscripcion);
+                            session.setAttribute("tipo", "activar");
+                            request.getRequestDispatcher("pagarPaypal").forward(request, response);
+                        }
+                    }
+                    
+                    
                     
                     
                     

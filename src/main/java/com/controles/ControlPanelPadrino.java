@@ -421,6 +421,9 @@ public class ControlPanelPadrino extends HttpServlet {
                 
                 String opcion = (String)request.getParameter("opcion");
                 System.out.println(opcion);
+                
+                
+                
                 if(opcion!=null){
                     request.setAttribute("opcion", opcion);
                     

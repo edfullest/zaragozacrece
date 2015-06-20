@@ -249,6 +249,7 @@ public class PaymentWithPayPalServlet extends HttpServlet {
             
             String correo = (String)session.getAttribute("correo");
             String thiscorreo = (String)session.getAttribute("thiscorreo");
+            String idSuscripcion = (String)session.getAttribute("idSuscripcion");
             // ### Items
             Item item = new Item();
             
@@ -266,19 +267,19 @@ public class PaymentWithPayPalServlet extends HttpServlet {
             
             else if (tipo!=null && tipo.equals("renovar")){
                 if(suscripcionPareja){
-                    item.setName("Renovar suscripción en Pareja con "+correo).setQuantity("1").setCurrency("MXN").setPrice("375");
+                    item.setName("Renovar suscripción en Pareja con "+correo+" ID Suscripcion "+idSuscripcion).setQuantity("1").setCurrency("MXN").setPrice("375");
                 }
                 else{
-                    item.setName("Renovar suscripción de "+thiscorreo).setQuantity("1").setCurrency("MXN").setPrice("750");
+                    item.setName("Renovar suscripción de "+thiscorreo+" ID Suscripcion "+idSuscripcion).setQuantity("1").setCurrency("MXN").setPrice("750");
                 }
             }
             
             else if (tipo!=null && tipo.equals("activar")){
                 if(suscripcionPareja){
-                    item.setName("Activar suscripcion en Pareja con "+correo).setQuantity("1").setCurrency("MXN").setPrice("375");
+                    item.setName("Activar suscripcion en Pareja con "+correo+" ID Suscripcion "+idSuscripcion).setQuantity("1").setCurrency("MXN").setPrice("375");
                 }
                 else{
-                    item.setName("Activar suscripción de "+thiscorreo).setQuantity("1").setCurrency("MXN").setPrice("750");
+                    item.setName("Activar suscripción de "+thiscorreo+" ID Suscripcion "+idSuscripcion).setQuantity("1").setCurrency("MXN").setPrice("750");
                 }
                 
             }
