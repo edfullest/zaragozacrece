@@ -9,6 +9,7 @@ import com.conexion.Conexion;
 import com.entidades.Apadrinados;
 import com.entidades.Entrada;
 import com.entidades.Notas;
+import com.entidades.Padrino;
 import com.entidades.Pago;
 import com.entidades.Pago_pareja;
 import com.entidades.Pareja;
@@ -161,6 +162,75 @@ public class ControlCargarPagos extends HttpServlet {
                     
                 }
                 
+                else if (tipo!=null && tipo.equals("cargarTodosPadrinados")){
+                    Conexion conn = new Conexion();
+                    Padrino padrino = new Padrino(conn);
+                    
+                    
+                    
+                    //Sistema de paginado
+                    int paginaActual = 1;
+                    int padrinosPorPagina = 20;
+                    if(request.getParameter("paginaActual") != null)
+                        paginaActual = Integer.parseInt(request.getParameter("paginaActual"));
+                    
+
+                    ArrayList<Padrino> padrinos = padrino.obtenerTodosPadrinos((paginaActual-1)*padrinosPorPagina,padrinosPorPagina);
+                    int numPadrinos = padrino.getNumeroPadrinos();
+                    
+                    int numPaginas = (int)Math.ceil(numPadrinos*1.0/padrinosPorPagina);
+                    
+                    ArrayList<String> nombreColumnas = new ArrayList<String>();
+                    nombreColumnas.add("ID");
+                    nombreColumnas.add("Nombre");
+                    nombreColumnas.add("Correo");
+                    nombreColumnas.add("Celular");
+                    nombreColumnas.add("");
+                    
+                    request.setAttribute("nombreColumnas", nombreColumnas);
+                    request.setAttribute("padrinos", padrinos);
+                    request.setAttribute("numPaginas", numPaginas);
+                    request.setAttribute("paginaActual", paginaActual);
+                    
+                    request.getRequestDispatcher("todosPadrinos").forward(request, response);
+                    
+                    
+                }
+                
+                else if (tipo!=null && tipo.equals("redirigirCrearPago")){
+                    
+                    String correo = request.getParameter("correo");
+                    String nombreCompleto = request.getParameter("nombreCompleto");
+                    int idPadrino = Integer.parseInt(request.getParameter("idPadrino"));
+                    
+                    request.setAttribute("correoPadrino", correo);
+                    request.setAttribute("nombreCompleto", nombreCompleto);
+                    request.setAttribute("idPadrino", idPadrino);
+                    
+                    
+                    
+                    
+                    request.getRequestDispatcher("crearPagoPadrino").forward(request, response);
+                    
+                }
+                
+                else if (tipo!=null && tipo.equals("asignarNuevoPago")){
+                    
+                    Conexion conn = new Conexion();
+                    Pago pago = new Pago(conn);
+                    int idPadrino = Integer.parseInt(request.getParameter("idPadrino"));
+                    String fechaPago = request.getParameter("fechaPago");
+                    Date fechaDePago = dateConverter(fechaPago);
+                    
+                    pago.nuevoPago(idPadrino, -1, fechaDePago);
+                    
+                    request.setAttribute("exito", true);
+                    request.getRequestDispatcher("ControlCargarPagos?tipo=cargarTodosPadrinados").forward(request, response);
+                    
+                }
+                
+                
+                
                 
                 
             }
@@ -170,6 +240,29 @@ public class ControlCargarPagos extends HttpServlet {
         
     }
     
+    private Date dateConverter(String oldDateString){
+        
+        final String OLD_FORMAT = "dd.MM.yyyy";
+        final String NEW_FORMAT = "yyyy-MM-dd";
+        String newDateString;
+        Date dModificado = new Date();
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
+            Date d = sdf.parse(oldDateString);
+            sdf.applyPattern(NEW_FORMAT);
+            newDateString = sdf.format(d);
+            dModificado = sdf.parse(newDateString);
+        }
+        catch(Exception e){
+            
+        }
+        return dModificado;
+    }
+    
     
     
 }
+
+
+    
+

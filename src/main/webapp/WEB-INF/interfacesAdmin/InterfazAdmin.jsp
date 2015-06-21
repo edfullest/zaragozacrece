@@ -97,7 +97,7 @@
                         <!-- Apadrinados -->
                         
                         <li aria-haspopup="true">
-                            <a href="#"><i class="fa fa-users"></i>Apadrinados<i class="fa fa-indicator fa-chevron-down"></i></a> 
+                            <a href="#"><i class="fa fa-child"></i>Apadrinados<i class="fa fa-indicator fa-chevron-down"></i></a> 
                                         
                             <div class="grid-container3">
                                 <ul>
@@ -110,6 +110,9 @@
                                     <li>
                                         <a href="apadrinados?tipo=${"editarApadrinado"}"><i class="fa fa-gears"></i>Editar apadrinado</a>
                                     </li>
+                                    
+                                    
+                                    
                                     <li>
                                         
                                         <a href="apadrinados?tipo=${"apadrinadosRegistrados"}"><i class="fa fa-table"></i>Apadrinados registrados</a>
@@ -131,10 +134,39 @@
                                         <a href="ControlCargarPagos?tipo=cargarPagos"><i class="fa fa-user"></i>Asignar apadrinados a padrinos</a>
                                     </li>
                                                                                     
+                              
+                                     <li>
+                                        <a href="ControlCargarPagos?tipo=cargarTodosPadrinados"><i class="fa fa-money"></i>Nuevo pago de padrino</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="ControlCargarPagos?tipo=cargarTodasSuscripciones"><i class="fa fa-repeat"></i>Renovar/Reactivar suscripcion de padrino</a>
+                                    </li> 
+                                   
+                                                                                    
+                                </ul>
+                            </div>
+                                                                    
+                        </li>
+                        
+                        <li aria-haspopup="true">
+                            <a href="#"><i class="fa fa-users"></i>Parejas<i class="fa fa-indicator fa-chevron-down"></i></a> 
+                                        
+                            <div class="grid-container3">
+                                <ul>
+                              
+                                                                                    
                                     <li>
                                         <a href="cargarPagosParejas?tipo=cargarPagos"><i class="fa fa-users"></i>Asignar apadrinados a parejas</a>
                                     </li>
-                                                                                    
+                                    
+                                     <li>
+                                        <a href="ControlCargarPagos?tipo=cargarTodosPadrinados"><i class="fa fa-money"></i>Nuevo pago de pareja</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="ControlCargarPagos?tipo=cargarTodasSuscripciones"><i class="fa fa-repeat"></i>Renovar/Reactivar suscripcion de pareja</a>
+                                    </li> 
                                    
                                                                                     
                                 </ul>

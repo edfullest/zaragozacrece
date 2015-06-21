@@ -14,10 +14,24 @@ public class Pareja {
     Statement stmt;
     PreparedStatement pStmt;
     
+    private int idPareja;
+    private int idPadrino1;
+    private int idPadrino2;
+    private String correo1;
+    private String correo2;
+    
     // Metodo constructor con conexion
     public Pareja(Conexion connect){
         this.conn = connect.conn;
         this.stmt = connect.stmt;
+    }
+    
+    public Pareja(int idPareja,int idPadrino1,int idPadrino2, String correo1, String correo2){
+        this.idPareja = idPareja;
+        this.idPadrino1 = idPadrino1;
+        this.idPadrino2 = idPadrino2;
+        this.correo1 = correo1;
+        this.correo2 = correo2;
     }
     
     //Creo una nueva pareja
@@ -416,6 +430,136 @@ public class Pareja {
             
         }
         
+    }
+    
+     //Obtener correo con el id del padrino
+    public  ArrayList<Pareja> obtenerTodasParejas(int offset,int num) {
+        ArrayList<Pareja> parejas = new ArrayList<Pareja>();
+        
+        int idPareja;
+        int idPadrino1;
+        int idPadrino2;
+        String correo1;
+        String correo2;
+        
+        
+        try {
+            stmt.executeQuery("SELECT * FROM pareja ORDER BY idPareja desc LIMIT "+offset+","+num);
+            ResultSet rs = stmt.getResultSet();
+            
+            while(rs.next()){
+              
+                idPareja = rs.getInt("idPareja");
+                idPadrino1 = rs.getInt("idPadrino1");
+                idPadrino2 = rs.getInt("idPadrino2");
+                correo1 = rs.getString("correo1");
+                correo2 = rs.getString("correo2");
+             
+                Pareja pareja = new Pareja(idPareja,idPadrino1,idPadrino2,correo1,correo2);
+                
+                parejas.add(pareja);
+            }
+            
+            return parejas;
+            
+        } catch (SQLException e) {
+            return null;
+        }
+        
+    }
+    
+    //Se obtienen numero de notas
+    public int getNumeroParejas(){
+        
+        int numParejas;
+        
+        
+        try{
+            stmt.executeQuery("SELECT COUNT(*) FROM pareja");
+            ResultSet rs = stmt.getResultSet();
+            if(rs.next()){
+                numParejas = rs.getInt(1);
+                return numParejas;
+            }
+            
+            return -1;
+        }
+        catch(SQLException e){
+            return -1;
+        }
+        
+        
+        
+    }
+
+    /**
+     * @return the idPareja
+     */
+    public int getIdPareja() {
+        return idPareja;
+    }
+
+    /**
+     * @param idPareja the idPareja to set
+     */
+    public void setIdPareja(int idPareja) {
+        this.idPareja = idPareja;
+    }
+
+    /**
+     * @return the correo1
+     */
+    public String getCorreo1() {
+        return correo1;
+    }
+
+    /**
+     * @param correo1 the correo1 to set
+     */
+    public void setCorreo1(String correo1) {
+        this.correo1 = correo1;
+    }
+
+    /**
+     * @return the correo2
+     */
+    public String getCorreo2() {
+        return correo2;
+    }
+
+    /**
+     * @param correo2 the correo2 to set
+     */
+    public void setCorreo2(String correo2) {
+        this.correo2 = correo2;
+    }
+
+    /**
+     * @return the idPadrino1
+     */
+    public int getIdPadrino1() {
+        return idPadrino1;
+    }
+
+    /**
+     * @param idPadrino1 the idPadrino1 to set
+     */
+    public void setIdPadrino1(int idPadrino1) {
+        this.idPadrino1 = idPadrino1;
+    }
+
+    /**
+     * @return the idPadrino2
+     */
+    public int getIdPadrino2() {
+        return idPadrino2;
+    }
+
+    /**
+     * @param idPadrino2 the idPadrino2 to set
+     */
+    public void setIdPadrino2(int idPadrino2) {
+        this.idPadrino2 = idPadrino2;
     }
     
     
