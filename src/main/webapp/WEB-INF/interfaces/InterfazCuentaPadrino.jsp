@@ -221,13 +221,113 @@
                         </div>
                 
                         <div class="center">
-                            
+                   
                             <!-- tabs -->
                             <div class="sky-tabs sky-tabs-pos-top-left sky-tabs-response-to-icons">
                                 <div class="textbox">					
                                     <div class="typography">
                                         <h1>¡Bienvenido!</h1>
                                         <p>Cosas a considerar:</p>
+                                        <ul>
+                                            <li>
+                                                Cada 6 meses hacemos viajes a Zaragoza, Nuevo León, donde con tu aportación, entregamos despensas y suplementos alimenticios que nosotros preparamos.
+                                                Por ello mismo, las suscripciones de apadrinados financían los viajes, así que el límite para renovar las suscripciones es 4 meses antes de cada viaje. 
+                                                Es decir, si el siguiente viaje es el 10 de julio de 2015, se tiene hasta el 10 de marzo de 2015 para renovarlo, de lo contrario se quita la suscripción (y por lo
+                                                tanto, el apadrinado también). Sin embargo, después de esa fecha, se puede reactivar la suscripción y así tendrás acceso a tu apadrinado nuevamente.
+                                                 
+                                            </li>
+                                            <li>
+                                                Si se tiene una suscripción de algún viaje pasado (por ejemplo, del viaje del 10 de diciembre), entonces podrás ver las cartas y estadísticas
+                                                de tus apadrinados hasta antes de la fecha límite de renovación. Después de esa fecha no se podrá, y tendrás que reactivar tu suscripción.
+                                            </li>
+                                            <li>
+                                                Una pareja nada más puede apadrinar UNA vez. Sin embargo, si quieres apadrinar sin pareja, puedes hacerlo cuantas veces quieras.
+                                            </li>
+                                            <li>
+                                                La fecha límite para pagar renovaciones del periodo actual es el: <b>${sessionScope.sFechaLimite}</b> 
+                                            </li>
+                                           
+                                        </ul>
+                                            
+                                                <c:choose>
+                                                    <c:when test="${sessionScope.iNoProblem!=0 || sessionScope.iRenovar!=0 || sessionScope.iQuitar!=0}">
+                                                        <h3>Información de suscripciones</h3>
+                                                    </c:when>
+                                                </c:choose>
+                                        <c:choose>
+                                            <c:when test="${sessionScope.iNoProblem!=0}">
+                                                
+                                                <c:choose>
+                                                    <c:when test="${sessionScope.iNoProblem==1}">
+                                                        <p><i class="fa fa-thumbs-up"></i> <b>${sessionScope.iNoProblem}</b> suscripción no presenta problema! Está actualizada </p>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <p><i class="fa fa-thumbs-up"></i> <b>${sessionScope.iNoProblem}</b> suscripciones no presentan problemas! Están actualizadas </p>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                
+                                                
+                                            </c:when>
+                                        </c:choose>
+                                                        
+                                        <c:choose>
+                                            <c:when test="${sessionScope.iRenovar!=0}">
+                                                <br>
+                                                <c:choose>
+                                                    <c:when test="${sessionScope.iRenovar==1}">
+                                                        <p><i class="fa fa-flag"></i> <b>${sessionScope.iRenovar}</b> suscripción expirará pronto! Renuévala antes del <b>${sessionScope.sFechaLimite}</b>  </p>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <p><i class="fa fa-flag"></i> <b>${sessionScope.iRenovar}</b> suscripciones expirarán pronto! Renuévalas antes del <b>${sessionScope.sFechaLimite}</b> </p>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                
+                                                
+                                            </c:when>
+                                        </c:choose>
+                                                       
+                                               <c:choose>
+                                            <c:when test="${sessionScope.iQuitar!=0}">
+                                                 <br>
+                                                <c:choose>
+                                                    <c:when test="${sessionScope.iQuitar==1}">
+                                                        <p><i class="fa fa-warning"></i> <b>${sessionScope.iQuitar}</b> suscripción se te ha suspendido! Reactívala lo antes posible si quieres tener acceso a tu apadrinado! </p>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <p><i class="fa fa-warning"></i> <b>${sessionScope.iQuitar}</b> suscripciones se te ham suspendido! Reactívala lo antes posible si quieres tener acceso a tus apadrinados </p>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                
+                                                
+                                            </c:when>
+                                        </c:choose>
+                                                        
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.advertenciaPareja!=null && sessionScope.advertenciaPareja!=''}">
+                                                                <br>
+                                                               <h3>Información de suscripción en pareja</h3>
+                                                               <br>
+                                                            </c:when>
+                                                        </c:choose>
+                                                         <c:choose>
+                                                            <c:when test="${sessionScope.advertenciaPareja.equals('yapagaste')}">
+                                                              <i class="fa fa-check"></i> Ya pagaste la renovación/reactivación de su suscripción pero tu pareja no!
+                                                            </c:when>
+                                                            <c:when test="${sessionScope.advertenciaPareja.equals('otropago')}">
+                                                               <i class="fa fa-warning"></i> Tu pareja ya pagó la renovación/reactivación de su suscripción pero tú aún no!
+                                                            </c:when>
+                                                            <c:when test="${sessionScope.advertenciaPareja.equals('quitar')}">
+                                                               <i class="fa fa-warning"></i> Se les suspendió su suscripción! Reactívenla si quieren tener acceso a su apadrinado.
+                                                            </c:when>
+                                                               <c:when test="${sessionScope.advertenciaPareja.equals('noProblem')}">
+                                                               <i class="fa fa-thumbs-up"></i> Su suscripción en pareja no presenta problema! Está actualizada
+                                                            </c:when>
+                                                               <c:when test="${sessionScope.advertenciaPareja.equals('renovar')}">
+                                                               <i class="fa fa-flag"></i> Su suscripción expirará pronto! Renuévenla para antes del <b>${sessionScope.sFechaLimite}</b> 
+                                                            </c:when>
+                                                        </c:choose>
+                                                               
+                                        
                                     </div>
                                 </div>
                             </div>

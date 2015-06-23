@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -108,7 +109,13 @@ public class ControlLogInPadrino extends HttpServlet {
                 calFechaFinalActual.setTime(periodos.get(0).getFechaFinal());
             }
             
-            
+            //convierto la fecha
+                Locale fechaLocal = new Locale.Builder().setLanguage("es").setRegion("MX").build();
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd",fechaLocal);
+                Date d = calFechaFinalAnterior.getTime();
+                sdf1.applyPattern("EEE d 'de' MMMM 'de' yyyy");
+                String sFechaLimite = sdf1.format(d);
+                session.setAttribute("sFechaLimite", sFechaLimite);
             
             suscripciones = suscripcion.obtenerSuscripciones(idPadrino);
             ArrayList<String> mensajes = new ArrayList<String>();

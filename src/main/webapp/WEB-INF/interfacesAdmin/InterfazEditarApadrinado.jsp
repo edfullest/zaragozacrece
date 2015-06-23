@@ -86,7 +86,7 @@
             <body class="bg-cyan">
                 <div class="body">
                     
-                    <!-- mega menu -->
+                     <!-- mega menu -->
                     <ul class="sky-mega-menu">
                         
                         <li>
@@ -99,7 +99,7 @@
                         <!-- Apadrinados -->
                         
                         <li aria-haspopup="true">
-                            <a href="#"><i class="fa fa-users"></i>Apadrinados<i class="fa fa-indicator fa-chevron-down"></i></a> 
+                            <a href="#"><i class="fa fa-child"></i>Apadrinados<i class="fa fa-indicator fa-chevron-down"></i></a> 
                                         
                             <div class="grid-container3">
                                 <ul>
@@ -110,10 +110,14 @@
                                         <a href="apadrinados?tipo=${"cargarApadrinados"}"><i class="fa fa-bar-chart-o"></i>Nueva entrada de apadrinado</a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fa fa-gears"></i>Editar apadrinados</a>
+                                        <a href="apadrinados?tipo=${"editarApadrinado"}"><i class="fa fa-gears"></i>Editar apadrinado</a>
                                     </li>
+                                    
+                                    
+                                    
                                     <li>
-                                        <a href="#"><i class="fa fa-table"></i>Apadrinados registrados</a>
+                                        
+                                        <a href="apadrinados?tipo=${"apadrinadosRegistrados"}"><i class="fa fa-table"></i>Apadrinados registrados</a>
                                     </li>
                                 </ul>
                             </div>
@@ -129,16 +133,43 @@
                             <div class="grid-container3">
                                 <ul>
                                     <li>
-                                        <a href="#"><i class="fa fa-lightbulb-o"></i>Asignar apadrinados a padrinos</a>
+                                        <a href="ControlCargarPagos?tipo=cargarPagos"><i class="fa fa-user"></i>Asignar apadrinados a padrinos</a>
                                     </li>
                                                                                     
-                                    <li>
-                                        <a href="#"><i class="fa fa-money"></i>Asignar pagos</a>
+                              
+                                     <li>
+                                        <a href="ControlCargarPagos?tipo=cargarTodosPadrinados"><i class="fa fa-money"></i>Nuevo pago de padrino</a>
                                     </li>
+                                    <%--
+                                    <li>
+                                        <a href="ControlCargarPagos?tipo=cargarTodasSuscripciones"><i class="fa fa-repeat"></i>Renovar/Reactivar suscripcion de padrino</a>
+                                    </li> 
+                                   --%>
+                                                                                    
+                                </ul>
+                            </div>
+                                                                    
+                        </li>
+                        
+                        <li aria-haspopup="true">
+                            <a href="#"><i class="fa fa-users"></i>Parejas<i class="fa fa-indicator fa-chevron-down"></i></a> 
+                                        
+                            <div class="grid-container3">
+                                <ul>
+                              
                                                                                     
                                     <li>
-                                        <a href="#"><i class="fa fa-table"></i>Padrinos registrados</a>
+                                        <a href="cargarPagosParejas?tipo=cargarPagos"><i class="fa fa-users"></i>Asignar apadrinados a parejas</a>
                                     </li>
+                                    
+                                     <li>
+                                        <a href="cargarPagosParejas?tipo=cargarTodasParejas"><i class="fa fa-money"></i>Nuevo pago de pareja</a>
+                                    </li>
+                                     <%--
+                                    <li>
+                                        <a href="ControlCargarPagos?tipo=cargarTodasSuscripciones"><i class="fa fa-repeat"></i>Renovar/Reactivar suscripcion de pareja</a>
+                                    </li> 
+                                   --%>
                                                                                     
                                 </ul>
                             </div>
@@ -155,12 +186,7 @@
                         
                         <!--/ Apartado para apadrinar un niño  -->
                         
-                        <!-- Mi cuenta,esto es si existe sesion -->
-                        
-                        
-                        
-                        
-                        <!-- Mi cuenta,esto es si existe sesion -->
+                       
                         
                         <!-- Apartado para cerrar sesión -->
                         <li>

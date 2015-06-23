@@ -24,6 +24,7 @@ public class Suscripcion {
     private int idApadrinado;
     private Date fechaUltimoPago;
     private String nombreCompleto;
+    private String correo;
     
     // Metodo constructor con conexion
     public Suscripcion(Conexion connect){
@@ -40,6 +41,20 @@ public class Suscripcion {
             this.idApadrinado=idApadrinado;
             this.fechaUltimoPago=fechaUltimoPago;
             this.nombreCompleto = nombreCompleto;
+            
+        
+    }
+    
+        // Metodo constructor de la clase
+    public Suscripcion(int idSuscripcion, int idPadrino, int idPago, int idApadrinado, Date fechaUltimoPago, String nombreCompleto, String correo){
+        
+            this.idSuscripcion = idSuscripcion;
+            this.idPadrino = idPadrino;
+            this.idPago = idPago;
+            this.idApadrinado=idApadrinado;
+            this.fechaUltimoPago=fechaUltimoPago;
+            this.nombreCompleto = nombreCompleto;
+            this.correo = correo;
             
         
     }
@@ -130,6 +145,53 @@ public class Suscripcion {
 
       
     }
+    
+    //Se obtienen las suscripciones con el ID del padrino
+    public ArrayList<Suscripcion> obtenerTodasSuscripciones(int offset,int num){
+        
+        ArrayList<Suscripcion> suscripciones = new ArrayList<Suscripcion>();
+        
+        int idSuscripcion;
+        int idPadrino;
+        int idPago;
+        int idApadrinado;
+        Date fechaUltimoPago;
+        String nombreCompleto;
+        String correo;
+        
+        try{
+            pStmt = conn.prepareStatement(
+                "SELECT idSuscripcion,suscripcion.idPadrino,idPago,suscripcion.idApadrinado,"
+                        + "fechaUltimoPago,apadrinados.nombreCompleto,padrinos.correo "
+                        + "FROM suscripcion,apadrinados,padrinos WHERE suscripcion.idApadrinado = apadrinados.idApadrinado "
+                        + "AND suscripcion.idPadrino=padrinos.idPadrino ORDER BY idSuscripcion descLIMIT ?,?");
+            pStmt.setInt(1,offset);
+            pStmt.setInt(2,num);
+            ResultSet rs = pStmt.executeQuery();
+            while(rs.next()){
+                
+                idSuscripcion = rs.getInt("idSuscripcion");
+                idPadrino = rs.getInt("idPadrino");
+                idPago = rs.getInt("idPago");
+                idApadrinado = rs.getInt("idApadrinado");
+                fechaUltimoPago = rs.getDate("fechaUltimoPago");
+                nombreCompleto = rs.getString("nombreCompleto");
+                correo = rs.getString("correo");
+                
+                Suscripcion suscripcion = new Suscripcion(idSuscripcion,idPadrino,idPago,idApadrinado,fechaUltimoPago,nombreCompleto,correo);
+                
+                suscripciones.add(suscripcion);
+
+            }
+        
+            return suscripciones;
+        }
+        catch(SQLException e){
+            return suscripciones;
+        }
+
+    }
+    
     
 
     /**

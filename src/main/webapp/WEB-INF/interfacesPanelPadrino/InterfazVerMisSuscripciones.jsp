@@ -182,43 +182,42 @@
                         <div class="left">
                             <aside>
                                 
-                                <!-- mega menu -->
-                                <ul class="sky-mega-menu sky-mega-menu-pos-left sky-mega-menu-response-to-icons sky-mega-menu-anim-scale">
-                                    
-                                    
-                                    <!-- about -->
-                                        
-                                        
-                                    <!--/ about -->
-                                        
-                                    <!-- news -->
-                                    <li>
-                                        <a href="ControlPanelPadrino?opcion=2&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrows-h"></i>Apadrina en pareja</a>
-                                            
-                                    </li>
-                                    <!--/ news -->
-                                        
-                                    <!-- portfolio -->
-                                    <li>
-                                        <a href="ControlPanelPadrino?opcion=3&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrow-circle-up"></i>Apadrina solo</a>
-                                            
-                                    </li>
-                                    <!--/ portfolio -->
-                                        
-                                    <!-- blog -->
-                                    <li>
-                                        <a href="ControlPanelPadrino?opcion=4&hayApadrinados=${hayApadrinados}"><i class="fa fa-connectdevelop"></i>Ver mis suscripciones</a>
-                                    </li>
-                                    <!--/ blog -->
-                                        
-                                </ul>
-                                    
-                                <!--/ mega menu -->
-                                    
-                            </aside>
+                            <!-- mega menu -->
+                            <ul class="sky-mega-menu sky-mega-menu-pos-left sky-mega-menu-response-to-icons sky-mega-menu-anim-scale">
                                 
                                 
-                        </div>
+                               
+                                    
+                                <!--/ about -->
+                                    
+                                <!-- news -->
+                                <li>
+                                    <a href="ControlPanelPadrino?opcion=2&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrows-h"></i><b>Apadrina en pareja</b></a>
+                                        
+                                </li>
+                                <!--/ news -->
+                                    
+                                <!-- portfolio -->
+                                <li>
+                                    <a href="ControlPanelPadrino?opcion=3&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrow-circle-up"></i>Apadrina solo</a>
+                                        
+                                </li>
+                                <!--/ portfolio -->
+                                    
+                                <!-- blog -->
+                                <li>
+                                    <a href="ControlPanelPadrino?opcion=4&hayApadrinados=${hayApadrinados}"><i class="fa fa-cogs"></i>Configuración de cuenta</a>
+                                </li>
+                                <!--/ blog -->
+                                    
+                            </ul>
+                                
+                            <!--/ mega menu -->
+                                
+                        </aside>
+                   
+                
+            </div>
                             
                         <div class="tablewrapper">
                             <div class="center2">    

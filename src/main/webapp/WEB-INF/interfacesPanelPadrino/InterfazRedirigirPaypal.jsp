@@ -170,7 +170,7 @@
                                     
                                 </fieldset>
                                 <footer>
-                                    <% ); %>
+                                  
                                     <c:choose>
                                         <c:when test="${param.tipo.equals('apadrinasolo')}" >
                                             <% ; %>

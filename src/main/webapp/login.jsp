@@ -221,7 +221,7 @@
                                                                           <i class="icon-append fa fa-lock"></i>
                                                                           <input type="password" name="password">
                                                                       </label>
-                                                                      <div class="note"><a href="#sky-form2" class="modal-opener">¿Olvidaste tu contraseña?</a></div>
+                                                                      
                                                                   </div>
                                                               </div>
                                                           </section>
