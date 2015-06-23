@@ -9,11 +9,16 @@ import com.clases.Carta;
 import com.conexion.Conexion;
 import com.entidades.Apadrinados;
 import com.entidades.Entrada;
+import com.entidades.Pago;
+import com.entidades.Pago_pareja;
+import com.entidades.Pareja;
 import com.entidades.Suscripcion;
 import com.entidades.Suscripcion_pareja;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -72,14 +77,84 @@ public class ControlSuscripciones extends HttpServlet {
                 
                 //Se hace la renovacion de la suscripcion
                 else if (pago!=null && pago.equals("viejo") &&  exitoso && error==null ){
-                    System.out.println("YASSS");
-                    boolean suscripcionPareja = (Boolean)session.getAttribute("esSuscripcionPareja");
                     
+                    boolean suscripcionPareja = (Boolean)session.getAttribute("esSuscripcionPareja");
+                    int idApadrinado = (Integer)session.getAttribute("idApadrinado");
+                    int idSuscripcion = (Integer)session.getAttribute("idSuscripcion");
+                    int idPadrino = (Integer)session.getAttribute("idPadrino");
                     if(suscripcionPareja){
-                        System.out.println("si es pareja ylv");
+                        
+                        int idPareja = (Integer)session.getAttribute("idPareja");
+                        
+                        Pago_pareja pagopareja = new Pago_pareja(conn);
+                        Pareja pareja = new Pareja(conn);
+                        Suscripcion_pareja suscripcion= new Suscripcion_pareja(conn);
+                        
+                        ArrayList<String> idsPadrinos= pareja.obtenerConIDPareja(idPareja);
+                        boolean esPadrino1 = false;
+                        boolean esPadrino2 = false;
+                        Date fechaPago = new Date();
+                        try{
+                            SimpleDateFormat sdf = new SimpleDateFormat();
+                            Date d = new Date();
+                            sdf.applyPattern("yyyy-MM-dd");
+                            String newFecha = sdf.format(d);
+                            System.out.println(newFecha);
+                            fechaPago = sdf.parse(newFecha);
+                        }
+                        
+                        catch(Exception e){}
+                        //Obtengo la fecha actual
+                        
+                        
+                        if(Integer.parseInt(idsPadrinos.get(0))==idPadrino){
+                            esPadrino1 = true;
+                        }
+                        else if(Integer.parseInt(idsPadrinos.get(1))==idPadrino){
+                            esPadrino2 = true;
+                        }
+                        
+                        Pago_pareja unpagoNoAcreditado = pagopareja.obtenerPagoConApadrinado(idPareja, idApadrinado);
+                        int idPagoPareja = unpagoNoAcreditado.getIdPagoPareja();
+                        if(unpagoNoAcreditado!=null && unpagoNoAcreditado.isPago1() && !unpagoNoAcreditado.isPago2()){
+                            
+                            pagopareja.actualizarPago2(idPareja, idApadrinado, true, fechaPago);
+                            pagopareja.acreditarPago(idPagoPareja);
+                            
+                            suscripcion.actualizarFechaPago(idSuscripcion,idPagoPareja,fechaPago);
+                         
+                        }
+                        
+                        else if(unpagoNoAcreditado!=null && unpagoNoAcreditado.isPago2() && !unpagoNoAcreditado.isPago1()){
+                            pagopareja.actualizarPago1(idPareja, idApadrinado, true, fechaPago);
+                            pagopareja.acreditarPago(idPagoPareja);
+                            
+                            suscripcion.actualizarFechaPago(idSuscripcion,idPagoPareja,fechaPago);
+                            
+                            
+                        }
+                        
+                        else if(unpagoNoAcreditado == null){
+                            
+                            if(esPadrino1){
+                                pagopareja.nuevoPago1(idPareja, idApadrinado, true, fechaPago);
+                            }
+                            else{
+                                pagopareja.nuevoPago2(idPareja, idApadrinado, true, fechaPago);
+                            }
+                            
+                        }
+                        
+                        
                     }
+                    
+                    
                     else{
-                        System.out.println("no es pareja ylv");
+                        
+                        Pago pagPago = new Pago(conn);
+                        
+                        
+                        
                     }
                     
                     
@@ -91,10 +166,12 @@ public class ControlSuscripciones extends HttpServlet {
                     String tipo = request.getParameter("tipoSuscripcion");
                     String accion = request.getParameter("accion");
                     String idSuscripcion = request.getParameter("idSuscripcion");
+                    String idApadrinado = request.getParameter("idApadrinado");
+                    session.setAttribute("idApadrinado", idApadrinado);
                     Suscripcion suscripcion = new Suscripcion(conn);
                     ArrayList<Suscripcion> suscripciones = (ArrayList<Suscripcion>)session.getAttribute("suscripciones");
                     
-          
+                    
                     
                     if(tipo!=null && tipo.equals("pareja")){
                         
@@ -131,9 +208,9 @@ public class ControlSuscripciones extends HttpServlet {
                         do{
                             Suscripcion unasuscripcion = suscripciones.get(i);
                             System.out.println("yadda");
-                             System.out.println("id de la suscripcion "+unasuscripcion.getIdSuscripcion());
+                            System.out.println("id de la suscripcion "+unasuscripcion.getIdSuscripcion());
                             if(unasuscripcion.getIdSuscripcion()==Integer.parseInt(idSuscripcion)){
-                               
+                                
                                 encontro = true;
                                 session.setAttribute("idSuscripcion",idSuscripcion);
                             }

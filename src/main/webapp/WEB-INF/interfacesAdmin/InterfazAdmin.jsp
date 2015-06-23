@@ -161,7 +161,7 @@
                                     </li>
                                     
                                      <li>
-                                        <a href="ControlCargarPagos?tipo=cargarTodosPadrinados"><i class="fa fa-money"></i>Nuevo pago de pareja</a>
+                                        <a href="cargarPagosParejas?tipo=cargarTodasParejas"><i class="fa fa-money"></i>Nuevo pago de pareja</a>
                                     </li>
                                     
                                     <li>

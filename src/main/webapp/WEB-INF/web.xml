@@ -170,6 +170,35 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>InterfazTodasParejas</servlet-name>
+        <jsp-file>/WEB-INF/interfacesAdmin/InterfazTodasParejas.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InterfazTodasParejas</servlet-name>
+        <url-pattern>/todasParejas</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>InterfazSeleccionarPadrino</servlet-name>
+        <jsp-file>/WEB-INF/interfacesAdmin/InterfazSeleccionarPadrino.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InterfazSeleccionarPadrino</servlet-name>
+        <url-pattern>/seleccionarPadrino</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    <servlet>
+        <servlet-name>InterfazCrearPagoPareja</servlet-name>
+        <jsp-file>/WEB-INF/interfacesAdmin/InterfazCrearPagoPareja.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InterfazCrearPagoPareja</servlet-name>
+        <url-pattern>/crearPagoPareja</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>InterfazAsignarPareja</servlet-name>
         <jsp-file>/WEB-INF/interfacesAdmin/InterfazAsignarPareja.jsp</jsp-file>
     </servlet>

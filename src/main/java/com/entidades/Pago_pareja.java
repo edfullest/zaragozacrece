@@ -220,6 +220,105 @@ public class Pago_pareja {
         
     }
     
+    public Pago_pareja obtenerPagoSinApadrinado(int id){
+
+        int idPagoPareja;
+        int idPareja;
+        int idApadrinado;
+        boolean pago1;
+        boolean pago2;
+        Date fechaPago1;
+        Date fechaPago2;
+        boolean acreditado;
+        
+        try{
+            pStmt = conn.prepareStatement(
+                "SELECT * FROM pago_pareja WHERE idPareja = ? AND idApadrinado = -1 AND acreditado = 0 ORDER BY idPagoPareja desc");
+            pStmt.setInt(1,id);
+            ResultSet rs = pStmt.executeQuery();
+            if(rs.next()){
+                
+                idPagoPareja = rs.getInt("idPagoPareja");
+                idPareja = rs.getInt("idPareja");
+                idApadrinado = rs.getInt("idApadrinado");
+                pago1 = (rs.getInt("pago1")!=0);
+                pago2 = (rs.getInt("pago2")!=0);
+                fechaPago1 = rs.getDate("fechaPago1");
+                if(rs.wasNull()){
+                    fechaPago1 = null;
+                }
+                fechaPago2 = rs.getDate("fechaPago2");
+                if(rs.wasNull()){
+                    fechaPago2 = null;
+                }
+                acreditado = (rs.getInt("acreditado")!=0);
+                
+                Pago_pareja pagopareja=new Pago_pareja(idPagoPareja,idPareja,idApadrinado,pago1,pago2,fechaPago1,fechaPago2,acreditado);
+                
+                return pagopareja;
+
+            }
+            
+           
+        }
+        catch(SQLException e){
+           return null;
+        }
+        
+
+        return null;
+    }
+    
+    public Pago_pareja obtenerPagoConApadrinado(int idPa,int idApa){
+
+        int idPagoPareja;
+        int idPareja;
+        int idApadrinado;
+        boolean pago1;
+        boolean pago2;
+        Date fechaPago1;
+        Date fechaPago2;
+        boolean acreditado;
+        
+        try{
+            pStmt = conn.prepareStatement(
+                "SELECT * FROM pago_pareja WHERE idPareja = ? AND idApadrinado = ? AND acreditado = 0 ORDER BY idPagoPareja desc");
+            pStmt.setInt(1,idPa);
+            pStmt.setInt(2,idApa);
+            ResultSet rs = pStmt.executeQuery();
+            if(rs.next()){
+                
+                idPagoPareja = rs.getInt("idPagoPareja");
+                idPareja = rs.getInt("idPareja");
+                idApadrinado = rs.getInt("idApadrinado");
+                pago1 = (rs.getInt("pago1")!=0);
+                pago2 = (rs.getInt("pago2")!=0);
+                fechaPago1 = rs.getDate("fechaPago1");
+                if(rs.wasNull()){
+                    fechaPago1 = null;
+                }
+                fechaPago2 = rs.getDate("fechaPago2");
+                if(rs.wasNull()){
+                    fechaPago2 = null;
+                }
+                acreditado = (rs.getInt("acreditado")!=0);
+                
+                Pago_pareja pagopareja=new Pago_pareja(idPagoPareja,idPareja,idApadrinado,pago1,pago2,fechaPago1,fechaPago2,acreditado);
+                
+                return pagopareja;
+
+            }
+            
+           
+        }
+        catch(SQLException e){
+           return null;
+        }
+        
+
+        return null;
+    }
+    
    
  public ArrayList<Pago_pareja> mostrarPagos(int offset,int num){
         

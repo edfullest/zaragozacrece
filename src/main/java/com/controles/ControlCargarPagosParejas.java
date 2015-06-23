@@ -168,10 +168,10 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     
                 }
                 
-                else if (tipo!=null && tipo.equals("cargarTodosPadrinados")){
+                else if (tipo!=null && tipo.equals("cargarTodasParejas")){
                     Conexion conn = new Conexion();
                     Pareja pareja = new Pareja(conn);
-                    
+                    Suscripcion_pareja suscripcionpareja = new Suscripcion_pareja(conn);
                     
                     
                     //Sistema de paginado
@@ -180,11 +180,37 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     if(request.getParameter("paginaActual") != null)
                         paginaActual = Integer.parseInt(request.getParameter("paginaActual"));
                     
-
-                    ArrayList<Pareja> parejas = pareja.obtenerTodasParejas((paginaActual-1)*parejasPorPagina,parejasPorPagina);
-                    int numPadrinos = pareja.getNumeroParejas();
                     
-                    int numPaginas = (int)Math.ceil(numPadrinos*1.0/parejasPorPagina);
+                    ArrayList<Pareja> parejasAQuitar = pareja.obtenerTodasParejas((paginaActual-1)*parejasPorPagina,parejasPorPagina);
+                    ArrayList<String> parejasConSuscripcion = suscripcionpareja.obtenerTodasSuscripciones();
+                    ArrayList<Pareja> parejas = new ArrayList<Pareja> ();
+                    
+                    
+                    for(int i=0;i<parejasAQuitar.size();i++){
+                        Pareja unaPareja = parejasAQuitar.get(i);
+                        boolean entro=false;
+                        for (int j=0;j<parejasConSuscripcion.size();j++){
+                            int idParejaSuscripcion = Integer.parseInt(parejasConSuscripcion.get(j));
+                            
+                            if(unaPareja.getIdPareja() == idParejaSuscripcion ){
+                                
+                                entro = true;
+                                break;
+                            }
+                            
+                        }
+                        
+                        if(!entro){
+                            parejas.add(unaPareja);
+                            
+                        }
+                        
+                        
+                        
+                    }
+                    int numParejas = parejas.size();
+                    
+                    int numPaginas = (int)Math.ceil(numParejas*1.0/parejasPorPagina);
                     
                     ArrayList<String> nombreColumnas = new ArrayList<String>();
                     nombreColumnas.add("ID");
@@ -202,35 +228,161 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     
                 }
                 
+                
+                else if (tipo!=null && tipo.equals("redirigirSeleccionarPadrino")){
+                    
+                    
+                    int idPadrino1 = Integer.parseInt(request.getParameter("idPadrino1"));
+                    int idPadrino2 = Integer.parseInt(request.getParameter("idPadrino2"));
+                    int idPareja = Integer.parseInt(request.getParameter("idPareja"));
+                    String correo1 = request.getParameter("correo1");
+                    String correo2 = request.getParameter("correo2");
+                    
+                    
+                    Conexion conn = new Conexion();
+                    Padrino padrino = new Padrino(conn);
+                    Pago_pareja pagopareja = new Pago_pareja(conn);
+                    
+                    Pago_pareja pagoSinApadrinado = pagopareja.obtenerPagoSinApadrinado(idPareja);
+                    String nombre1 = padrino.getNombre(idPadrino1);
+                    String nombre2 = padrino.getNombre(idPadrino2);
+                    String celular1 = padrino.obtenerCelular(idPadrino1);
+                    String celular2 = padrino.obtenerCelular(idPadrino2);
+                    
+                    System.out.println("nombre1 " +nombre1);
+                    System.out.println("nombre2 " +nombre2);
+                    System.out.println("celular1 " +celular1);
+                    System.out.println("celular2 " +celular2);
+                    
+                    System.out.println(pagoSinApadrinado.isPago1());
+                    System.out.println(pagoSinApadrinado.isPago2());
+                    
+                    //Ya pago el primer padrino
+                    if(pagoSinApadrinado!=null && pagoSinApadrinado.isPago1() && !pagoSinApadrinado.isPago2()){
+                        request.setAttribute("correo2", correo2);
+                        request.setAttribute("nombre2", nombre2);
+                        request.setAttribute("celular2", celular2);
+                        request.setAttribute("idPadrino2", idPadrino2);
+                        request.setAttribute("pago1",true);
+                        request.setAttribute("pago2",false);
+                        
+                    }
+                    
+                    //Ya pago el segundo padrino
+                    else if (pagoSinApadrinado!=null && pagoSinApadrinado.isPago2() && !pagoSinApadrinado.isPago1()){
+                        request.setAttribute("correo1", correo1);
+                        request.setAttribute("nombre1", nombre1);
+                        request.setAttribute("celular1", celular1);
+                        request.setAttribute("idPadrino1", idPadrino1);
+                        request.setAttribute("pago1",false);
+                        request.setAttribute("pago2",true);
+                        
+                    }
+                    //Ambos pagaron
+                    else if(pagoSinApadrinado!=null && pagoSinApadrinado.isPago1() && pagoSinApadrinado.isPago2()){
+                        
+                    }
+                    //Ninguno ha pagado
+                    else{
+                        System.out.println("nadie ha pagado");
+                        request.setAttribute("correo1", correo1);
+                        request.setAttribute("correo2", correo2);
+                        request.setAttribute("nombre1", nombre1);
+                        request.setAttribute("nombre2", nombre2);
+                        request.setAttribute("celular1", celular1);
+                        request.setAttribute("celular2", celular2);
+                        request.setAttribute("idPadrino1", idPadrino1);
+                        request.setAttribute("idPadrino2", idPadrino2);
+                        request.setAttribute("pago1",false);
+                        request.setAttribute("pago2",false);
+                    }
+                    
+                    ArrayList<String> nombreColumnas = new ArrayList<String>();
+                    nombreColumnas.add("ID");
+                    nombreColumnas.add("Nombre");
+                    nombreColumnas.add("Correo");
+                    nombreColumnas.add("Celular");
+                    nombreColumnas.add("");
+                    
+                    request.setAttribute("nombreColumnas",nombreColumnas);
+                    request.setAttribute("idPareja", idPareja);
+                    request.getRequestDispatcher("seleccionarPadrino").forward(request, response);
+                    
+                }
+                
                 else if (tipo!=null && tipo.equals("redirigirCrearPago")){
-                    
-                    String correo = request.getParameter("correo");
+                    String idPadrino1 = request.getParameter("idPadrino1");
+                    String idPadrino2 = request.getParameter("idPadrino2");
+                    String idPareja = request.getParameter("idPareja");
                     String nombreCompleto = request.getParameter("nombreCompleto");
-                    int idPadrino = Integer.parseInt(request.getParameter("idPadrino"));
+                    String correoPadrino = request.getParameter("correoPadrino");
+                    boolean isPago1 = Boolean.parseBoolean(request.getParameter("pago1"));
+                    boolean isPago2 = Boolean.parseBoolean(request.getParameter("pago2"));
                     
-                    request.setAttribute("correoPadrino", correo);
-                    request.setAttribute("nombreCompleto", nombreCompleto);
-                    request.setAttribute("idPadrino", idPadrino);
+                    System.out.println("redirigir crear Pago id Padrino 1 "+idPadrino1);
+                    System.out.println("redirigir crear Pago id Padrino 2 "+idPadrino2);
+                    
+                    if(idPadrino1==null){
+                        
+                        request.setAttribute("idPadrino2",idPadrino2);
+                        
+                    }
+                    
+                    else if(idPadrino2==null){
+                        request.setAttribute("idPadrino1",idPadrino1);
+                    }
                     
                     
                     
-                    
+                    request.setAttribute("pago1", isPago1);
+                    request.setAttribute("pago2", isPago2);
+                    request.setAttribute("nombreCompleto",nombreCompleto);
+                    request.setAttribute("correoPadrino",correoPadrino);
+                    request.setAttribute("idPareja",idPareja);
                     request.getRequestDispatcher("crearPagoPareja").forward(request, response);
-                    
                 }
                 
                 else if (tipo!=null && tipo.equals("asignarNuevoPago")){
                     
                     Conexion conn = new Conexion();
-                    Pago pago = new Pago(conn);
-                    int idPadrino = Integer.parseInt(request.getParameter("idPadrino"));
+                    Pago_pareja pago = new Pago_pareja(conn);
+                    int idPareja = Integer.parseInt(request.getParameter("idPareja"));
                     String fechaPago = request.getParameter("fechaPago");
                     Date fechaDePago = dateConverter(fechaPago);
+                    Pago_pareja pagodepareja = pago.obtenerPagoSinApadrinado(idPareja);
+                    boolean isPago1 = Boolean.parseBoolean(request.getParameter("pago1"));
+                    boolean isPago2 = Boolean.parseBoolean(request.getParameter("pago2"));
                     
-                    pago.nuevoPago(idPadrino, -1, fechaDePago);
+                    System.out.println(isPago1);
+                    System.out.println(isPago2);
+                    if(isPago1 && !isPago2){
+                        
+                        pago.actualizarPago2(idPareja, -1, true, fechaDePago);
+                        
+                    }
+                    
+                    else if(isPago2 && !isPago1){
+                        
+                        pago.actualizarPago1(idPareja, -1, true, fechaDePago);
+                    }
+                    
+                    else if (!isPago2 && !isPago1){
+                        
+                        if(request.getParameter("idPadrino1")!=null){
+                            
+                            pago.nuevoPago1(idPareja, -1, true, fechaDePago);
+                        }
+                        
+                        else if(request.getParameter("idPadrino2")!=null){
+                            pago.nuevoPago2(idPareja, -1, true, fechaDePago);
+                        }
+                        
+                    }
+                    
+                    
                     
                     request.setAttribute("exito", true);
-                    request.getRequestDispatcher("ControlCargarPagos?tipo=cargarTodosPadrinados").forward(request, response);
+                    request.getRequestDispatcher("cargarPagosParejas?tipo=cargarTodasParejas").forward(request, response);
                     
                 }
                 
@@ -243,7 +395,7 @@ public class ControlCargarPagosParejas extends HttpServlet {
         
     }
     
-     private Date dateConverter(String oldDateString){
+    private Date dateConverter(String oldDateString){
         
         final String OLD_FORMAT = "dd.MM.yyyy";
         final String NEW_FORMAT = "yyyy-MM-dd";

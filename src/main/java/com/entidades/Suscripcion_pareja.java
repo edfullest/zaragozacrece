@@ -76,6 +76,28 @@ public class Suscripcion_pareja {
       
     }
     
+     //Se registra el nuevo pago
+    public void actualizarFechaPago(int idSuscripcion,int idPagoPareja,Date fechaUltimoPago){
+        
+        
+        try{
+             pStmt = conn.prepareStatement(
+               "UPDATE suscripcion_pareja SET fechaUltimoPago=?,idPagoPareja=?" +
+                    " WHERE idSuscripcion = ? ");
+            pStmt.setDate(1,new java.sql.Date(fechaUltimoPago.getTime()));
+            pStmt.setInt(2, idPagoPareja);
+            pStmt.setInt(3,idSuscripcion);  
+            pStmt.executeUpdate();
+         
+
+        }
+        catch(SQLException e){
+        
+        }
+
+      
+    }
+    
     //Se obtienen las suscripciones con el ID del padrino
     public Suscripcion_pareja obtenerSuscripciones(int id){
         
@@ -116,6 +138,36 @@ public class Suscripcion_pareja {
         }
         
         return null;
+    }
+    
+    //Se obtienen las suscripciones con el ID del padrino
+    public ArrayList<String> obtenerTodasSuscripciones(){
+        ArrayList<String> idParejas = new ArrayList<String>();
+        
+        
+        int idPareja;
+      
+        
+        try{
+            pStmt = conn.prepareStatement(
+                "SELECT idPareja FROM suscripcion_pareja ");
+          
+            ResultSet rs = pStmt.executeQuery();
+            while(rs.next()){
+                
+                idPareja = rs.getInt("idPareja");
+                System.out.println(idPareja);
+                idParejas.add(Integer.toString(idPareja));
+
+            }
+            return idParejas;
+        
+        }
+        catch(SQLException e){
+            return idParejas;
+        }
+        
+       
     }
 
     /**

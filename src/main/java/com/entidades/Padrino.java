@@ -110,6 +110,26 @@ public class Padrino {
         
     }
     
+    //Obtener nombre de padrino con el idCuenta
+    public String obtenerCelular(int idPadrino) {
+        String sCelular = "";
+        try {
+            stmt.executeQuery("SELECT celular FROM padrinos WHERE idPadrino = "
+                    + idPadrino);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            sCelular = rs.getString("celular");
+            rs.close();
+            return (sCelular);
+        } catch (SQLException e) {
+            
+            System.out.println ("Cannot getNombre()" + e);
+            return null;
+        }
+        
+        
+    }
+    
     /*
     //Obtener nombre de padrino con el idCuenta
     public void borrarPadrino(int idPadrino) {
