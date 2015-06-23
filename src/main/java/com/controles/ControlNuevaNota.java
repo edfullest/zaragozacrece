@@ -49,26 +49,26 @@ public class ControlNuevaNota extends HttpServlet {
            
            //Si existe la sesion, y es un buen login, entonces se crea la nota
            if((Boolean)session.getAttribute("goodlogin") == true){
-               System.out.println("entras");
+               
                     //Creo la conexion a la base de datos
                
                try{
                    Conexion conn = new Conexion();
                    session = request.getSession(true);
                    request.setCharacterEncoding("UTF-8");
-                   System.out.println("encoding: "+request.getCharacterEncoding());
+               
                    
                    String titulo = request.getParameter("titulo");
                    String nombre = request.getParameter("nombre");
                    String nota = request.getParameter("editor1");
-                   System.out.println(nota);
+                   ;
                    
                    //Obtengo la fecha actual
                    SimpleDateFormat sdf = new SimpleDateFormat();
                    Date d = new Date();
                    sdf.applyPattern("yyyy-MM-dd");
                    String newFecha = sdf.format(d);
-                   System.out.println(newFecha);
+                   ;
                    Date fechaPublicacion = sdf.parse(newFecha);
         
                    //Obtendo el id del Admin

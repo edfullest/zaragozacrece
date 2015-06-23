@@ -45,7 +45,7 @@ public class ControlPagar extends HttpServlet {
             //Checo si es nulo primero
             
             if(session.getAttribute("goodlogin") == null){
-                System.out.println("sesion nula");
+                ;
                 request.getRequestDispatcher("IniciaSesion").forward(request, response);
             }
             

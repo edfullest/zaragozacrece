@@ -39,7 +39,7 @@ public class ControlCargarPagosParejas extends HttpServlet {
             //Checo si es nulo primero
             
             if(session.getAttribute("goodlogin") == null){
-                System.out.println("sesion nula");
+                
                 request.getRequestDispatcher("IniciaSesion").forward(request, response);
             }
             
@@ -71,7 +71,7 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     nombreColumnas.add("Fecha de Pago 1");
                     nombreColumnas.add("Fecha de Pago 2");
                     nombreColumnas.add("");
-                    System.out.println("yeahbaby");
+                    
                     
                     int numPaginas = (int)Math.ceil(numPagos*1.0/pagosPorPagina);
                     
@@ -249,14 +249,7 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     String celular1 = padrino.obtenerCelular(idPadrino1);
                     String celular2 = padrino.obtenerCelular(idPadrino2);
                     
-                    System.out.println("nombre1 " +nombre1);
-                    System.out.println("nombre2 " +nombre2);
-                    System.out.println("celular1 " +celular1);
-                    System.out.println("celular2 " +celular2);
-                    
-                    System.out.println(pagoSinApadrinado.isPago1());
-                    System.out.println(pagoSinApadrinado.isPago2());
-                    
+               
                     //Ya pago el primer padrino
                     if(pagoSinApadrinado!=null && pagoSinApadrinado.isPago1() && !pagoSinApadrinado.isPago2()){
                         request.setAttribute("correo2", correo2);
@@ -284,7 +277,7 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     }
                     //Ninguno ha pagado
                     else{
-                        System.out.println("nadie ha pagado");
+                        
                         request.setAttribute("correo1", correo1);
                         request.setAttribute("correo2", correo2);
                         request.setAttribute("nombre1", nombre1);
@@ -319,9 +312,7 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     boolean isPago1 = Boolean.parseBoolean(request.getParameter("pago1"));
                     boolean isPago2 = Boolean.parseBoolean(request.getParameter("pago2"));
                     
-                    System.out.println("redirigir crear Pago id Padrino 1 "+idPadrino1);
-                    System.out.println("redirigir crear Pago id Padrino 2 "+idPadrino2);
-                    
+               
                     if(idPadrino1==null){
                         
                         request.setAttribute("idPadrino2",idPadrino2);
@@ -352,9 +343,7 @@ public class ControlCargarPagosParejas extends HttpServlet {
                     Pago_pareja pagodepareja = pago.obtenerPagoSinApadrinado(idPareja);
                     boolean isPago1 = Boolean.parseBoolean(request.getParameter("pago1"));
                     boolean isPago2 = Boolean.parseBoolean(request.getParameter("pago2"));
-                    
-                    System.out.println(isPago1);
-                    System.out.println(isPago2);
+                  
                     if(isPago1 && !isPago2){
                         
                         pago.actualizarPago2(idPareja, -1, true, fechaDePago);

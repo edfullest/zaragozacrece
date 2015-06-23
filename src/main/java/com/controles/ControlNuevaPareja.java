@@ -48,7 +48,7 @@ public class ControlNuevaPareja extends HttpServlet {
             //Checo si es nulo primero
             
             if(session.getAttribute("goodlogin") == null){
-                System.out.println("sesion nula");
+                ;
                 request.getRequestDispatcher("IniciaSesion").forward(request, response);
             }
             
@@ -78,7 +78,7 @@ public class ControlNuevaPareja extends HttpServlet {
                     //Se obtiene el id del padrino que agrega, para ponerlo en parejas como idPadrino2,
                     //dado que esta registrado en parejas como -1
                     
-                    System.out.println("El idPadrino2 es:" + idPadrino);
+                    ;
                     //El id es nuevo, asi que no se repite en  ningun lado
                     //Se altera el renglon en parejas, y se actualiza el idPadrino2
                     //basandonos en la columna correo2
@@ -95,7 +95,7 @@ public class ControlNuevaPareja extends HttpServlet {
                 //Si se encuentra, y el usuario puso un correo2
                 else if (Match && correo2!=""){
 
-                    System.out.println("2");
+                    ;
                     boolean Match2 = pareja.buscarEnCorreo1(correo2);
                     //Si el correo2 que puso el usuario es igual al del correo1 en pareja,
                     //entonces es un match satisfactorio (idPadrino1 puso en correo1 el correo2
@@ -103,7 +103,7 @@ public class ControlNuevaPareja extends HttpServlet {
                     
                     if (Match2){
       
-                        System.out.println("2.1");
+                        ;
                         //Se obtiene el id del padrino que agrega, para ponerlo en parejas como idPadrino2,
                         //dado que esta registrado en parejas como -1
          
@@ -125,7 +125,7 @@ public class ControlNuevaPareja extends HttpServlet {
                     //un idPadrino1 puso su correo, pero idPadrino2 puso otro correo2
                     //(el correo que deberia ser correo1)
                     else{
-                        System.out.println("2.2");
+                        ;
                         //Se obtiene el correo1 en base al correo2
                         String correoIdPadrino1 = pareja.getCorreo1(correo);
                         request.setAttribute("correo",correoIdPadrino1);
@@ -153,7 +153,7 @@ public class ControlNuevaPareja extends HttpServlet {
                 //idPadrino2 -1 (no esta registrado el correo2), correo1 del padrino que agrega, y correo2
                 //el correo 2
                 else if(!Match && correo2!=""){
-                    System.out.println("3");
+                    ;
                     
                     //Se valida la primera opcion
                     //Se busca el correo2 en correo1 (para ver si el correo que el puso
@@ -163,15 +163,15 @@ public class ControlNuevaPareja extends HttpServlet {
                     boolean MatchCorreo2 = pareja.buscarEnCorreo2(correo2);
                     //1. Se encuentra
                     if(MatchCorreo){
-                        System.out.println("4");
+                        ;
                         //Hay que ver si ese renglon tiene un -1 en su idPadrino1
                         //o un numero que no sea -1
                         ArrayList<String> lista = new ArrayList();
                         lista=pareja.buscarEnPadrino1(correo2);
                         int idPad1 = Integer.parseInt(lista.get(0));
-                        System.out.println(idPad1);
+                        ;
                         String corr1 = lista.get(1);
-                        System.out.println(corr1);
+                        ;
                         
                         String corr2=pareja.getCorreo2(corr1);
                         //Obtengo el id del padrino2, que esta en
@@ -203,15 +203,15 @@ public class ControlNuevaPareja extends HttpServlet {
                     }
                     
                     else if(MatchCorreo2){
-                        System.out.println("20");
+                        ;
                         //Hay que ver si ese renglon tiene un -1 en su idPadrino2
                         //o un numero que no sea -1
                         ArrayList<String> lista = new ArrayList();
                         lista=pareja.buscarEnPadrino2(correo2); //En padrino2
                         int idPad2 = Integer.parseInt(lista.get(0));
-                        System.out.println(idPad2);
+                        ;
                         String corr2 = lista.get(1);
-                        System.out.println(corr2);
+                        ;
                         String corr1=pareja.getCorreo1(correo2);
                         if (idPad2!=-1){
                             //Error, idPadrino2 ya tiene padrino fijo
@@ -251,10 +251,10 @@ public class ControlNuevaPareja extends HttpServlet {
                     //Aqui se hace la alta normal, dado que el correo2 que puso no esta registrado
                     else{
 
-                        System.out.println("5");
+                        ;
                         //Se obtiene el id del padrino que agrega, para ponerlo en parejas
                         
-                        System.out.println(idPadrino);
+                        ;
                         pareja.nuevaPareja(idPadrino,-1,correo,correo2);
                         request.setAttribute("correo2",correo2);
                         request.setAttribute("opcion", "2");

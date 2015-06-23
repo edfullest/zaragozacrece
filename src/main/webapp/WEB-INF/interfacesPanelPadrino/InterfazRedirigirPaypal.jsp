@@ -170,10 +170,10 @@
                                     
                                 </fieldset>
                                 <footer>
-                                    <% System.out.println(request.getParameter("tipo")); %>
+                                    <% ); %>
                                     <c:choose>
                                         <c:when test="${param.tipo.equals('apadrinasolo')}" >
-                                            <% System.out.println("entra"); %>
+                                            <% ; %>
                                             <a href="ControlPanelPadrino?send=${"regresarSolo"}">
                                                 <button type="button" class="return-button">Regresar</button></a>
                                                     

@@ -104,7 +104,7 @@ public class PaymentWithPayPalServlet extends HttpServlet {
         APIContext apiContext = null;
         String accessToken = null;
         try {
-            System.out.println("oos");
+            
             accessToken = GenerateAccessToken.getAccessToken();
             
             // ### Api Context
@@ -121,30 +121,30 @@ public class PaymentWithPayPalServlet extends HttpServlet {
             * apiContext = new APIContext(accessToken, requestId ));
             */
         } catch (PayPalRESTException e) {
-            System.out.println("oos999");
+            
             req.setAttribute("error", e.getMessage());
         }
         if (req.getParameter("PayerID") != null) {
-            System.out.println("oos2");
+            
             
             
             Payment payment = new Payment();
             if (req.getParameter("guid") != null) {
-                System.out.println("oos2.1");
+                
                 payment.setId(map.get(req.getParameter("guid")));
-                System.out.println("oos2.2");
+                
             }
-            System.out.println("oos2.3");
+            
             PaymentExecution paymentExecution = new PaymentExecution();
             paymentExecution.setPayerId(req.getParameter("PayerID"));
-            System.out.println("oos2.4");
+            
             try {
-                System.out.println("oos2.5");
+             
                 
                 createdPayment = payment.execute(apiContext, paymentExecution);
-                System.out.println("oos2.6");
+                
                 ResultPrinter.addResult(req, resp, "Executed The Payment", Payment.getLastRequest(), Payment.getLastResponse(), null);
-                System.out.println("oos2.7");
+                
                 HttpSession session = req.getSession();
                 session.removeAttribute("error");
                 session.setAttribute("exitoso", true);
@@ -159,7 +159,7 @@ public class PaymentWithPayPalServlet extends HttpServlet {
                 
                 else{
                     String tipoApadrinamiento = (String)session.getAttribute("tipoApadrinamiento");
-                System.out.println(tipo);
+                
                 req.setAttribute("tipo", tipoApadrinamiento);
                 session.removeAttribute("tipoApadrinamiento");
                 }
@@ -170,9 +170,7 @@ public class PaymentWithPayPalServlet extends HttpServlet {
                 bandera=true;
                 
             } catch (PayPalRESTException e) {
-                System.out.println("oos2.8");
-                System.out.println(Payment.getLastRequest());
-                System.out.println(e.getMessage());
+            
                 HttpSession session = req.getSession();
                 session.setAttribute("error", e.getMessage());
                 
@@ -180,7 +178,7 @@ public class PaymentWithPayPalServlet extends HttpServlet {
                 
             }
         } else {
-            System.out.println("oos5");
+            
             HttpSession session = req.getSession();
             String tipo = req.getParameter("tipo");
             
@@ -199,7 +197,7 @@ public class PaymentWithPayPalServlet extends HttpServlet {
             Amount amount = new Amount();
             amount.setCurrency("MXN");
             // Total must be equal to sum of shipping, tax and subtotal.
-            System.out.println(tipo);
+            
             if(tipo!=null && tipo.equals("apadrinasolo")){
                 
                 amount.setTotal("750");
@@ -225,11 +223,11 @@ public class PaymentWithPayPalServlet extends HttpServlet {
             
             else if (tipo!=null && tipo.equals("activar")){
                 if(suscripcionPareja){
-                    System.out.println("activar pareja");
+                    
                     amount.setTotal("375");
                 }
                 else{
-                    System.out.println("activar solo");
+                    
                     amount.setTotal("750");
                 }
                 
@@ -372,7 +370,7 @@ public class PaymentWithPayPalServlet extends HttpServlet {
             // using a valid AccessToken
             // The return object contains the status;
             try {
-                System.out.println("oos6");
+                
                 createdPayment = payment.create(apiContext);
                 LOGGER.info("Created payment with id = "
                         + createdPayment.getId() + " and status = "
@@ -380,7 +378,7 @@ public class PaymentWithPayPalServlet extends HttpServlet {
                 // ###Payment Approval Url
                 Iterator<Links> links = createdPayment.getLinks().iterator();
                 
-                System.out.println("oos7");
+                
                 while (links.hasNext()) {
                     Links link = links.next();
                     if (link.getRel().equalsIgnoreCase("approval_url")) {
@@ -389,9 +387,9 @@ public class PaymentWithPayPalServlet extends HttpServlet {
                     }
                 }
                 ResultPrinter.addResult(req, resp, "Payment with PayPal", Payment.getLastRequest(), Payment.getLastResponse(), null);
-                System.out.println("oos8");
+                
                 map.put(guid, createdPayment.getId());
-                System.out.println("oos9");
+                
             } catch (PayPalRESTException e) {
                 ResultPrinter.addResult(req, resp, "Payment with PayPal", Payment.getLastRequest(), null, e.getMessage());
             }

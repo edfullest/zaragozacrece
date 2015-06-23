@@ -58,11 +58,11 @@ public class ControlPanelPadrino extends HttpServlet {
                 
                 //Si el admin hace el request de nuevoApadrinado, se hace uno nuevo
                 if(opcion == 1){
-                    System.out.println("ver apadrinados");
+                
                 }
                 //panelApadrina
                 else if(opcion == 2){
-                    System.out.println("apadrina");
+               
                     
                     Conexion conn = new Conexion();
                     //Se debe verificar si tiene pareja o no
@@ -326,7 +326,7 @@ public class ControlPanelPadrino extends HttpServlet {
                     
                     //No tiene pareja
                     else{
-                        System.out.println("No tiene pareja");
+                     
                         request.setAttribute("unico",true);
                         request.getRequestDispatcher("panelApadrina").forward(request, response);
                         
@@ -342,7 +342,7 @@ public class ControlPanelPadrino extends HttpServlet {
                 
                 else if(opcion == 3){
                     
-                    System.out.println("Apadrina solo");
+                
                     
                     Conexion conn = new Conexion();
                     Pago pago = new Pago(conn);
@@ -351,16 +351,16 @@ public class ControlPanelPadrino extends HttpServlet {
                     ArrayList<Pago> pagos=pago.obtenerPagos(idPadrino);
                     boolean todosAcreditados=true;
                     //Si hay pagos
-                    System.out.println(pagos.size());
+                  
                     if(pagos.size()!=0){
-                        System.out.println("wut");
+                        
                         for(int i=0;i<pagos.size();i++){
                             Pago unpago= pagos.get(i);
                             todosAcreditados=unpago.isAcreditado();
                             if(!todosAcreditados){
                                 break;
                             }
-                            System.out.println(unpago.getIdPadrino());
+                            
                             
                         }
                         
@@ -377,7 +377,7 @@ public class ControlPanelPadrino extends HttpServlet {
                     }
                     //No hay ningún pago, la ventana es igual a todosAcreditados
                     else{
-                        System.out.println("no Pagos");
+                       
                         request.setAttribute("respuesta", "noPagos");
                         request.getRequestDispatcher("apadrinaSolo").forward(request, response);
                     }
@@ -412,7 +412,7 @@ public class ControlPanelPadrino extends HttpServlet {
             //Checo si es nulo primero
             
             if(session.getAttribute("goodlogin") == null){
-                System.out.println("sesion nula");
+          
                 request.getRequestDispatcher("IniciaSesion").forward(request, response);
             }
             
@@ -420,7 +420,7 @@ public class ControlPanelPadrino extends HttpServlet {
             else if((Boolean)session.getAttribute("goodlogin") == true){
                 
                 String opcion = (String)request.getParameter("opcion");
-                System.out.println(opcion);
+          
                 
                 
                 

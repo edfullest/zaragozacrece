@@ -47,7 +47,7 @@ public class ControlCargarPagos extends HttpServlet {
             //Checo si es nulo primero
             
             if(session.getAttribute("goodlogin") == null){
-                System.out.println("sesion nula");
+                ;
                 request.getRequestDispatcher("IniciaSesion").forward(request, response);
             }
             
@@ -79,7 +79,7 @@ public class ControlCargarPagos extends HttpServlet {
                     nombreColumnas.add("Fecha de Pago");
                     
                     nombreColumnas.add("");
-                    System.out.println("yeahbaby");
+                    ;
                     
                     int numPaginas = (int)Math.ceil(numPagos*1.0/pagosPorPagina);
                     
@@ -95,7 +95,7 @@ public class ControlCargarPagos extends HttpServlet {
                     int idPago = Integer.parseInt(request.getParameter("idPago"));
                     int idPadrino = Integer.parseInt(request.getParameter("idPadrino"));
                     String fechaPago = request.getParameter("fechaPago");
-                    System.out.println(fechaPago);
+                    ;
                     
                     Conexion conn = new Conexion();
                     Apadrinados apadrinado = new Apadrinados(conn);
@@ -136,7 +136,7 @@ public class ControlCargarPagos extends HttpServlet {
                     int idPadrino = Integer.parseInt(request.getParameter("idPadrino"));
                     int idApadrinado = Integer.parseInt(request.getParameter("idApadrinado"));
                     String fecha = (request.getParameter("fechaPago"));
-                    System.out.println("la fecha"+fecha);
+                    ;
                     Date fechaUltimoPago = new Date();
                     try{
                         DateFormat formatter ;

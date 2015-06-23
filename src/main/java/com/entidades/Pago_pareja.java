@@ -337,7 +337,7 @@ public class Pago_pareja {
         
         try{
             stmt.executeQuery("SELECT idPagoPareja,pago_pareja.idPareja,idApadrinado,fechaPago1,fechaPago2,acreditado,correo1,correo2 "
-                    + "FROM pago_pareja,pareja WHERE pago_pareja.idPareja=pareja.idPareja AND pago_pareja.acreditado=0 ORDER BY idPagoPareja desc LIMIT "+offset+","+num);
+                    + "FROM pago_pareja,pareja WHERE pago_pareja.idPareja=pareja.idPareja AND pago_pareja.acreditado=0 AND idApadrinado=-1 ORDER BY idPagoPareja desc LIMIT "+offset+","+num);
             ResultSet rs = stmt.getResultSet();
             
             while(rs.next()){
@@ -362,7 +362,7 @@ public class Pago_pareja {
             return pagos;
         }
         catch(SQLException e){
-            System.out.println(e);
+            ;
             return null;
         }
         

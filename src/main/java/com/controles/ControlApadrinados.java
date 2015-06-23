@@ -74,7 +74,7 @@ public class ControlApadrinados extends HttpServlet {
                     String carta = request.getParameter("carta");
                     
                     entrada.nuevaEntrada(idApadrinado, nivelEscolar, peso, IMC, estatura, fechaActual, carta);
-                    System.out.println("apadrinados?tipo=cargarApadrinados");
+                    ;
                     response.sendRedirect("apadrinados?tipo=cargarApadrinados&exito=true&idApadrinadoEntrada="+idApadrinado);
                     
                 }
@@ -111,7 +111,7 @@ public class ControlApadrinados extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Lugar de donde el usuario hace el get
         String tipo = request.getParameter("tipo");
-        System.out.println(tipo);
+        ;
         if (tipo.equals("")){
             request.getRequestDispatcher("admin").forward(request, response);
         }
@@ -145,7 +145,7 @@ public class ControlApadrinados extends HttpServlet {
                     //Lista de objetos del tipo apadrinado
                     ArrayList<Apadrinados> listaApadrinados = apadrinados.obtenerApadrinados((paginaActual-1)*apadrinadosPorPagina,apadrinadosPorPagina);
                     int numApadrinados = apadrinados.getNumeroApadrinados();
-                    System.out.println("numApadrinados"+numApadrinados);
+                    ;
                     ArrayList<String> nombreColumnas = new ArrayList<String>();
                     nombreColumnas.add("ID");
                     nombreColumnas.add("Nombre");
@@ -159,8 +159,8 @@ public class ControlApadrinados extends HttpServlet {
                     request.setAttribute("numPaginas", numPaginas);
                     request.setAttribute("paginaActual", paginaActual);
                     
-                    System.out.println("AdminPags"+numPaginas);
-                    System.out.println("Pag aCTUAL "+paginaActual);
+                    ;
+                    ;
                     if(exito!= null && exito.equals("true")){
                         request.setAttribute("exito",true);
                         request.setAttribute("idApadrinadoEntrada",idApadrinadoEntrada);
@@ -194,7 +194,7 @@ public class ControlApadrinados extends HttpServlet {
                     //Lista de objetos del tipo apadrinado
                     ArrayList<Apadrinados> listaApadrinados = apadrinados.obtenerApadrinados((paginaActual-1)*apadrinadosPorPagina,apadrinadosPorPagina);
                     int numApadrinados = apadrinados.getNumeroApadrinados();
-                    System.out.println("numApadrinados"+numApadrinados);
+                    ;
                     ArrayList<String> nombreColumnas = new ArrayList<String>();
                     nombreColumnas.add("ID");
                     nombreColumnas.add("Nombre");
@@ -208,8 +208,8 @@ public class ControlApadrinados extends HttpServlet {
                     request.setAttribute("numPaginas", numPaginas);
                     request.setAttribute("paginaActual", paginaActual);
                     
-                    System.out.println("AdminPags"+numPaginas);
-                    System.out.println("Pag aCTUAL "+paginaActual);
+                    ;
+                    ;
                     if(exito!= null && exito.equals("true")){
                         request.setAttribute("exito",true);
                     }
@@ -242,7 +242,7 @@ public class ControlApadrinados extends HttpServlet {
                     //Lista de objetos del tipo apadrinado
                     ArrayList<Apadrinados> listaApadrinados = apadrinados.obtenerApadrinados((paginaActual-1)*apadrinadosPorPagina,apadrinadosPorPagina);
                     int numApadrinados = apadrinados.getNumeroApadrinados();
-                    System.out.println("numApadrinados"+numApadrinados);
+                    ;
                     ArrayList<String> nombreColumnas = new ArrayList<String>();
                     nombreColumnas.add("ID");
                     nombreColumnas.add("Nombre");
@@ -256,8 +256,8 @@ public class ControlApadrinados extends HttpServlet {
                     request.setAttribute("numPaginas", numPaginas);
                     request.setAttribute("paginaActual", paginaActual);
                     
-                    System.out.println("AdminPags"+numPaginas);
-                    System.out.println("Pag aCTUAL "+paginaActual);
+                    ;
+                    ;
     
                     
                     request.getRequestDispatcher("apadrinadosRegistrados").forward(request, response);
@@ -275,10 +275,10 @@ public class ControlApadrinados extends HttpServlet {
                     Conexion conn = new Conexion();
                     Apadrinados apadrinado = new Apadrinados(conn);
                     
-                    System.out.println("Id Pareja esesses");
+                    ;
                     int idPareja = apadrinado.obtenerIdPareja(idApadrinado);
-                    System.out.println("Id Pareja es");
-                    System.out.println("Id Pareja es: "+idPareja);
+                    ;
+                    ;
                     //si el idPareja es -1, entonces al apadrinado se le asigno un padrino unicamente
                     if(idPareja == -1){
                         int idPadrino = apadrinado.obtenerIdPadrino(idApadrinado);
@@ -356,7 +356,7 @@ public class ControlApadrinados extends HttpServlet {
             Date d = new Date();
             sdf.applyPattern("yyyy-MM-dd");
             String newFecha = sdf.format(d);
-            System.out.println(newFecha);
+            ;
             fecha = sdf.parse(newFecha);
             
             

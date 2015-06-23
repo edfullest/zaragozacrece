@@ -8,6 +8,7 @@ package com.controles;
 import com.conexion.Conexion;
 import com.entidades.Apadrinados;
 import com.entidades.Padrino;
+import com.entidades.Pago_pareja;
 import com.entidades.Pareja;
 import com.entidades.Periodo;
 import com.entidades.Suscripcion;
@@ -42,12 +43,17 @@ public class ControlLogInPadrino extends HttpServlet {
         
         HttpSession session = request.getSession(true);
         request.setCharacterEncoding("UTF-8");
-        System.out.println("encoding: "+request.getCharacterEncoding());
+     
         
         String correo = request.getParameter("correo");
         String password = request.getParameter("password");
         
-        System.out.println(password);
+        if(correo==null && password == null){
+             correo = (String)request.getAttribute("correo");
+             password = (String)request.getAttribute("password");
+        }
+        
+        
         Padrino padrino = new Padrino(conn);
         idPadrino = padrino.validarCuenta(correo,password);
         String nombre = padrino.getNombre(idPadrino);
@@ -58,6 +64,7 @@ public class ControlLogInPadrino extends HttpServlet {
             session.setAttribute("idPadrino", idPadrino);
             session.setAttribute("nombreCompleto",nombre);
             session.setAttribute("thiscorreo",correo);
+            session.setAttribute("thispassword",password);
             session.setAttribute("goodlogin",true);
             boolean hayApadrinados = false;
             
@@ -81,7 +88,7 @@ public class ControlLogInPadrino extends HttpServlet {
             Calendar calFechaInicialActual = Calendar.getInstance();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             
-            System.out.println("Periodos"+periodos.size());
+        
             
             //Nada mas hay un periodo
             if(periodos.size()==1){
@@ -101,10 +108,7 @@ public class ControlLogInPadrino extends HttpServlet {
                 calFechaFinalActual.setTime(periodos.get(0).getFechaFinal());
             }
             
-            System.out.println("fecha Inicial Pasada "+sdf.format(calFechaInicialPasada.getTime()));
-            System.out.println("fecha Final Pasada "+sdf.format(calFechaFinalAnterior.getTime()));
-            System.out.println("fecha Inicial Actual "+sdf.format(calFechaInicialActual.getTime()));
-            System.out.println("fecha Final Actual "+sdf.format(calFechaFinalActual.getTime()));
+            
             
             suscripciones = suscripcion.obtenerSuscripciones(idPadrino);
             ArrayList<String> mensajes = new ArrayList<String>();
@@ -113,16 +117,13 @@ public class ControlLogInPadrino extends HttpServlet {
                 int iRenovar = 0;
                 int iQuitar = 0;
                 
-                System.out.println("Size "+suscripciones.size());
+                
                 for (int i=0;i<suscripciones.size();i++){
                     Suscripcion unasuscripcion = suscripciones.get(i);
                     Calendar calFechaUltimoPago = Calendar.getInstance();
                     calFechaUltimoPago.setTime(unasuscripcion.getFechaUltimoPago());
-                    System.out.println();
                     
-                    
-                    System.out.println(sdf.format(calFechaUltimoPago.getTime()));
-                    
+
                     if(calFechaUltimoPago.after(calFechaInicialActual) && calFechaUltimoPago.before(calFechaFinalActual)){
                         
                         mensajes.add("noProblem");
@@ -142,7 +143,7 @@ public class ControlLogInPadrino extends HttpServlet {
                             Apadrinados unapadrinado = apadrinados.get(j);
                             
                             if(unapadrinado.getIdApadrinado()==unasuscripcion.getIdApadrinado()){
-                                System.out.println("quitar");
+                                
                                 mensajes.add("quitar");
                                 encontro=true;
                                 apadrinados.remove(j);
@@ -156,9 +157,7 @@ public class ControlLogInPadrino extends HttpServlet {
                     }
                     
                 }
-                System.out.println(iNoProblem);
-                System.out.println(iRenovar);
-                System.out.println(iQuitar);
+           
                 session.setAttribute("iNoProblem", iNoProblem);
                 session.setAttribute("iRenovar", iRenovar);
                 session.setAttribute("iQuitar", iQuitar);
@@ -173,7 +172,7 @@ public class ControlLogInPadrino extends HttpServlet {
                 String correo2 = pareja.getCorreo2(correo);
                 session.setAttribute("correo", correo2);
                 apadrinadosPareja = apadrinado.obtenerApadrinadoIdPareja(idPareja);
-                System.out.println("Size"+ apadrinadosPareja.size());
+               
                 if (apadrinadosPareja!=null && !apadrinadosPareja.isEmpty()){
                     apadrinados.add(apadrinadosPareja.get(0));
                     
@@ -186,7 +185,7 @@ public class ControlLogInPadrino extends HttpServlet {
                     String advertenciaPareja="";
                     Calendar calFechaUltimoPago = Calendar.getInstance();
                     calFechaUltimoPago.setTime(unasuscripcionpareja.getFechaUltimoPago());
-                    System.out.println("Fecha pago pareja "+sdf.format(calFechaUltimoPago.getTime()));
+                  
                     
                     if(calFechaUltimoPago.after(calFechaInicialActual) && calFechaUltimoPago.before(calFechaFinalActual)){
                         advertenciaPareja = "noProblem";
@@ -205,6 +204,39 @@ public class ControlLogInPadrino extends HttpServlet {
                             
                             if(unapadrinado.getIdApadrinado()==unasuscripcionpareja.getIdApadrinado()){
                                 encontro=true;
+                                Pago_pareja pagopareja = new Pago_pareja(conn);
+                                Pago_pareja unpagoNoAcreditado = pagopareja.obtenerPagoConApadrinado(idPareja, unapadrinado.getIdApadrinado());
+                                ArrayList<String> idsPadrinos = pareja.obtenerConIDPareja(idPareja);
+                                boolean esPadrino1 = false;
+                                boolean esPadrino2 = false;
+                                
+                                if (Integer.parseInt(idsPadrinos.get(0))==idPadrino){
+                                    esPadrino1 = true;
+                                }
+                                else{
+                                    esPadrino2 = true;
+                                }
+                                
+                                if(unpagoNoAcreditado!=null && unpagoNoAcreditado.isPago1() && !unpagoNoAcreditado.isPago2() && esPadrino1){
+                                    advertenciaPareja = "yapagaste";
+                                }
+                                
+                                else if(unpagoNoAcreditado!=null && unpagoNoAcreditado.isPago2() && !unpagoNoAcreditado.isPago1() && esPadrino2){
+                                    advertenciaPareja = "yapagaste";
+                                }
+         
+                                else if (unpagoNoAcreditado!=null && unpagoNoAcreditado.isPago1() && !unpagoNoAcreditado.isPago2() && esPadrino2){
+                                    advertenciaPareja = "otropago";
+                                }
+                                
+                                else if (unpagoNoAcreditado!=null && unpagoNoAcreditado.isPago2() && !unpagoNoAcreditado.isPago1() && esPadrino1){
+                                    advertenciaPareja = "otropago";
+                                }
+                                
+                                else if (unpagoNoAcreditado == null){
+                                    advertenciaPareja = "quitar";
+                                    session.setAttribute("suscripcionPareja",unasuscripcionpareja);
+                                }
                                 apadrinados.remove(j);
                             }
                             
@@ -212,11 +244,11 @@ public class ControlLogInPadrino extends HttpServlet {
                             
                         }while(!encontro && j<apadrinados.size());
    
-                        advertenciaPareja = "quitar";
+                        
                     }
                     
                     session.setAttribute("advertenciaPareja",advertenciaPareja);
-                    session.setAttribute("suscripcionPareja",unasuscripcionpareja);
+                    
                     
                 }
                 
@@ -259,13 +291,14 @@ public class ControlLogInPadrino extends HttpServlet {
             //Checo si es nulo primero
             
             if(session.getAttribute("goodlogin") == null){
-                System.out.println("sesion nula");
+                ;
                 request.getRequestDispatcher("IniciaSesion").forward(request, response);
             }
             
             
             else if((Boolean)session.getAttribute("goodlogin") == true){
                 String logout = request.getParameter("logout");
+                String redireccionar = request.getParameter("redireccionar");
                 if(logout!=null && logout.equals("")){
                     request.getRequestDispatcher("CuentaPadrino").forward(request, response);
                 }
@@ -276,10 +309,14 @@ public class ControlLogInPadrino extends HttpServlet {
                     request.getRequestDispatcher("IniciaSesion").forward(request, response);
                 }
                 
-                else{
+                else if(logout==null && redireccionar == null){
                     session.invalidate();
                     request.logout();
                     request.getRequestDispatcher("IniciaSesion").forward(request, response);
+                }
+                
+                else if (redireccionar!=null && redireccionar.equals("redireccionar")){
+                    doPost(request,response);
                 }
                 
             }
@@ -288,9 +325,7 @@ public class ControlLogInPadrino extends HttpServlet {
             
         }
         
-        else{
-            System.out.println("Suppity");
-        }
+        
         
     }
     

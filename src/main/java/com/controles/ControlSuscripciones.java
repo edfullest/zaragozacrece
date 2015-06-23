@@ -52,7 +52,7 @@ public class ControlSuscripciones extends HttpServlet {
             //Checo si es nulo primero
             
             if(session.getAttribute("goodlogin") == null){
-                System.out.println("sesion nula");
+         
                 request.getRequestDispatcher("IniciaSesion").forward(request, response);
             }
             
@@ -61,8 +61,8 @@ public class ControlSuscripciones extends HttpServlet {
                 Conexion conn = new Conexion();
                 
                 String pago = (String)request.getAttribute("pago");
-                System.out.println("pago "+ pago);
-                System.out.println("exitoso"+(Boolean)session.getAttribute("exitoso"));
+    
+                session.getAttribute("exitoso");
                 boolean exitoso=false;
                 if(session.getAttribute("exitoso")!=null){
                     exitoso=(Boolean)session.getAttribute("exitoso");
@@ -79,9 +79,24 @@ public class ControlSuscripciones extends HttpServlet {
                 else if (pago!=null && pago.equals("viejo") &&  exitoso && error==null ){
                     
                     boolean suscripcionPareja = (Boolean)session.getAttribute("esSuscripcionPareja");
-                    int idApadrinado = (Integer)session.getAttribute("idApadrinado");
-                    int idSuscripcion = (Integer)session.getAttribute("idSuscripcion");
+                    int idApadrinado = Integer.parseInt((String)session.getAttribute("idApadrinado"));
+                    int idSuscripcion = Integer.parseInt((String)session.getAttribute("idSuscripcion"));
+               
                     int idPadrino = (Integer)session.getAttribute("idPadrino");
+                    
+                    Date fechaPago = new Date();
+                        try{
+                            SimpleDateFormat sdf = new SimpleDateFormat();
+                            Date d = new Date();
+                            sdf.applyPattern("yyyy-MM-dd");
+                            String newFecha = sdf.format(d);
+                            ;
+                            fechaPago = sdf.parse(newFecha);
+                        }
+                        
+                        catch(Exception e){}
+                        //Obtengo la fecha actual
+                    
                     if(suscripcionPareja){
                         
                         int idPareja = (Integer)session.getAttribute("idPareja");
@@ -93,18 +108,7 @@ public class ControlSuscripciones extends HttpServlet {
                         ArrayList<String> idsPadrinos= pareja.obtenerConIDPareja(idPareja);
                         boolean esPadrino1 = false;
                         boolean esPadrino2 = false;
-                        Date fechaPago = new Date();
-                        try{
-                            SimpleDateFormat sdf = new SimpleDateFormat();
-                            Date d = new Date();
-                            sdf.applyPattern("yyyy-MM-dd");
-                            String newFecha = sdf.format(d);
-                            System.out.println(newFecha);
-                            fechaPago = sdf.parse(newFecha);
-                        }
                         
-                        catch(Exception e){}
-                        //Obtengo la fecha actual
                         
                         
                         if(Integer.parseInt(idsPadrinos.get(0))==idPadrino){
@@ -115,9 +119,9 @@ public class ControlSuscripciones extends HttpServlet {
                         }
                         
                         Pago_pareja unpagoNoAcreditado = pagopareja.obtenerPagoConApadrinado(idPareja, idApadrinado);
-                        int idPagoPareja = unpagoNoAcreditado.getIdPagoPareja();
+                        
                         if(unpagoNoAcreditado!=null && unpagoNoAcreditado.isPago1() && !unpagoNoAcreditado.isPago2()){
-                            
+                            int idPagoPareja = unpagoNoAcreditado.getIdPagoPareja();
                             pagopareja.actualizarPago2(idPareja, idApadrinado, true, fechaPago);
                             pagopareja.acreditarPago(idPagoPareja);
                             
@@ -126,6 +130,7 @@ public class ControlSuscripciones extends HttpServlet {
                         }
                         
                         else if(unpagoNoAcreditado!=null && unpagoNoAcreditado.isPago2() && !unpagoNoAcreditado.isPago1()){
+                            int idPagoPareja = unpagoNoAcreditado.getIdPagoPareja();
                             pagopareja.actualizarPago1(idPareja, idApadrinado, true, fechaPago);
                             pagopareja.acreditarPago(idPagoPareja);
                             
@@ -152,12 +157,27 @@ public class ControlSuscripciones extends HttpServlet {
                     else{
                         
                         Pago pagPago = new Pago(conn);
+                        Suscripcion suscripcion = new Suscripcion(conn);
                         
+                        pagPago.nuevoPago(idPadrino, idApadrinado, fechaPago);
+                        int idPago = pagPago.mostrarPagoSinAcreditar(idPadrino);
+                        pagPago.acreditarPago(idPago);
+                        
+                        suscripcion.actualizarFechaPago(idSuscripcion, idPago, fechaPago);
                         
                         
                     }
                     
                     
+                    request.setAttribute("correo",(String)session.getAttribute("thiscorreo"));
+                    request.setAttribute("password",(String)session.getAttribute("thispassword"));
+                    session.removeAttribute("esSuscripcionPareja");
+                    session.removeAttribute("idApadrinado");
+                    session.removeAttribute("idSuscripcion");
+                    request.getRequestDispatcher("ControlLogInPadrino?redireccionar=redireccionar").forward(request, response);
+                    session.removeAttribute("exitoso");
+                    session.removeAttribute("error");
+                    session.removeAttribute("tipo");
                 }
                 
                 else if(pago==null){
@@ -200,15 +220,15 @@ public class ControlSuscripciones extends HttpServlet {
                     else if(tipo!=null && tipo.equals("unico")){
                         
                         session.setAttribute("esSuscripcionPareja", false);
-                        System.out.println(idSuscripcion);
+                     
                         boolean encontro=false;
                         int i=0;
                         //Si el id que puso no esta...
-                        System.out.println("Size de suscripciones "+suscripciones.size());
+                   
                         do{
                             Suscripcion unasuscripcion = suscripciones.get(i);
-                            System.out.println("yadda");
-                            System.out.println("id de la suscripcion "+unasuscripcion.getIdSuscripcion());
+                           
+                       
                             if(unasuscripcion.getIdSuscripcion()==Integer.parseInt(idSuscripcion)){
                                 
                                 encontro = true;

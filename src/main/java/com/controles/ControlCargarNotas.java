@@ -48,8 +48,8 @@ public class ControlCargarNotas extends HttpServlet {
         request.setAttribute("numPaginas", numPaginas);
         request.setAttribute("paginaActual", paginaActual);
         
-        System.out.println(numPaginas);
-        System.out.println(paginaActual);
+        ;
+        ;
         RequestDispatcher rd = getServletContext()
                 .getRequestDispatcher("/Blog");
         

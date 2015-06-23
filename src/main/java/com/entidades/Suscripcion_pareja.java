@@ -156,7 +156,7 @@ public class Suscripcion_pareja {
             while(rs.next()){
                 
                 idPareja = rs.getInt("idPareja");
-                System.out.println(idPareja);
+                ;
                 idParejas.add(Integer.toString(idPareja));
 
             }

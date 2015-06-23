@@ -109,6 +109,28 @@ public class Suscripcion {
 
     }
     
+     //Se registra el nuevo pago
+    public void actualizarFechaPago(int idSuscripcion,int idPago,Date fechaUltimoPago){
+        
+        
+        try{
+             pStmt = conn.prepareStatement(
+               "UPDATE suscripcion SET fechaUltimoPago=?,idPago=?" +
+                    " WHERE idSuscripcion = ? ");
+            pStmt.setDate(1,new java.sql.Date(fechaUltimoPago.getTime()));
+            pStmt.setInt(2, idPago);
+            pStmt.setInt(3,idSuscripcion);  
+            pStmt.executeUpdate();
+         
+
+        }
+        catch(SQLException e){
+        
+        }
+
+      
+    }
+    
 
     /**
      * @return the idSuscripcion

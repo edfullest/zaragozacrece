@@ -33,7 +33,7 @@ public class Cuenta {
       try {
          String s = "INSERT INTO CUENTA (idcuenta, nombre, saldo)" +
                    " VALUES ("+ idcuenta + " , '" + nombre + "', " + saldo + " )";
-         System.out.println(s); 
+         ; 
          conn.stmt.executeUpdate(s);
       }catch (Exception e) { System.out.println ("Cannot update database" + e ); }   
    }    

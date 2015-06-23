@@ -5,10 +5,6 @@
         <jsp-file>/conocer.jsp</jsp-file>
     </servlet>
     <servlet>
-        <servlet-name>ControlCargaDatos</servlet-name>
-        <servlet-class>com.controles.ControlCargaDatos</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ControlAdminLogIn</servlet-name>
         <servlet-class>com.controles.ControlAdminLogIn</servlet-class>
     </servlet>
@@ -100,7 +96,6 @@
         <servlet-name>redirigirPaypal</servlet-name>
         <url-pattern>/redirigirPaypal</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>renovar</servlet-name>
         <jsp-file>/WEB-INF/interfacesPanelPadrino/InterfazRenovar.jsp</jsp-file>
@@ -109,7 +104,6 @@
         <servlet-name>renovar</servlet-name>
         <url-pattern>/renovar</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>apadrinaSolo</servlet-name>
         <jsp-file>/WEB-INF/interfacesPanelPadrino/InterfazApadrinaSolo.jsp</jsp-file>
@@ -150,7 +144,6 @@
         <servlet-name>InterfazPagosParejas</servlet-name>
         <url-pattern>/pagosDeParejas</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>InterfazTodosPadrinos</servlet-name>
         <jsp-file>/WEB-INF/interfacesAdmin/InterfazTodosPadrinos.jsp</jsp-file>
@@ -159,7 +152,6 @@
         <servlet-name>InterfazTodosPadrinos</servlet-name>
         <url-pattern>/todosPadrinos</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>InterfazCrearPagoPadrino</servlet-name>
         <jsp-file>/WEB-INF/interfacesAdmin/InterfazCrearPagoPadrino.jsp</jsp-file>
@@ -168,7 +160,6 @@
         <servlet-name>InterfazCrearPagoPadrino</servlet-name>
         <url-pattern>/crearPagoPadrino</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>InterfazTodasParejas</servlet-name>
         <jsp-file>/WEB-INF/interfacesAdmin/InterfazTodasParejas.jsp</jsp-file>
@@ -177,7 +168,6 @@
         <servlet-name>InterfazTodasParejas</servlet-name>
         <url-pattern>/todasParejas</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>InterfazSeleccionarPadrino</servlet-name>
         <jsp-file>/WEB-INF/interfacesAdmin/InterfazSeleccionarPadrino.jsp</jsp-file>
@@ -186,9 +176,6 @@
         <servlet-name>InterfazSeleccionarPadrino</servlet-name>
         <url-pattern>/seleccionarPadrino</url-pattern>
     </servlet-mapping>
-    
-    
-    
     <servlet>
         <servlet-name>InterfazCrearPagoPareja</servlet-name>
         <jsp-file>/WEB-INF/interfacesAdmin/InterfazCrearPagoPareja.jsp</jsp-file>
@@ -197,7 +184,6 @@
         <servlet-name>InterfazCrearPagoPareja</servlet-name>
         <url-pattern>/crearPagoPareja</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>InterfazAsignarPareja</servlet-name>
         <jsp-file>/WEB-INF/interfacesAdmin/InterfazAsignarPareja.jsp</jsp-file>
@@ -425,10 +411,6 @@
     <servlet-mapping>
         <servlet-name>ControlLogInPadrino</servlet-name>
         <url-pattern>/ControlLogInPadrino</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ControlCargaDatos</servlet-name>
-        <url-pattern>/ControlCargaDatos</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ControlAdminLogIn</servlet-name>

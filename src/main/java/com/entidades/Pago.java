@@ -57,6 +57,8 @@ public class Pago {
     }
     
 
+    
+
 
     //Se registra el nuevo pago
     public void nuevoPago(int idPadrino,int idApadrinado,Date fechaPago){
@@ -136,7 +138,7 @@ public class Pago {
         
         try{
             stmt.executeQuery("SELECT idPago,pago.idPadrino,idApadrinado,fechaPago,acreditado,correo "
-                    + "FROM pago,padrinos WHERE pago.idPadrino=padrinos.idPadrino AND pago.acreditado=0 ORDER BY idPago desc LIMIT "+offset+","+num);
+                    + "FROM pago,padrinos WHERE pago.idPadrino=padrinos.idPadrino AND pago.acreditado=0 AND idApadrinado=-1 ORDER BY idPago desc LIMIT "+offset+","+num);
             ResultSet rs = stmt.getResultSet();
             
             while(rs.next()){
@@ -157,12 +159,37 @@ public class Pago {
             return pagos;
         }
         catch(SQLException e){
-            System.out.println(e);
+            ;
             return null;
         }
         
         
         
+    }
+     
+      public int mostrarPagoSinAcreditar(int idPa){
+           
+        int idPago = -1;
+        int idPadrino;
+        int idApadrinado;
+        Date fechaPago;
+        boolean acreditado;
+    
+        
+        try{
+            stmt.executeQuery("SELECT idPago FROM pago WHERE pago.idPadrino="+idPa+" AND pago.acreditado=0 AND idApadrinado!=-1" );
+            ResultSet rs = stmt.getResultSet();  
+            if(rs.next()){
+                idPago = rs.getInt("idPago"); 
+            }
+        
+            return idPago;
+        }
+        catch(SQLException e){
+            ;
+            return -1;
+        }
+  
     }
     
       

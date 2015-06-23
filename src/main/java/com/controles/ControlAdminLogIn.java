@@ -35,13 +35,13 @@ public class ControlAdminLogIn extends HttpServlet {
            HttpSession session = request.getSession();
            
            if(session.getAttribute("goodlogin") == null){
-               System.out.println("entras");
+               
                     //Creo la conexion a la base de datos
                Conexion conn = new Conexion();
                int idAdmin;
                session = request.getSession(true);
                request.setCharacterEncoding("UTF-8");
-               System.out.println("encoding: "+request.getCharacterEncoding());
+        
                
                String username = request.getParameter("username");
                String password = request.getParameter("password");
@@ -59,7 +59,7 @@ public class ControlAdminLogIn extends HttpServlet {
                
                else{
                    idAdmin = Integer.parseInt(lista.get(0));
-                   System.out.println(idAdmin);
+                   
                    session.setAttribute("goodlogin", true);
                    session.setAttribute("idAdmin", idAdmin);
                    request.getRequestDispatcher("InterfazAdmin").forward(request, response);
@@ -102,7 +102,7 @@ public class ControlAdminLogIn extends HttpServlet {
            //Checo si es nulo primero
   
            if(session.getAttribute("goodlogin") == null){
-               System.out.println("sesion nula");
+               ;
                request.getRequestDispatcher("admin").forward(request, response);
            }
           
@@ -126,7 +126,7 @@ public class ControlAdminLogIn extends HttpServlet {
        }
        
        else{
-           System.out.println("Suppity");
+           
        }
         
     }
