@@ -122,7 +122,7 @@
                         <!--/ Apartado para apadrinar un niño  -->
                            
                         <li>
-                            <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
+                            <a href="#"><i class="fa fa-heart-o"></i>Patrocinadores</a>
                                 
                         </li>
                         
@@ -167,7 +167,7 @@
                                 <%--Verifico que exista una sesion de padrino--%>
                                 <% if (session.getAttribute("idPadrino") == null) { %>
                                 <li aria-haspopup="true">
-                                    <a href=""><i class="fa fa-sign-in"></i>Inicia Sesión<i class="fa fa-indicator fa-chevron-down"></i></a>
+                                    <a href="#"><i class="fa fa-sign-in"></i>Inicia Sesión<i class="fa fa-indicator fa-chevron-down"></i></a>
                                             
                                     <div class="grid-container3">
                                         <ul>

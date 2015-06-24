@@ -126,6 +126,11 @@
                         <% } %>
                         <!--/ Apartado para apadrinar un niño  -->
                         
+                        <li>
+                            <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
+                                
+                        </li>
+                        
                         <!-- Mi cuenta,esto es si existe sesion -->
                         
                         <%--Verifico que exista una sesion de padrino--%>
@@ -250,19 +255,19 @@
                                         </ul>
                                             
                                                 <c:choose>
-                                                    <c:when test="${sessionScope.iNoProblem!=0 || sessionScope.iRenovar!=0 || sessionScope.iQuitar!=0}">
+                                                    <c:when test="${ (sessionScope.iNoProblem!=null || sessionScope.iRenovar!=null || sessionScope.iQuitar!=null) && (sessionScope.iNoProblem!=0 || sessionScope.iRenovar!=0 || sessionScope.iQuitar!=0)}">
                                                         <h3>Información de suscripciones</h3>
                                                     </c:when>
                                                 </c:choose>
                                         <c:choose>
-                                            <c:when test="${sessionScope.iNoProblem!=0}">
+                                            <c:when test="${sessionScope.iNoProblem!=null && sessionScope.iNoProblem!=0}">
                                                 
                                                 <c:choose>
                                                     <c:when test="${sessionScope.iNoProblem==1}">
-                                                        <p><i class="fa fa-thumbs-up"></i> <b>${sessionScope.iNoProblem}</b> suscripción no presenta problema! Está actualizada </p>
+                                                        <p><i class="fa fa-thumbs-up fa-2x"></i> <b>${sessionScope.iNoProblem}</b> suscripción no presenta problema! Está actualizada </p>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <p><i class="fa fa-thumbs-up"></i> <b>${sessionScope.iNoProblem}</b> suscripciones no presentan problemas! Están actualizadas </p>
+                                                        <p><i class="fa fa-thumbs-up fa-2x"></i> <b>${sessionScope.iNoProblem}</b> suscripciones no presentan problemas! Están actualizadas </p>
                                                     </c:otherwise>
                                                 </c:choose>
                                                 
@@ -271,14 +276,14 @@
                                         </c:choose>
                                                         
                                         <c:choose>
-                                            <c:when test="${sessionScope.iRenovar!=0}">
+                                            <c:when test="${sessionScope.iRenovar!=null && sessionScope.iRenovar!=0}">
                                                 <br>
                                                 <c:choose>
                                                     <c:when test="${sessionScope.iRenovar==1}">
-                                                        <p><i class="fa fa-flag"></i> <b>${sessionScope.iRenovar}</b> suscripción expirará pronto! Renuévala antes del <b>${sessionScope.sFechaLimite}</b>  </p>
+                                                        <p><i class="fa fa-flag fa-2x"></i> <b>${sessionScope.iRenovar}</b> suscripción expirará pronto! Renuévala antes del <b>${sessionScope.sFechaLimite}</b>  </p>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <p><i class="fa fa-flag"></i> <b>${sessionScope.iRenovar}</b> suscripciones expirarán pronto! Renuévalas antes del <b>${sessionScope.sFechaLimite}</b> </p>
+                                                        <p><i class="fa fa-flag fa-2x"></i> <b>${sessionScope.iRenovar}</b> suscripciones expirarán pronto! Renuévalas antes del <b>${sessionScope.sFechaLimite}</b> </p>
                                                     </c:otherwise>
                                                 </c:choose>
                                                 
@@ -287,14 +292,14 @@
                                         </c:choose>
                                                        
                                                <c:choose>
-                                            <c:when test="${sessionScope.iQuitar!=0}">
+                                            <c:when test="${sessionScope.iQuitar!=null && sessionScope.iQuitar!=0}">
                                                  <br>
                                                 <c:choose>
                                                     <c:when test="${sessionScope.iQuitar==1}">
-                                                        <p><i class="fa fa-warning"></i> <b>${sessionScope.iQuitar}</b> suscripción se te ha suspendido! Reactívala lo antes posible si quieres tener acceso a tu apadrinado! </p>
+                                                        <p><i class="fa fa-warning fa-2x"></i> <b>${sessionScope.iQuitar}</b> suscripción se te ha suspendido! Reactívala lo antes posible si quieres tener acceso a tu apadrinado! </p>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <p><i class="fa fa-warning"></i> <b>${sessionScope.iQuitar}</b> suscripciones se te ham suspendido! Reactívala lo antes posible si quieres tener acceso a tus apadrinados </p>
+                                                        <p><i class="fa fa-warning fa-2x"></i> <b>${sessionScope.iQuitar}</b> suscripciones se te ham suspendido! Reactívala lo antes posible si quieres tener acceso a tus apadrinados </p>
                                                     </c:otherwise>
                                                 </c:choose>
                                                 
@@ -311,19 +316,19 @@
                                                         </c:choose>
                                                          <c:choose>
                                                             <c:when test="${sessionScope.advertenciaPareja.equals('yapagaste')}">
-                                                              <i class="fa fa-check"></i> Ya pagaste la renovación/reactivación de su suscripción pero tu pareja no!
+                                                              <i class="fa fa-check fa-2x"></i> Ya pagaste la renovación/reactivación de su suscripción pero tu pareja no!
                                                             </c:when>
                                                             <c:when test="${sessionScope.advertenciaPareja.equals('otropago')}">
-                                                               <i class="fa fa-warning"></i> Tu pareja ya pagó la renovación/reactivación de su suscripción pero tú aún no!
+                                                               <i class="fa fa-warning fa-2x"></i> Tu pareja ya pagó la renovación/reactivación de su suscripción pero tú aún no!
                                                             </c:when>
                                                             <c:when test="${sessionScope.advertenciaPareja.equals('quitar')}">
-                                                               <i class="fa fa-warning"></i> Se les suspendió su suscripción! Reactívenla si quieren tener acceso a su apadrinado.
+                                                               <i class="fa fa-warning fa-2x"></i> Se les suspendió su suscripción! Reactívenla si quieren tener acceso a su apadrinado.
                                                             </c:when>
                                                                <c:when test="${sessionScope.advertenciaPareja.equals('noProblem')}">
-                                                               <i class="fa fa-thumbs-up"></i> Su suscripción en pareja no presenta problema! Está actualizada
+                                                               <i class="fa fa-thumbs-up fa-2x"></i> Su suscripción en pareja no presenta problema! Está actualizada
                                                             </c:when>
                                                                <c:when test="${sessionScope.advertenciaPareja.equals('renovar')}">
-                                                               <i class="fa fa-flag"></i> Su suscripción expirará pronto! Renuévenla para antes del <b>${sessionScope.sFechaLimite}</b> 
+                                                               <i class="fa fa-flag fa-2x"></i> Su suscripción expirará pronto! Renuévenla para antes del <b>${sessionScope.sFechaLimite}</b> 
                                                             </c:when>
                                                         </c:choose>
                                                                

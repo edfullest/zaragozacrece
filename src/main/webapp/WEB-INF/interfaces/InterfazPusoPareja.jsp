@@ -119,6 +119,11 @@
         <% } %>
         <!--/ Apartado para apadrinar un niño  -->
                     
+        <li>
+                            <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
+                                
+                        </li>
+        
         <!-- Mi cuenta,esto es si existe sesion -->
                     
         <%--Verifico que exista una sesion de padrino--%>
@@ -199,7 +204,7 @@
                 <form action="ControlNuevoPadrino" method="get" id="sky-form" class="sky-form" >
                     <header><i class ="fa fa-check"></i> Excelente! Ahora solo falta la confirmacion de <b>${correo2}</b> </header>
                     <fieldset>
-                        <p> Mándale un mensaje a tu amigo, para que se registre y ambos puedan hacer el pago correspondiente en la pestaña "Pagos"</p>
+                        <p> Mándale un mensaje a tu amigo, para que se registre y ambos puedan hacer el pago correspondiente en el menú "Apadrina en pareja"</p>
                         <p><b>Importante:</b> tu amigo debe registrarse con el mismo correo que tu pusiste para que se haga un vínculo exitoso</p>
                                                               
                     </fieldset>

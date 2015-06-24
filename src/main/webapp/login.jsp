@@ -86,7 +86,7 @@
 		<div class="body">
 		
                      <!-- mega menu -->
-                    <ul class="sky-mega-menu sky-mega-menu-anim-flip sky-mega-menu-response-to-icons">
+                    <ul class="sky-mega-menu">
                         <!-- home -->
                             
                         <li>
@@ -123,6 +123,11 @@
                         <% } %>
                         <!--/ Apartado para apadrinar un niño  -->
                             
+                        <li>
+                            <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
+                                
+                        </li>
+                        
                         <!-- Mi cuenta,esto es si existe sesion -->
                             
                         <%--Verifico que exista una sesion de padrino--%>

@@ -126,6 +126,11 @@
                         <% } %>
                         <!--/ Apartado para apadrinar un niño  -->
                         
+                        <li>
+                            <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
+                                
+                        </li>
+                        
                         <!-- Mi cuenta,esto es si existe sesion -->
                         
                         <!-- Mi cuenta,esto es si existe sesion -->
@@ -188,36 +193,37 @@
                             <aside>
                                 
                             <!-- mega menu -->
-                            <ul class="sky-mega-menu sky-mega-menu-pos-left sky-mega-menu-response-to-icons sky-mega-menu-anim-scale">
-                                
-                                
-                               
+                                <ul class="sky-mega-menu sky-mega-menu-pos-left sky-mega-menu-response-to-icons sky-mega-menu-anim-scale">
                                     
-                                <!--/ about -->
                                     
-                                <!-- news -->
-                                <li>
-                                    <a href="ControlPanelPadrino?opcion=2&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrows-h"></i><b>Apadrina en pareja</b></a>
+                                    <!-- about -->
+                                    
+                                    
+                                    <!--/ about -->
+                                    
+                                    <!-- news -->
+                                    <li>
+                                        <a href="ControlPanelPadrino?opcion=2&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrows-h"></i>Apadrina en pareja</a>
                                         
-                                </li>
-                                <!--/ news -->
+                                    </li>
+                                    <!--/ news -->
                                     
-                                <!-- portfolio -->
-                                <li>
-                                    <a href="ControlPanelPadrino?opcion=3&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrow-circle-up"></i>Apadrina solo</a>
+                                    <!-- portfolio -->
+                                    <li>
+                                        <a href="ControlPanelPadrino?opcion=3&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrow-circle-up"></i>Apadrina solo</a>
                                         
-                                </li>
-                                <!--/ portfolio -->
+                                    </li>
+                                    <!--/ portfolio -->
                                     
-                                <!-- blog -->
-                                <li>
-                                    <a href="ControlPanelPadrino?opcion=4&hayApadrinados=${hayApadrinados}"><i class="fa fa-cogs"></i>Configuración de cuenta</a>
-                                </li>
-                                <!--/ blog -->
+                                    <!-- blog -->
+                                    <li>
+                                        <a href="ControlPanelPadrino?opcion=4&hayApadrinados=${hayApadrinados}"><i class="fa fa-connectdevelop"></i>Ver mis suscripciones</a>
+                                    </li>
+                                    <!--/ blog -->
                                     
-                            </ul>
+                                </ul>
                                 
-                            <!--/ mega menu -->
+                                <!--/ mega menu -->
                                 
                         </aside>
                    

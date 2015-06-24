@@ -124,6 +124,11 @@
                         <% } %>
                         <!--/ Apartado para apadrinar un niño  -->
                             
+                        <li>
+                            <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
+                                
+                        </li>
+                        
                         <!-- Mi cuenta,esto es si existe sesion -->
                             
                         <%--Verifico que exista una sesion de padrino--%>
@@ -208,6 +213,8 @@
                                     
                     <input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">
                     <label for="sky-tab3"><span><span><i class="fa fa-heart"></i>¿Cómo puedo ayudar?</span></span></label>
+                    
+                    
                                     
                                     
                     

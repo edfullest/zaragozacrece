@@ -192,9 +192,11 @@ public class ControlLogInPadrino extends HttpServlet {
                     String advertenciaPareja="";
                     Calendar calFechaUltimoPago = Calendar.getInstance();
                     calFechaUltimoPago.setTime(unasuscripcionpareja.getFechaUltimoPago());
-                  
+                    String ultimaFechaPago = sdf.format(unasuscripcionpareja.getFechaUltimoPago());
+                    System.out.println(ultimaFechaPago);
                     
                     if(calFechaUltimoPago.after(calFechaInicialActual) && calFechaUltimoPago.before(calFechaFinalActual)){
+                        System.out.println("Entra aqui wtf");
                         advertenciaPareja = "noProblem";
                     }
                     else if(calFechaUltimoPago.after(calFechaInicialPasada)&&calFechaUltimoPago.before(calFechaFinalAnterior)){
@@ -242,9 +244,10 @@ public class ControlLogInPadrino extends HttpServlet {
                                 
                                 else if (unpagoNoAcreditado == null){
                                     advertenciaPareja = "quitar";
-                                    session.setAttribute("suscripcionPareja",unasuscripcionpareja);
+                                    
+                                    apadrinados.remove(j);
                                 }
-                                apadrinados.remove(j);
+                                
                             }
                             
                             j++;
@@ -255,7 +258,7 @@ public class ControlLogInPadrino extends HttpServlet {
                     }
                     
                     session.setAttribute("advertenciaPareja",advertenciaPareja);
-                    
+                    session.setAttribute("suscripcionPareja",unasuscripcionpareja);
                     
                 }
                 

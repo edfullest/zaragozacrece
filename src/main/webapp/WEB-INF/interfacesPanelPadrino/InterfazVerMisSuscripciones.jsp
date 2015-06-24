@@ -125,7 +125,12 @@
                             
                         <% } %>
                         <!--/ Apartado para apadrinar un niño  -->
-                            
+                        
+                        <li>
+                            <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
+                                
+                        </li>
+                        
                         <!-- Mi cuenta,esto es si existe sesion -->
                             
                         <%--Verifico que exista una sesion de padrino--%>
@@ -183,36 +188,37 @@
                             <aside>
                                 
                             <!-- mega menu -->
-                            <ul class="sky-mega-menu sky-mega-menu-pos-left sky-mega-menu-response-to-icons sky-mega-menu-anim-scale">
-                                
-                                
-                               
+                                <ul class="sky-mega-menu sky-mega-menu-pos-left sky-mega-menu-response-to-icons sky-mega-menu-anim-scale">
                                     
-                                <!--/ about -->
                                     
-                                <!-- news -->
-                                <li>
-                                    <a href="ControlPanelPadrino?opcion=2&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrows-h"></i><b>Apadrina en pareja</b></a>
+                                    <!-- about -->
+                                    
+                                    
+                                    <!--/ about -->
+                                    
+                                    <!-- news -->
+                                    <li>
+                                        <a href="ControlPanelPadrino?opcion=2&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrows-h"></i>Apadrina en pareja</a>
                                         
-                                </li>
-                                <!--/ news -->
+                                    </li>
+                                    <!--/ news -->
                                     
-                                <!-- portfolio -->
-                                <li>
-                                    <a href="ControlPanelPadrino?opcion=3&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrow-circle-up"></i>Apadrina solo</a>
+                                    <!-- portfolio -->
+                                    <li>
+                                        <a href="ControlPanelPadrino?opcion=3&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrow-circle-up"></i>Apadrina solo</a>
                                         
-                                </li>
-                                <!--/ portfolio -->
+                                    </li>
+                                    <!--/ portfolio -->
                                     
-                                <!-- blog -->
-                                <li>
-                                    <a href="ControlPanelPadrino?opcion=4&hayApadrinados=${hayApadrinados}"><i class="fa fa-cogs"></i>Configuración de cuenta</a>
-                                </li>
-                                <!--/ blog -->
+                                    <!-- blog -->
+                                    <li>
+                                        <a href="ControlPanelPadrino?opcion=4&hayApadrinados=${hayApadrinados}"><i class="fa fa-connectdevelop"></i>Ver mis suscripciones</a>
+                                    </li>
+                                    <!--/ blog -->
                                     
-                            </ul>
+                                </ul>
                                 
-                            <!--/ mega menu -->
+                                <!--/ mega menu -->
                                 
                         </aside>
                    
@@ -290,6 +296,14 @@
                                                             
                                                         <td><i class="fa fa-warning fa-2x"></i></td> 
                                                     </c:when>
+                                                    <c:when test="${advertenciaPareja.equals('yapagaste')}">
+                                                            
+                                                        <td><i class="fa fa-check fa-2x"></i></td> 
+                                                    </c:when>
+                                                     <c:when test="${advertenciaPareja.equals('otropago')}">
+                                                            
+                                                        <td><i class="fa fa-warning fa-2x"></i></td> 
+                                                    </c:when>
                                                 </c:choose>
                                                        <td><c:out value="${suscripcionPareja.nombreCompleto}"/></td>
                                                        <td><c:out value="${suscripcionPareja.fechaUltimoPago}"/></td>
@@ -302,9 +316,17 @@
                                                         
                                                           <td><a href="suscripciones?tipoSuscripcion=pareja&accion=renovar&idSuscripcion=${suscripcionPareja.idSuscripcion}&idApadrinado=${suscripcionPareja.idApadrinado}"><button type="button" class="button-table"><i class="fa fa-repeat"></i> Renovar</button></a></td> 
                                                     </c:when>
+                                                    <c:when test="${advertenciaPareja.equals('otropago')}">
+                                                        
+                                                          <td><a href="suscripciones?tipoSuscripcion=pareja&accion=renovar&idSuscripcion=${suscripcionPareja.idSuscripcion}&idApadrinado=${suscripcionPareja.idApadrinado}"><button type="button" class="button-table"><i class="fa fa-repeat"></i> Renovar</button></a></td> 
+                                                    </c:when>
                                                     <c:when test="${advertenciaPareja.equals('quitar')}">
                                                             
                                                             <td> <a href="suscripciones?tipoSuscripcion=pareja&accion=activar&idSuscripcion=${suscripcionPareja.idSuscripcion}&idApadrinado=${suscripcionPareja.idApadrinado}"><button type="button" class="button-table"><i class="fa fa-repeat"></i> Activar</button></a></td> 
+                                                    </c:when>
+                                                            <c:when test="${advertenciaPareja.equals('yapagaste')}">
+                                                            
+                                                        <td> </td> 
                                                     </c:when>
                                                 </c:choose>
                                                     

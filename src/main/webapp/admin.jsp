@@ -84,6 +84,11 @@
                         <% } %>
                         <!--/ Apartado para apadrinar un niño  -->
                             
+                        <li>
+                            <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
+                                
+                        </li>
+                        
                         <!-- Mi cuenta,esto es si existe sesion -->
                             
                         <%--Verifico que exista una sesion de padrino--%>

@@ -126,6 +126,11 @@
                         <% } %>
                         <!--/ Apartado para apadrinar un niño  -->
                         
+                        <li>
+                            <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
+                                
+                        </li>
+                        
                         <!-- Mi cuenta,esto es si existe sesion -->
                         
                           <!-- Mi cuenta,esto es si existe sesion -->
@@ -184,36 +189,37 @@
                             <aside>
                                 
                             <!-- mega menu -->
-                            <ul class="sky-mega-menu sky-mega-menu-pos-left sky-mega-menu-response-to-icons sky-mega-menu-anim-scale">
-                                
-                                
-                               
+                                <ul class="sky-mega-menu sky-mega-menu-pos-left sky-mega-menu-response-to-icons sky-mega-menu-anim-scale">
                                     
-                                <!--/ about -->
                                     
-                                <!-- news -->
-                                <li>
-                                    <a href="ControlPanelPadrino?opcion=2&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrows-h"></i><b>Apadrina en pareja</b></a>
+                                    <!-- about -->
+                                    
+                                    
+                                    <!--/ about -->
+                                    
+                                    <!-- news -->
+                                    <li>
+                                        <a href="ControlPanelPadrino?opcion=2&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrows-h"></i>Apadrina en pareja</a>
                                         
-                                </li>
-                                <!--/ news -->
+                                    </li>
+                                    <!--/ news -->
                                     
-                                <!-- portfolio -->
-                                <li>
-                                    <a href="ControlPanelPadrino?opcion=3&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrow-circle-up"></i>Apadrina solo</a>
+                                    <!-- portfolio -->
+                                    <li>
+                                        <a href="ControlPanelPadrino?opcion=3&hayApadrinados=${hayApadrinados}"><i class="fa fa-arrow-circle-up"></i>Apadrina solo</a>
                                         
-                                </li>
-                                <!--/ portfolio -->
+                                    </li>
+                                    <!--/ portfolio -->
                                     
-                                <!-- blog -->
-                                <li>
-                                    <a href="ControlPanelPadrino?opcion=4&hayApadrinados=${hayApadrinados}"><i class="fa fa-cogs"></i>Configuración de cuenta</a>
-                                </li>
-                                <!--/ blog -->
+                                    <!-- blog -->
+                                    <li>
+                                        <a href="ControlPanelPadrino?opcion=4&hayApadrinados=${hayApadrinados}"><i class="fa fa-connectdevelop"></i>Ver mis suscripciones</a>
+                                    </li>
+                                    <!--/ blog -->
                                     
-                            </ul>
+                                </ul>
                                 
-                            <!--/ mega menu -->
+                                <!--/ mega menu -->
                                 
                         </aside>
                    
@@ -292,8 +298,10 @@
                                                                     
                                                                     <header><i class ="fa fa-check"></i> Vínculo exitoso! Tú y <b>${correo}</b> decidieron apadrinar juntos a un niño </header>
                                                                     <fieldset>
+                                                                        
+                                                                        
                                                                         <p> Ahora que ya están vinculados, el pago del apadrinamiento se divide en dos</p>
-                                                                        <p> ¡Ahora sólo falta pagar! Esto se puede hacer en tu cuenta, seleccionando la pestaña "Pagos"</p>
+                                                                        <p> ¡Ahora sólo falta pagar! Esto se puede hacer en tu cuenta, accediendo a la opción del menú lateral "Apadrina en pareja"</p>
                                                                             
                                                                             
                                                                     </fieldset>
@@ -314,7 +322,7 @@
                                                                 
                                                                 <header><i class ="fa fa-check"></i> Excelente! Ahora solo falta la confirmacion de <b>${correo2}</b> </header>
                                                                 <fieldset>
-                                                                    <p> Mándale un mensaje a tu amigo, para que se registre y ambos puedan hacer el pago correspondiente en la pestaña "Pagos"</p>
+                                                                    <p> Mándale un mensaje a tu amigo, para que se registre y ambos puedan hacer el pago correspondiente en el menú "Apadrina en pareja"</p>
                                                                     <p><b>Importante:</b> tu amigo debe registrarse con el mismo correo que tu pusiste para que se haga un vínculo exitoso</p>
                                                                     
                                                                 </fieldset>
