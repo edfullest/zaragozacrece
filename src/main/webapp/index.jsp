@@ -11,7 +11,7 @@
       
 
 	<head>
-
+                <meta name="google-site-verification" content="S2HUaGXWXzcLjm77CgA-jdHRiMzClekSl-sCZUc_nj0" />
                 <meta property="fb:app_id"          content="1234567890" /> 
                 <meta property="og:type"            content="article" /> 
                 <meta property="og:url"             content="http://201.156.168.107:8080/ccz/" /> 
