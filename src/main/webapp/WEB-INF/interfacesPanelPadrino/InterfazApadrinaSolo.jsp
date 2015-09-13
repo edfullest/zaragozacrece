@@ -126,10 +126,11 @@
                         <% } %>
                         <!--/ Apartado para apadrinar un niño  -->
                         
-                        <li>
+                        <!--
+                                                    <li>
                             <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
                                 
-                        </li>
+                        </li>-->
                         
                         <!-- Mi cuenta,esto es si existe sesion -->
                         
@@ -177,7 +178,7 @@
                         
                         <!-- Apartado para contactar  -->
                         <li class="right">
-                            <a href="contactar"><i class="fa fa-phone"></i>Contáctanos</a>
+                            <a href="https://www.facebook.com/Zaragozacrece"><i class="fa fa-phone"></i>Contáctanos</a>
                         </li>
                         <!--/ Apartado para contactar -->
                     </ul>
@@ -245,20 +246,24 @@
                                                 <c:when test="${respuesta.equals('todoAcreditado')}">
                                                     <font size="4"> Para apadrinar otro niño, haz click en el botón "Pagar"</font>
                                                      <div style="text-align:center;">
-                                                            <a  href="pagarPaypal?tipo=apadrinasolo"> 
+<!--                                                            <a  href="pagarPaypal?tipo=apadrinasolo"> 
                                                             
-                                                            <button type="button" class="button">Pagar</button></a>
+                                                            <button type="button" class="button">Pagar</button></a>-->
                                                             <br>
                                                             <br>
                                                     </div>
                                                         
                                                 </c:when>
                                                 <c:when test="${respuesta.equals('noPagos')}">
-                                                    <font size="4"> Para apadrinar tu primer niño, haz click en el botón "Pagar con Paypal"</font>
+                                                    <font size="4"> Para apadrinar tu primer niño, haz click en el botón "Pagar"</font>
                                                     <div style="text-align:center;">
-                                                            <a  href="pagarPaypal?tipo=apadrinasolo"> 
+<!--                                                            <a  href="pagarPaypal?tipo=apadrinasolo"> 
                                                             
-                                                            <button type="button" class="button">Pagar</button></a>
+                                                            <button type="button" class="button">Pagar</button></a>-->
+<a href="https://www.moneypool.mx/s/cmt9t">
+                                                                                    <button type="button" class="button">Pagar</button>
+                                                                                </a>
+
                                                             <br>
                                                             <br>
                                                     </div>

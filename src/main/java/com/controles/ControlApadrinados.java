@@ -13,6 +13,7 @@ import com.entidades.Padrino;
 import com.entidades.Pareja;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,7 +32,7 @@ public class ControlApadrinados extends HttpServlet {
     
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        request.setCharacterEncoding("UTF-8");
         //El false es para que no cree una sesion, y si es nulo, no existe sesion
         if(request.getSession(false) != null){
             HttpSession session = request.getSession();
@@ -54,6 +55,7 @@ public class ControlApadrinados extends HttpServlet {
                     
                     String nombreCompleto = request.getParameter("nombreCompleto");
                     String comunidad = request.getParameter("comunidad");
+  
                     int idAdmin = Integer.parseInt(request.getParameter("idAdmin"));
                     
                     apadrinado.nuevoApadrinado(nombreCompleto, comunidad, idAdmin);
@@ -74,7 +76,7 @@ public class ControlApadrinados extends HttpServlet {
                     String carta = request.getParameter("carta");
                     
                     entrada.nuevaEntrada(idApadrinado, nivelEscolar, peso, IMC, estatura, fechaActual, carta);
-                    ;
+                    
                     response.sendRedirect("apadrinados?tipo=cargarApadrinados&exito=true&idApadrinadoEntrada="+idApadrinado);
                     
                 }
@@ -130,8 +132,7 @@ public class ControlApadrinados extends HttpServlet {
                 
                 
                 if(tipo.equals("cargarApadrinados")){
-                    
-                    
+
                     Conexion conn = new Conexion();
                     Apadrinados apadrinados = new Apadrinados(conn);
                     
@@ -145,7 +146,7 @@ public class ControlApadrinados extends HttpServlet {
                     //Lista de objetos del tipo apadrinado
                     ArrayList<Apadrinados> listaApadrinados = apadrinados.obtenerApadrinados((paginaActual-1)*apadrinadosPorPagina,apadrinadosPorPagina);
                     int numApadrinados = apadrinados.getNumeroApadrinados();
-                    ;
+                    
                     ArrayList<String> nombreColumnas = new ArrayList<String>();
                     nombreColumnas.add("ID");
                     nombreColumnas.add("Nombre");
@@ -158,9 +159,7 @@ public class ControlApadrinados extends HttpServlet {
                     request.setAttribute("nombreColumnas", nombreColumnas);
                     request.setAttribute("numPaginas", numPaginas);
                     request.setAttribute("paginaActual", paginaActual);
-                    
-                    ;
-                    ;
+
                     if(exito!= null && exito.equals("true")){
                         request.setAttribute("exito",true);
                         request.setAttribute("idApadrinadoEntrada",idApadrinadoEntrada);
@@ -275,13 +274,12 @@ public class ControlApadrinados extends HttpServlet {
                     Conexion conn = new Conexion();
                     Apadrinados apadrinado = new Apadrinados(conn);
                     
-                    ;
+                    
                     int idPareja = apadrinado.obtenerIdPareja(idApadrinado);
-                    ;
-                    ;
+                    int idPadrino = apadrinado.obtenerIdPadrino(idApadrinado);
                     //si el idPareja es -1, entonces al apadrinado se le asigno un padrino unicamente
-                    if(idPareja == -1){
-                        int idPadrino = apadrinado.obtenerIdPadrino(idApadrinado);
+                    if(idPadrino!= -1 && idPareja == -1){
+                        
                         Padrino padrino = new Padrino (conn);
                         
                         //Se obtiene el nombre del padrino mediante su id
@@ -290,11 +288,12 @@ public class ControlApadrinados extends HttpServlet {
                         String correoPadrinoUnino=padrino.obtenerCorreo(idPadrino);
                         request.setAttribute("nombrePadrinoUnico",nombrePadrinoUnico);
                         request.setAttribute("correoPadrinoUnico",correoPadrinoUnino);
+                        request.setAttribute("apadrinadoSinPadrinos",false);
                         
                     }
                     
                     //El apadrinado tiene pareja de padrinos
-                    else{
+                    else if(idPareja != -1 && idPadrino == -1){
                         Pareja pareja = new Pareja (conn);
                         Padrino padrino = new Padrino (conn);
                         ArrayList<String> idsPadrinos = pareja.obtenerAmbosID(idPareja);
@@ -306,8 +305,11 @@ public class ControlApadrinados extends HttpServlet {
 			request.setAttribute("nombrePadrino2",nombrePadrino2);
                         request.setAttribute("correoPadrino1",correoPadrino1);
 			request.setAttribute("correoPadrino2",correoPadrino2);
+                        request.setAttribute("apadrinadoSinPadrinos",false);
                         
-                        
+                    }
+                    else if (idPareja == -1 && idPadrino == -1){
+                        request.setAttribute("apadrinadoSinPadrinos",true);
                     }
                     
                     //Se obtienen todas las entradas

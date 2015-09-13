@@ -1,27 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.scheduler;
 
-import java.util.Date;
+import org.apache.log4j.Logger;
 import org.quartz.Job;
-import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import org.quartz.SimpleTrigger;
+import com.scheduler.MyScheduler;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
 
-/**
- *
- * @author Lalo Serna
- */
-public class ActualizadorPeriodo implements Job {
-    
+public class ActualizadorPeriodo implements javax.servlet.ServletContextListener {
 
-   public void execute(JobExecutionContext context) throws JobExecutionException {
-    // Say Hello to the World and display the date/time
 
+    public void contextInitialized(ServletContextEvent sce) {
+        MyScheduler schedule = new MyScheduler();
+        try{
+            System.out.println("Entra");
+            schedule.execute();
+        }
+        catch (Exception e){
+            
+        }
+        
+    }
+
+    public void contextDestroyed(ServletContextEvent sce) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
-    
-}
+
+/*implements Job {
+
+   private Logger log = Logger.getLogger(ActualizadorPeriodo.class);
+
+   public void execute(JobExecutionContext jExeCtx) throws JobExecutionException {
+      log.debug("TestJob run successfully...");
+   }
+
+}*/

@@ -230,24 +230,38 @@
                         <ul>
                             <li class="sky-tab-content-1">					
                                 <div class="typography">
-                                    <h1>Datos de padrino(s)</h1>
+                                    
+                                    <c:choose>
+                                        
+                                        <c:when test="${apadrinadoSinPadrinos}">
+                                            <h2>Este apadrinado aún no tiene padrinos :( </h2>
+                                            
+                                        </c:when>
+                                        <c:otherwise>
+                                            <h2>Datos de padrino(s)</h2>
                                     <c:choose>
                                         
                                         <%-- Padrino unico --%>
                                         <c:when test="${nombrePadrinoUnico != null }">
-                                            <b>Nombre de padrino: </b> ${nombrePadrinoUnico} &nbsp;&nbsp;&nbsp;&nbsp; <b> Correo: </b> ${correoPadrinoUnico}
+                                            <h3><b>Nombre de padrino: </b> ${nombrePadrinoUnico} &nbsp;&nbsp;&nbsp;&nbsp; <b> Correo: </b> ${correoPadrinoUnico}</h3>
                                         </c:when>
                                             
                                         <%-- Dos Padrinos --%>
                                         <c:otherwise>
+                                            <h3>
                                             <br>
                                             <b>Nombre de padrino 1: </b> ${nombrePadrino1} &nbsp;&nbsp;&nbsp;&nbsp; <b> Correo: </b> ${correoPadrino1}
                                             <br>
                                             <br>
                                             <b>Nombre de padrino 2: </b> ${nombrePadrino2} &nbsp;&nbsp;&nbsp;&nbsp; <b> Correo: </b> ${correoPadrino2}
+                                            </h3>
                                         </c:otherwise>
                                             
                                     </c:choose>
+                                        </c:otherwise>
+                                        
+                                    </c:choose>
+                                    
                                 </div>
                             </li>
                                 

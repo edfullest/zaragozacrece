@@ -42,9 +42,7 @@ public class Pareja {
                             + "correo2)" +
                             " VALUES (?, ?, ?, ?) ");
             pStmt.setInt(1,idPadrino1);
-            
             pStmt.setInt(2,idPadrino2);
-            
             pStmt.setString(3,correo1);
             pStmt.setString(4,correo2);
             pStmt.executeUpdate();

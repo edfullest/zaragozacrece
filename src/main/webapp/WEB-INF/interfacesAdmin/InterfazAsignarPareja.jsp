@@ -256,6 +256,7 @@
                             
                             
                         <div class="sky-tabs sky-tabs-pos-top-left sky-tabs-response-to-icons">
+                    <div class="textbox">	
                             
                             <section>
                                 
@@ -290,7 +291,8 @@
                                 
                             <!--/ tabs -->
                                 
-                                
+                           
+                        </div>
                         </div>
                     </div>
                         

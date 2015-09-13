@@ -61,14 +61,14 @@ public class ControlNuevaNota extends HttpServlet {
                    String titulo = request.getParameter("titulo");
                    String nombre = request.getParameter("nombre");
                    String nota = request.getParameter("editor1");
-                   ;
+                   
                    
                    //Obtengo la fecha actual
                    SimpleDateFormat sdf = new SimpleDateFormat();
                    Date d = new Date();
                    sdf.applyPattern("yyyy-MM-dd");
                    String newFecha = sdf.format(d);
-                   ;
+                 
                    Date fechaPublicacion = sdf.parse(newFecha);
         
                    //Obtendo el id del Admin

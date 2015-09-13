@@ -224,7 +224,7 @@
                                                                   
                         </div>
                                         
-                        <input type="hidden" name="idAdmin" value=${sessionScope.idAdmin}>  
+                        <input type="hidden" name="idAdmin" value="${sessionScope.idAdmin}">  
                         <input type="hidden" name="tipo" value="nuevoApadrinado">
                         
                          <c:choose>

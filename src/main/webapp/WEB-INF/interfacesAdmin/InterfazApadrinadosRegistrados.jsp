@@ -250,7 +250,8 @@
                         <input type="hidden" name="tipo" value="redirigirVerMas">
                             
                             
-                        <div class="sky-tabs sky-tabs-pos-top-left sky-tabs-response-to-icons">
+                       <div class="sky-tabs sky-tabs-pos-top-left sky-tabs-response-to-icons">
+                        <div class="textbox">	
                             
                             <section>
                                 
@@ -285,7 +286,7 @@
                                 
                             <!--/ tabs -->
                                 
-                                
+                        </div>     
                         </div>
                     </div>
                         

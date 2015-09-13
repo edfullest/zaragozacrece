@@ -234,7 +234,7 @@
                                 <section class ="col col-5">
                                     
                                     
-                                    <label class="label">Select single date</label>	
+                                    <label class="label">Introduce la fecha de pago</label>	
                                     <label class="input">
                                         <i class="icon-append fa fa-calendar"></i>
                                         <input type="text" name="fechaPago" id="fechaPago">

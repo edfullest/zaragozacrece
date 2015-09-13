@@ -126,10 +126,11 @@
                         <% } %>
                         <!--/ Apartado para apadrinar un niño  -->
                         
-                        <li>
+                        <!--
+                                                    <li>
                             <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
                                 
-                        </li>
+                        </li>-->
                         
                         <!-- Mi cuenta,esto es si existe sesion -->
                         
@@ -177,7 +178,7 @@
                         
                         <!-- Apartado para contactar  -->
                         <li class="right">
-                            <a href="contactar"><i class="fa fa-phone"></i>Contáctanos</a>
+                            <a href="https://www.facebook.com/Zaragozacrece"><i class="fa fa-phone"></i>Contáctanos</a>
                         </li>
                         <!--/ Apartado para contactar -->
                     </ul>
@@ -251,12 +252,16 @@
                                                         </c:when>
                                                         <c:when test="${respuesta.equals('noPagaste')}">
                                                             <p>  <font size="4">No has pagado y <b>${correo}</b> ya pagó!
-                                                            Para pagar con PayPal, haga click en el botón "Pagar":</font>
+                                                            Para pagar con MoneyPool, haga click en el botón "Pagar":</font>
                                                            
                                                             
-                                                                <a  href="pagarPaypal?tipo=apadrinapareja"> 
+<!--                                                                <a  href="pagarPaypal?tipo=apadrinapareja"> 
                                                                     
-                                                                    <button type="button" class="button">Pagar</button></a>
+                                                                    <button type="button" class="button">Pagar</button></a>-->
+<a href="https://www.moneypool.mx/s/cmt9t">
+                                                                                    <button type="button" class="button">Pagar</button>
+                                                                                </a>
+
                                                             <br>
                                                             <br>        
                                                             
@@ -269,8 +274,12 @@
                                                         </c:when>
                                                         <c:when test="${respuesta.equals('nadieHaPagado')}">
                                                             <p><font size="4">No has pagado ni tú ni <b>${correo}</b>
-                                                                Para pagar con PayPal, haga click en el botón "Pagar":</font>
-                                                            <a  href="pagarPaypal?tipo=apadrinapareja"> <button type="button" class="button">Pagar</button></a>
+                                                                Para pagar con MoneyPool, haga click en el botón "Pagar":</font>
+<!--                                                            <a  href="pagarPaypal?tipo=apadrinapareja"> <button type="button" class="button">Pagar</button></a>-->
+<a href="https://www.moneypool.mx/s/cmt9t">
+                                                                                    <button type="button" class="button">Pagar</button>
+                                                                                </a>
+
                                                             <br>
                                                             <br>
                                                             </p>   

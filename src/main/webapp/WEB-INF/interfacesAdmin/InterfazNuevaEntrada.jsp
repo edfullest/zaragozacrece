@@ -260,13 +260,10 @@
                                 </label>
                             </section>                                                       
                         </div>
-                        <label class="label">Carta/Foto</label>
+                        <label class="label">Aquí puedes añadir una <b>carta</b> y/o <b>fotos</b></label>
                        <p> 
                                     <textarea class="ckeditor" cols="80" name="carta" id="editor1"  rows="10">
-                                                                <h1><strong>Aquí puedes poner su foto y/o su carta</strong></h1>
-                                                                    <p>&nbsp;</p>
-
-                                                                        
+                                        
                                     </textarea>
                       </p>
                                         

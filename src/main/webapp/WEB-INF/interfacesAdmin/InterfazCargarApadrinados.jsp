@@ -264,7 +264,8 @@
                             
                             
                         <div class="sky-tabs sky-tabs-pos-top-left sky-tabs-response-to-icons">
-                            
+                        <div class="textbox">			
+                   
                             <section>
                                 
                                 <nav role="navigation"> 
@@ -272,7 +273,7 @@
                                         
                                         <%--For displaying Previous link except for the 1st page --%>
                                         <c:if test="${paginaActual != 1}">
-                                            <li><a href="apadrinados?tipo=${"cargarApadrinados"}?paginaActual=${paginaActual - 1}">Anterior</a></li>
+                                            <li><a href="apadrinados?tipo=${"cargarApadrinados"}&paginaActual=${paginaActual - 1}">Anterior</a></li>
                                             </c:if>
                                                 
                                         <c:forEach begin="1" end="${numPaginas}" var="i">
@@ -281,13 +282,13 @@
                                                     <li><a class="current">${i}</a></li>
                                                     </c:when>
                                                     <c:otherwise>
-                                                    <li><a href="apadrinados?tipo=${"cargarApadrinados"}?paginaActual=${i}">${i}</a></li>
+                                                    <li><a href="apadrinados?tipo=${"cargarApadrinados"}&paginaActual=${i}">${i}</a></li>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </c:forEach>
                                                 
                                         <c:if test="${paginaActual != numPaginas}">
-                                            <li><a href="apadrinados?tipo=${"cargarApadrinados"}?paginaActual=${paginaActual + 1}">Siguiente</a></li>
+                                            <li><a href="apadrinados?tipo=${"cargarApadrinados"}&paginaActual=${paginaActual + 1}">Siguiente</a></li>
                                             </c:if>
                                                 
                                     </ul>
@@ -298,7 +299,7 @@
                                 
                             <!--/ tabs -->
                                 
-                                
+                        </div>     
                         </div>
                     </div>
                         

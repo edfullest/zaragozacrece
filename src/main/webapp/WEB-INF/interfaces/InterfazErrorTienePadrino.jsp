@@ -122,10 +122,11 @@
                 <% } %>
                 <!--/ Apartado para apadrinar un niño  -->
                 
-                <li>
+                <!--
+                                                    <li>
                             <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
                                 
-                        </li>
+                        </li>-->
                 
                 <!-- Mi cuenta,esto es si existe sesion -->
                 
@@ -193,7 +194,7 @@
                 
                 <!-- Apartado para contactar  -->
                 <li class="right">
-                    <a href="contactar"><i class="fa fa-phone"></i>Contáctanos</a>
+                    <a href="https://www.facebook.com/Zaragozacrece"><i class="fa fa-phone"></i>Contáctanos</a>
                 </li>
                 <!--/ Apartado para contactar -->
             </ul>

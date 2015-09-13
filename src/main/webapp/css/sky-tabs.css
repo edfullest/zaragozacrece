@@ -12,6 +12,11 @@
 	position: relative;
 	display: block;
 }
+.sky-tabs .map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
 
 .sky-tabs .button {
 	float:right;

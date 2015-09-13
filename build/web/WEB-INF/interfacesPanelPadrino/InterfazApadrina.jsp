@@ -148,7 +148,7 @@
 				
 				<!-- Apartado para contactar  -->
 				<li class="right">
-					<a href="contactar"><i class="fa fa-phone"></i>Contáctanos</a>
+					<a href="https://www.facebook.com/Zaragozacrece"><i class="fa fa-phone"></i>Contáctanos</a>
 				</li>
 				<!--/ Apartado para contactar -->
 			</ul>
