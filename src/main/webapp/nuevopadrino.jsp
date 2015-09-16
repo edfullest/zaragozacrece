@@ -88,7 +88,7 @@
                             
                         <li>
                             
-                            <a href="www.zaragozacrece.mx"><i class="fa fa-single fa-home"></i></a>
+                            <a href="/"><i class="fa fa-single fa-home"></i></a>
                                 
                                 
                         </li>
