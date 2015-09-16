@@ -91,7 +91,7 @@
             <ul class="sky-mega-menu sky-mega-menu-anim-flip sky-mega-menu-response-to-icons">
                 <!-- home -->
                 <li>
-                    <a href="/ccz"><i class="fa fa-single fa-home"></i></a>
+                    <a href="www.zaragozacrece.mx"><i class="fa fa-single fa-home"></i></a>
                                             
                                             
                 </li>
