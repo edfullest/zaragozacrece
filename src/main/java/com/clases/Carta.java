@@ -15,6 +15,7 @@ public class Carta {
     
     private String fechaEntrada;
     private String carta;
+    private String carta2;
     
     public Carta(String fechaEntrada,String carta){
         this.fechaEntrada = fechaEntrada; //
