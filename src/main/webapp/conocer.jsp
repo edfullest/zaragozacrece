@@ -240,7 +240,7 @@
                                             </script>
 
                                             <div id="map-canvas"></div>
-                                            Se eligió este municipio debido a que hay comunidades aisladas que carecen de los servicios públicos y atención por falta de la Secretaría de Educación Pública (SEP). Es por esto que constantemente se tienen resultados muy bajos en pruebas escolares a nivel nacional.
+                                            Se eligió eligió este municipio debido a que hay comunidades aisladas que carecen de los servicios públicos y atención por falta de la Secretaría de Educación Pública (SEP). Es por esto que constantemente se tienen resultados muy bajos en pruebas escolares a nivel nacional.
                                             <br> Según estudios de la CONAPO (2013), Zaragoza es el municipio con el índice más alto de marginación en Nuevo León
                                         </div>
                                     </li>
