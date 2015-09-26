@@ -253,7 +253,7 @@ function initMap() {
 
     </script>
     <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDu5EB0Do3UXVkgda_883tWrRSuy3n6owA&callback=initMap">
     </script>
 
                                             <div id="map-canvas"></div>
