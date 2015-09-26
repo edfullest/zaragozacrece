@@ -20,7 +20,11 @@
                     <meta property="og:image" content="https://lh5.googleusercontent.com/-1WA5JpxGGF0/VWArUdlDahI/AAAAAAAAA2o/jT9P6kTJuyo/s480-no/Background-04.jpg" />
                     <meta property="og:description" content="Sitio web dedicado al grupo estudiantil Creciendo con Zaragoza" />
                     <meta charset="utf-8">
-
+                    
+                    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+    </style>
 
                     <title>Creciendo con Zaragoza</title>
 
@@ -236,8 +240,21 @@
                                         <div class="typography">
                                             <h1>¿Por qué Zaragoza?</h1> General Zaragoza está ubicado al sureste de Nuevo León.
 
-                                            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDu5EB0Do3UXVkgda_883tWrRSuy3n6owA&callback=initMap">
-                                            </script>
+                                             <div id="map"></div>
+    <script type="text/javascript">
+
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+  });
+}
+
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap">
+    </script>
 
                                             <div id="map-canvas"></div>
                                             Se eligió este municipio debido a que hay comunidades aisladas que carecen de los servicios públicos y atención por falta de la Secretaría de Educación Pública (SEP). Es por esto que constantemente se tienen resultados muy bajos en pruebas escolares a nivel nacional.
