@@ -17,7 +17,7 @@ public class Conexion {
       try {
         String userName = "root";
         String password = "nbuser";
-        String url = "jdbc:mysql://localhost:3300/zaragoza_db";
+        String url = "jdbc:mysql://localhost:3309/zaragoza_dbs";
         Class.forName ("com.mysql.jdbc.Driver").newInstance();
         conn = DriverManager.getConnection (url, userName, password);
         stmt = conn.createStatement();

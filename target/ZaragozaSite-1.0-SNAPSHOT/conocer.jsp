@@ -234,13 +234,13 @@
 
                                     <li class="sky-tab-content-2">
                                         <div class="typography">
-                                            <h1>¿Por quué Zaragoza?</h1> General Zaragoza está ubicado al sureste de Nuevo León.
+                                            <h1>¿Por qué Zaragoza?</h1> General Zaragoza está ubicado al sureste de Nuevo León.
 
                                             <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDu5EB0Do3UXVkgda_883tWrRSuy3n6owA&callback=initMap">
                                             </script>
 
                                             <div id="map-canvas"></div>
-                                            Se eligió e ligió este municipio debido a que hay comunidades aisladas que carecen de los servicios públicos y atención por falta de la Secretaría de Educación Pública (SEP). Es por esto que constantemente se tienen resultados muy bajos en pruebas escolares a nivel nacional.
+                                            Se eligió este municipio debido a que hay comunidades aisladas que carecen de los servicios públicos y atención por falta de la Secretaría de Educación Pública (SEP). Es por esto que constantemente se tienen resultados muy bajos en pruebas escolares a nivel nacional.
                                             <br> Según estudios de la CONAPO (2013), Zaragoza es el municipio con el índice más alto de marginación en Nuevo León
                                         </div>
                                     </li>
