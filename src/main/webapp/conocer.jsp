@@ -238,7 +238,7 @@
 
                                     <li class="sky-tab-content-2">
                                         <div class="typography">
-                                            <h1>¿Por qué Zaragoza?</h1> General Zaragoza está ubicado al sureste de Nuevo León.
+                                            <h1>¿Por qué Zaragoza ?</h1> General Zaragoza está ubicado al sureste de Nuevo León.
 
                                              <div id="map"></div>
     <script type="text/javascript">
