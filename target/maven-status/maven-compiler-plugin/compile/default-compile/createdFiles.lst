@@ -19,6 +19,7 @@ com\controles\ControlNuevaNota.class
 com\paypal\api\payouts\servlet\CreateBatchPayoutServlet.class
 com\entidades\Apadrinados.class
 com\scheduler\ActualizadorPeriodo.class
+com\controles\ControlPeriodos.class
 com\controles\ControlCargarPagos.class
 com\entidades\Pago_pareja.class
 com\scheduler\MyScheduler.class

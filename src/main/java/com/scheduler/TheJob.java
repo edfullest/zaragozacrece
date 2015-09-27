@@ -1,5 +1,6 @@
 package com.scheduler;
 
+import com.controles.ControlPeriodos;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,8 +28,9 @@ public class TheJob implements Job {
             java.util.logging.Logger.getLogger(TheJob.class.getName()).log(Level.SEVERE, null, ex);
         }
         log.debug("Job run successfully on "+fecha);
+        ControlPeriodos control = new ControlPeriodos();
         
-        
+        control.actualizarPeriodo();
         
     }
     

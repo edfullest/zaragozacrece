@@ -22,7 +22,7 @@ public class ControlPeriodos {
         
         if (ultimoPeriodo.getFechaFinal() == new Date()){
             Calendar fechaFinal = Calendar.getInstance();
-            fechaFinal.add(Calendar.MONTH, 4);
+            fechaFinal.add(Calendar.MONTH, 5);
             Date dFechaFinal = fechaFinal.getTime();
             periodo.nuevoPeriodo(new Date(),dFechaFinal);   
         }
