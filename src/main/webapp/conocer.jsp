@@ -23,8 +23,8 @@
                     
                     <style type="text/css">
       #map2 {
-        width: 800px;
-        height: 700px;
+        width: 700px;
+        height: 600px;
       }
     </style>
 
