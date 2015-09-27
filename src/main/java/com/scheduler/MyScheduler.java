@@ -33,7 +33,7 @@ public class MyScheduler {
             // specify the running period of the job
             Trigger trigger = newTrigger()
                     .withIdentity("trigger3", "group1")
-                    .withSchedule(dailyAtHourAndMinute(15, 33))
+                    .withSchedule(dailyAtHourAndMinute(00, 00))
                     .forJob(job)
                     .build();
             

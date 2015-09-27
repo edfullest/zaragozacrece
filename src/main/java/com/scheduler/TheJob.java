@@ -26,9 +26,8 @@ public class TheJob implements Job {
         } catch (ParseException ex) {
             java.util.logging.Logger.getLogger(TheJob.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Yes");
-        System.out.println(fecha);
         log.debug("Job run successfully on "+fecha);
+        
         
         
     }

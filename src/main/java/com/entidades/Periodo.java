@@ -93,6 +93,36 @@ public class Periodo {
 
       return periodos;
     }
+    
+    public Periodo obtenerUltimoPeriodo(){
+       
+        
+        try{
+             pStmt = conn.prepareStatement(
+                    "SELECT * FROM periodo ORDER BY idPeriodo desc LIMIT 0,1");
+       
+            ResultSet rs = pStmt.executeQuery();
+            
+            while(rs.next()){
+
+                int idPeriodo = rs.getInt("idPeriodo");
+                Date fechaInicio = rs.getDate("fechaInicio");
+                Date fechaFinal = rs.getDate("fechaFinal");
+                
+                Periodo periodo = new Periodo (idPeriodo,fechaInicio,fechaFinal);
+                return periodo;
+                
+            }
+          return null;
+            
+
+        }
+        catch(SQLException e){
+        
+        }
+
+      return null;
+    }
 
     /**
      * @return the idPeriodo
