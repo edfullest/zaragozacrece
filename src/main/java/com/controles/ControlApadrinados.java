@@ -111,6 +111,7 @@ public class ControlApadrinados extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+         request.setCharacterEncoding("UTF-8");
         //Lugar de donde el usuario hace el get
         String tipo = request.getParameter("tipo");
         ;
