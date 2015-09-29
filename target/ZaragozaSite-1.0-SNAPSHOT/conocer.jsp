@@ -20,13 +20,13 @@
                     <meta property="og:image" content="https://lh5.googleusercontent.com/-1WA5JpxGGF0/VWArUdlDahI/AAAAAAAAA2o/jT9P6kTJuyo/s480-no/Background-04.jpg" />
                     <meta property="og:description" content="Sitio web dedicado al grupo estudiantil Creciendo con Zaragoza" />
                     <meta charset="utf-8">
-                    
+
                     <style type="text/css">
-      #map2 {
-        width: 700px;
-        height: 600px;
-      }
-    </style>
+                        #map2 {
+                            width: 700px;
+                            height: 600px;
+                        }
+                    </style>
 
                     <title>Creciendo con Zaragoza</title>
 
@@ -224,7 +224,7 @@
                                 <ul>
                                     <li class="sky-tab-content-1">
                                         <div class="typography">
-                                            <h1>Acerca de nosotros</h1> 
+                                            <h1>Acerca de nosotros</h1>
                                             <h4>
                                             Creciendo con Zaragoza es un grupo formado por estudiantes del Tecnológico de Monterrey. En él se busca el desarrollo integral de las comunidades alejadas del municipio de General Zaragoza, en Nuevo León.
                                             <br>
@@ -250,30 +250,36 @@
 
                                     <li class="sky-tab-content-2">
                                         <div class="typography">
-                                            <h1>¿Zaragoza?</h1> 
+                                            <h1>¿Por qué Zaragoza?</h1>
                                             <h3>General Zaragoza está ubicado al sureste de Nuevo León.</h3>
                                             <br>
-                                            <center> <div id="map2"></div> </center>
-    <script type="text/javascript">
+                                            <center>
+                                                <div id="map2"></div>
+                                            </center>
+                                            <script type="text/javascript">
+                                                var map;
 
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map2'), {
-    center: {lat: 23.9655095, lng: -99.7747048},
-    zoom: 7
-  });
-  var marker = new google.maps.Marker({
-    position: {lat: 23.9655095, lng: -99.7747048},
-    map: map,
-    title: 'Zaragoza, N.L.'
-  });
-}
-
-    </script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDu5EB0Do3UXVkgda_883tWrRSuy3n6owA&callback=initMap">
-    </script>
-   <h3>
+                                                function initMap() {
+                                                    map = new google.maps.Map(document.getElementById('map2'), {
+                                                        center: {
+                                                            lat: 23.9655095,
+                                                            lng: -99.7747048
+                                                        },
+                                                        zoom: 7
+                                                    });
+                                                    var marker = new google.maps.Marker({
+                                                        position: {
+                                                            lat: 23.9655095,
+                                                            lng: -99.7747048
+                                                        },
+                                                        map: map,
+                                                        title: 'Zaragoza, N.L.'
+                                                    });
+                                                }
+                                            </script>
+                                            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVCLiKbmaN33ewYhRlwDfXim1gmVCdlV0&callback=initMap">
+                                            </script>
+                                            <h3>
                                             Se eligió este municipio debido a que hay comunidades aisladas que carecen de los servicios públicos y atención por falta de la Secretaría de Educación Pública (SEP). Es por esto que constantemente se tienen resultados muy bajos en pruebas escolares a nivel nacional.
                                             <br> <br> Según estudios de la CONAPO (2013), Zaragoza es el municipio con el índice más alto de marginación en Nuevo León</h3>
                                         </div>
@@ -281,7 +287,7 @@ function initMap() {
 
                                     <li class="sky-tab-content-3">
                                         <div class="typography">
-                                            <h1>¿Cómo puedo ayudar?</h1> 
+                                            <h1>¿Cómo puedo ayudar?</h1>
                                             <h3>Existen varias maneras en que nos puedas apoyar para continuar llevando a cabo el proyecto. 
                                             <br>
                                             <br>
@@ -311,10 +317,10 @@ function initMap() {
 
 
                     </div>
-                    
-                                                                                                                                
 
-                                                                                    
+
+
+
                 </body>
 
 
