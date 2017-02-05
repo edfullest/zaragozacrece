@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-        <%-- 
+        <%--
     Document   : index
     Created on : May 20, 2015, 3:11:10 PM
     Author     : Lalo Serna
@@ -126,7 +126,7 @@
 
                                                 <!--                <li>
                     <a href=""><i class="fa fa-heart-o"></i>Patrocinadores</a>
-                        
+
                 </li>-->
 
                                                 <!-- Mi cuenta,esto es si existe sesion -->
@@ -230,14 +230,14 @@
                                             <br>
                                             <br>
                                             <center> <img src="http://i.imgur.com/AgAU4t8.jpg" style="width:600px;height:400px;"> </center>
-                                            
+
                                             <br>
-                                            
+
                                             <br> Tenemos la misión de promover la participación de nuestra sociedad en general, para fomentar el desarrollo integral de las poblaciones dispersas más necesitadas de General Zaragoza. Así mismo, procurar que las habilidades de, tanto los habitantes como los participantes, formen parte activa de su propio desarrollo. Buscamos impactar en tres áreas principales:
                                             <br>
                                             <br>
                                             <center> <img src="https://scontent.xx.fbcdn.net/hphotos-xat1/v/t1.0-9/1382255_636518569703823_25811087_n.jpg?oh=9454853dc371025d239bc0bca735249e&oe=569440F7" style="width:600px;height:400px;"> </center>
-                                            
+
                                             <br> <i class="fa fa-child"></i> Salud y Nutrición: Lograr el desarrollo y crecimiento integral en los niños y brindar una mejor calidad de vida para adultos mayores, a través de la elaboración de NutreTec y VidaTec. Complementos alimenticios que aportan los nutrientes necesarios para el desarrollo físico y mental de cada etapa, respectivamente.
                                             <br>
                                             <br> <i class="fa fa-child"></i><i class="fa fa-child"></i> Educación: Un programa integral y compensatorio de educación que combata el analfabetismo y fomente una educación de calidad, a través del trabajo conjunto con CONAFE. Mediante la elaboración de manuales y planes educativos que faciliten la enseñanza en las escuelas rurales.
@@ -277,7 +277,7 @@
                                                     });
                                                 }
                                             </script>
-                                            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVCLiKbmaN33ewYhRlwDfXim1gmVCdlV0&callback=initMap">
+                                            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3npzY77_mJRYbKPfcbttyUs11fqr42BU&callback=initMap">
                                             </script>
                                             <h3>
                                             Se eligió este municipio debido a que hay comunidades aisladas que carecen de los servicios públicos y atención por falta de la Secretaría de Educación Pública (SEP). Es por esto que constantemente se tienen resultados muy bajos en pruebas escolares a nivel nacional.
@@ -288,19 +288,19 @@
                                     <li class="sky-tab-content-3">
                                         <div class="typography">
                                             <h1>¿Cómo puedo ayudar?</h1>
-                                            <h3>Existen varias maneras en que nos puedas apoyar para continuar llevando a cabo el proyecto. 
+                                            <h3>Existen varias maneras en que nos puedas apoyar para continuar llevando a cabo el proyecto.
                                             <br>
                                             <br>
-                                   
+
                                                    <i class="fa fa-check"></i> Apadrinando a un niño o adulto mayor
-                                                
+
                                                 <br>
                                                 <br>
-                                                
+
                                                     <i class="fa fa-check"></i> Donando ropa, comida (no perecedera), juguetes, libros escolares de nivel básico o medio, libros recreativos y/o material escolar, procurando que todos los objetos estén en buen estado.
-                                                
-                                            <br> 
-                                     
+
+                                            <br>
+
                                            </h3>
                                             <h3><strong>Con tu apoyo, se puede mejorar la calidad de vida de muchas personas.</strong></h3>
 
